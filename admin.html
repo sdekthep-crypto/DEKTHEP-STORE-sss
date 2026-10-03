@@ -1494,7 +1494,7 @@
       <div style="display: flex; align-items: center; gap: 10px;">
         <div style="width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, #0066ff, #00d2ff); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px;">A</div>
         <div>
-          <div style="font-size: 13px; font-weight: 600; color: #fff;" id="sidebarAdminUser">admin</div>
+          <div style="font-size: 13px; font-weight: 600; color: #fff;" id="sidebarAdminUser">DEKTHEPSTORE</div>
           <div style="font-size: 10px; color: var(--admin-muted);">Super Administrator</div>
         </div>
       </div>
@@ -3936,8 +3936,8 @@
         lineLink: "",
         lineBtnText: "แอดไลน์ ↗"
       },
-      adminUser: "admin",
-      adminPass: "admin888",
+      adminUser: "DEKTHEPSTORE",
+      adminPass: "147",
       themeName: "blue",
       themePrimary: "#0066ff",
       themeAccent: "#00d2ff",
@@ -4364,8 +4364,8 @@
       const pass = (document.getElementById('loginPassword').value || '').trim();
       const cfg = getStoredSettings();
 
-      const validUser = (cfg && cfg.adminUser) ? cfg.adminUser : 'admin';
-      const validPass = (cfg && cfg.adminPass) ? cfg.adminPass : 'admin888';
+      const validUser = (cfg && cfg.adminUser) ? cfg.adminUser : 'DEKTHEPSTORE';
+      const validPass = (cfg && cfg.adminPass) ? cfg.adminPass : '147';
 
       // Strict Authentication: ONLY configured admin credentials accepted
       const isMatch = (user === validUser && pass === validPass);
@@ -6076,8 +6076,8 @@
       }
 
       const current = getStoredSettings();
-      current.adminUser = user || 'admin';
-      current.adminPass = pass || 'admin888';
+      current.adminUser = user || 'DEKTHEPSTORE';
+      current.adminPass = pass || '147';
       saveSettings(current);
 
       document.getElementById('cfgAdminPass').value = '';

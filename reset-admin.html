@@ -33,11 +33,11 @@
 
   <div class="section-title">🔑 ตั้งค่า Credentials ใหม่</div>
   <label>Username แอดมิน</label>
-  <input type="text" id="newUser" value="admin" />
+  <input type="text" id="newUser" value="DEKTHEPSTORE" />
   <label>Password ใหม่</label>
-  <input type="password" id="newPass" value="admin888" />
+  <input type="password" id="newPass" value="147" />
   <label>ยืนยัน Password</label>
-  <input type="password" id="newPassConfirm" value="admin888" />
+  <input type="password" id="newPassConfirm" value="147" />
 
   <button class="btn btn-primary" onclick="doReset()">✅ รีเซ็ตและบันทึก Credentials</button>
 
@@ -71,9 +71,9 @@
     if (raw) {
       const s = JSON.parse(raw);
       info.innerHTML = `📋 <strong>Current:</strong> User = <code style="color:#00d2ff">${s.adminUser || '(none)'}</code> &nbsp;|&nbsp; Pass = <code style="color:#f6ad55">${s.adminPass ? '••••••' : '(none)'}</code>`;
-      document.getElementById('newUser').value = s.adminUser || 'admin';
+      document.getElementById('newUser').value = s.adminUser || 'DEKTHEPSTORE';
     } else {
-      info.innerHTML = `⚠️ ไม่พบข้อมูล Settings ใน localStorage — จะใช้ค่า default: <code>admin</code> / <code>admin888</code>`;
+      info.innerHTML = `⚠️ ไม่พบข้อมูล Settings ใน localStorage — จะใช้ค่า default: <code>DEKTHEPSTORE</code> / <code>147</code>`;
     }
     const lockRaw = localStorage.getItem(ADMIN_LOCKOUT_KEY);
     if (lockRaw) {

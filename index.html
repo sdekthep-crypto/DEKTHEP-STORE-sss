@@ -4636,8 +4636,8 @@
         lineLink: "",
         lineBtnText: "แอดไลน์ ↗"
       },
-      adminUser: "admin",
-      adminPass: "admin888",
+      adminUser: "DEKTHEPSTORE",
+      adminPass: "147",
       themeName: "red",
       themePrimary: "#ef4444",
       themeAccent: "#ef4444",
@@ -4834,9 +4834,9 @@
         joined: "2026-09-30"
       },
       {
-        username: "admin",
+        username: "DEKTHEPSTORE",
         email: "admin@demoxshop.site",
-        password: "admin888",
+        password: "147",
         wallet: 99999.00,
         role: "Admin",
         joined: "2026-09-01"
@@ -5009,8 +5009,8 @@
       const data = localStorage.getItem(KEY_USERS);
       let users = data ? JSON.parse(data) : DEFAULT_USERS;
       const cfg = getStoredSettings();
-      const adminName = (cfg && cfg.adminUser) ? cfg.adminUser : 'admin';
-      const adminPass = (cfg && cfg.adminPass) ? cfg.adminPass : 'admin888';
+      const adminName = (cfg && cfg.adminUser) ? cfg.adminUser : 'DEKTHEPSTORE';
+      const adminPass = (cfg && cfg.adminPass) ? cfg.adminPass : '147';
       if (!users.some(u => (u.username || '').toLowerCase() === adminName.toLowerCase())) {
         users.push({
           username: adminName,
@@ -5073,7 +5073,7 @@
     function isCurrentUserAdmin() {
       const user = getCurrentUser();
       const cfg = getStoredSettings();
-      const validAdminUser = (cfg && cfg.adminUser ? cfg.adminUser : 'admin').toLowerCase();
+      const validAdminUser = (cfg && cfg.adminUser ? cfg.adminUser : 'DEKTHEPSTORE').toLowerCase();
 
       // Check current user object
       if (user) {
@@ -5707,8 +5707,8 @@
 
       // Support logging in directly as admin with settings credentials
       const cfg = getStoredSettings();
-      const validAdminUser = (cfg && cfg.adminUser) ? cfg.adminUser : 'admin';
-      const validAdminPass = (cfg && cfg.adminPass) ? cfg.adminPass : 'admin888';
+      const validAdminUser = (cfg && cfg.adminUser) ? cfg.adminUser : 'DEKTHEPSTORE';
+      const validAdminPass = (cfg && cfg.adminPass) ? cfg.adminPass : '147';
 
       if (!found && (name.toLowerCase() === validAdminUser.toLowerCase() || name.toLowerCase() === 'admin@demoxshop.site') && pass === validAdminPass) {
         found = users.find(u => u.username.toLowerCase() === validAdminUser.toLowerCase());
