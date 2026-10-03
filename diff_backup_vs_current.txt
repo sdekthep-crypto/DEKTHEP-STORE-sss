@@ -1,0 +1,201 @@
+﻿=>   <!-- ============================================================ -->
+=>   <!-- ðŸ”„ UI REFRESH: à¹‚à¸„à¸£à¸‡à¸ªà¸£à¹‰à¸²à¸‡à¸à¸²à¸£à¹Œà¸”à¹à¸šà¸šà¹€à¸§à¹‡à¸šà¸­à¹‰à¸²à¸‡à¸­à¸´à¸‡ (à¹ƒà¸Šà¹‰à¸ªà¸µ/à¸˜à¸µà¸¡/à¸£à¸¹à¸›à¹€à¸”à¸´à¸¡) -->
+=>   <!-- ============================================================ -->
+=>   <style id="ui-refresh-style">
+=>     /* --- à¸à¸²à¸£à¹Œà¸”à¸ªà¸´à¸™à¸„à¹‰à¸²: à¹à¸–à¸§à¸›à¹‰à¸²à¸¢à¸šà¸™à¸£à¸¹à¸› --- */
+=>     .prod-tagRow { position: absolute; top: 8px; left: 8px; display: flex; gap: 4px; z-index: 4; flex-wrap: wrap; }
+=>     .prod-badgeDark {
+=>       background: rgba(0, 0, 0, 0.62);
+=>       backdrop-filter: blur(6px);
+=>       border: 1px solid rgba(var(--theme-sec-rgb, 0, 210, 255), 0.4);
+=>       color: #bae6fd;
+=>     /* --- à¸›à¹‰à¸²à¸¢à¸ˆà¸³à¸™à¸§à¸™à¸ªà¸•à¹‡à¸­à¸à¸¡à¸¸à¸¡à¸‚à¸§à¸²à¸šà¸™à¸‚à¸­à¸‡à¸£à¸¹à¸› (à¹à¸šà¸šà¹€à¸”à¸µà¸¢à¸§à¸à¸±à¸šà¹€à¸§à¹‡à¸šà¸­à¹‰à¸²à¸‡à¸­à¸´à¸‡) --- */
+=>     .prod-stockPill {
+=>       position: absolute; top: 8px; right: 8px; z-index: 4;
+=>       min-width: 26px; height: 22px; padding: 0 8px;
+=>       display: inline-flex; align-items: center; justify-content: center;
+=>       border-radius: 8px;
+=>       background: rgba(0, 0, 0, 0.62);
+=>       backdrop-filter: blur(6px);
+=>       border: 1px solid rgba(255, 255, 255, 0.18);
+=>       color: #ffffff; font-size: 11px; font-weight: 800; letter-spacing: 0.02em;
+=>     /* --- à¹à¸–à¸§à¸£à¸²à¸„à¸²à¹à¸šà¸šà¸Šà¹ˆà¸§à¸‡ (min - max) --- */
+=>     .prod-priceRow { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+=>     .prod-priceRow strong {
+=>       font-size: 15px; font-weight: 800;
+=>       color: var(--theme-sec, #00d2ff);
+=>       display: block; line-height: 1.25;
+=>     .prod-priceRow del { font-size: 11px; color: #475569; }
+=>     .prod-discountTag {
+=>       font-size: 10px; font-weight: 800; color: #fca5a5;
+=>       background: rgba(239, 68, 68, 0.18);
+=>       border: 1px solid rgba(239, 68, 68, 0.35);
+=>       border-radius: 6px; padding: 1px 5px;
+=>     /* --- à¸šà¸£à¸£à¸—à¸±à¸”à¸ªà¸–à¸²à¸™à¸°à¸ªà¸´à¸™à¸„à¹‰à¸² --- */
+=>     .prod-statusLine { font-size: 11px; font-weight: 600; color: #94a3b8; }
+=>     .prod-statusLine.is-in { color: #34d399; }
+=>     .prod-statusLine.is-out { color: #f87171; }
+=>     /* --- à¸›à¸¸à¹ˆà¸¡à¸„à¸¹à¹ˆ à¸”à¸¹à¸ªà¸´à¸™à¸„à¹‰à¸² / à¸‹à¸·à¹‰à¸­à¹€à¸¥à¸¢ (à¹à¸ªà¸”à¸‡à¸•à¸¥à¸­à¸”à¹€à¸§à¸¥à¸²) --- */
+=>     .prod-actions { display: flex; gap: 8px; padding: 0 12px 12px; margin-top: 2px; }
+=>     .prod-btn {
+=>       flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+=>       padding: 9px 8px; border-radius: 9px;
+=>       font-size: 12px; font-weight: 700; cursor: pointer;
+=>       border: 1px solid transparent;
+=>       transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+=>       white-space: nowrap;
+=>     .prod-btn-view {
+=>       background: rgba(255, 255, 255, 0.04);
+=>       border-color: rgba(255, 255, 255, 0.12);
+=>       color: #e2e8f0;
+=>     .prod-btn-view:hover { background: rgba(255, 255, 255, 0.09); transform: translateY(-1px); }
+=>     .prod-btn-buy {
+=>       background: linear-gradient(135deg, var(--theme-main, #0066ff), var(--theme-sec, #00d2ff));
+=>       color: #ffffff;
+=>       box-shadow: 0 4px 14px rgba(var(--theme-main-rgb, 0, 102, 255), 0.4);
+=>     .prod-btn-buy:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(var(--theme-main-rgb, 0, 102, 255), 0.65); }
+=>     .prod-btn:disabled { opacity: 0.55; cursor: not-allowed; box-shadow: none; transform: none; }
+=>     /* --- à¸à¸²à¸£à¹Œà¸”à¸«à¸¡à¸§à¸”à¸«à¸¡à¸¹à¹ˆ: à¹ƒà¸«à¹‰à¸›à¸¸à¹ˆà¸¡ "à¸„à¸¥à¸´à¸à¸”à¸¹à¸ªà¸´à¸™à¸„à¹‰à¸²" à¹à¸ªà¸”à¸‡à¸•à¸¥à¸­à¸”à¹€à¸§à¸¥à¸² --- */
+=>     .store-home-category .store-home-categoryAction { opacity: 1 !important; transform: none !important; }
+=>     @media (max-width: 480px) {
+=>       .prod-btn { font-size: 11px; padding: 8px 6px; }
+=>       .prod-priceRow strong { font-size: 14px; }
+=>   </style>
+=>       adminUser: "DEKTHEPSTORE",
+=>       adminPass: "147",
+=>         username: "DEKTHEPSTORE",
+=>         password: "147",
+=>       const adminName = (cfg && cfg.adminUser) ? cfg.adminUser : 'DEKTHEPSTORE';
+=>       const adminPass = (cfg && cfg.adminPass) ? cfg.adminPass : '147';
+=>         // à¸¡à¸µà¸à¸²à¸£à¸¥à¹‡à¸­à¸à¸­à¸´à¸™/à¸ªà¸¥à¸±à¸šà¸œà¸¹à¹‰à¹ƒà¸Šà¹‰ -> à¸¢à¸à¹€à¸¥à¸´à¸à¸˜à¸‡ "à¸­à¸­à¸à¸ˆà¸²à¸à¸£à¸°à¸šà¸š" à¹€à¸žà¸·à¹ˆà¸­à¹ƒà¸«à¹‰à¸ˆà¸³à¹€à¸‹à¸ªà¸Šà¸±à¸™à¸•à¸²à¸¡à¸›à¸à¸•à¸´
+=>         try { localStorage.removeItem('demoxshop_logged_out'); } catch(e) {}
+=>       const validAdminUser = (cfg && cfg.adminUser ? cfg.adminUser : 'DEKTHEPSTORE').toLowerCase();
+=>         // â— à¸«à¹‰à¸²à¸¡ auto-login à¸à¸¥à¸±à¸šà¹€à¸‚à¹‰à¸²à¸ªà¸¹à¹ˆà¸£à¸°à¸šà¸š à¸–à¹‰à¸²à¸œà¸¹à¹‰à¹ƒà¸Šà¹‰à¸à¸” "à¸­à¸­à¸à¸ˆà¸²à¸à¸£à¸°à¸šà¸š" à¹„à¸›à¹à¸¥à¹‰à¸§
+=>         // (à¹€à¸”à¸´à¸¡à¹€à¸›à¹‡à¸™à¸šà¸±à¹Šà¸: handleUserLogout() -> setCurrentUser(null) -> renderUserAuthUI()
+=>         //  à¹à¸¥à¹‰à¸§ setCurrentUser(melinda) à¸à¸¥à¸±à¸šà¸—à¸±à¸™à¸—à¸µ à¸ˆà¸¶à¸‡à¹€à¸«à¸¡à¸·à¸­à¸™à¸à¸”à¸­à¸­à¸à¹„à¸¡à¹ˆà¹„à¸”à¹‰)
+=>         let loggedOut = false;
+=>         try { loggedOut = localStorage.getItem('demoxshop_logged_out') === '1'; } catch(e) {}
+=>         if (!loggedOut) {
+=>           // Default to Melinda2Margarita if available (à¹€à¸‰à¸žà¸²à¸°à¸„à¸£à¸±à¹‰à¸‡à¹à¸£à¸à¸—à¸µà¹ˆà¸¢à¸±à¸‡à¹„à¸¡à¹ˆà¹€à¸„à¸¢à¸à¸” logout)
+=>           const users = getUsers();
+=>           const melinda = users.find(u => u.username === 'Melinda2Margarita') || users[0];
+=>           if (melinda) {
+=>             setCurrentUser(melinda);
+=>             user = melinda;
+=>       const validAdminUser = (cfg && cfg.adminUser) ? cfg.adminUser : 'DEKTHEPSTORE';
+=>       const validAdminPass = (cfg && cfg.adminPass) ? cfg.adminPass : '147';
+=>       try { closeDropdown(); } catch(e) {}
+=>       // à¸•à¸±à¹‰à¸‡à¸˜à¸‡à¸§à¹ˆà¸²à¸œà¸¹à¹‰à¹ƒà¸Šà¹‰ "à¸­à¸­à¸à¸ˆà¸²à¸à¸£à¸°à¸šà¸š" à¹à¸¥à¹‰à¸§ à¹€à¸žà¸·à¹ˆà¸­à¸à¸±à¸™à¹„à¸¡à¹ˆà¹ƒà¸«à¹‰ renderUserAuthUI() auto-login à¸à¸¥à¸±à¸š
+=>       try { localStorage.setItem('demoxshop_logged_out', '1'); } catch(e) {}
+=>         sessionStorage.removeItem('demoxshop_admin_session');
+=>         sessionStorage.removeItem('demoxshop_admin_auth');
+=>         localStorage.removeItem('demoxshop_admin_session');
+=>       try { setCurrentUser(null); } catch(e) {}
+=>       try { updateAdminVisibility(); } catch(e) {}
+=>                   <span>à¸„à¸¥à¸´à¸à¸”à¸¹à¸ªà¸´à¸™à¸„à¹‰à¸²</span>
+=>         const maxVariantPrice = (p.variants && p.variants.length > 0)
+=>           ? Math.max(...p.variants.map(v => parseFloat(v.price) || 0))
+=>           : parseFloat(p.price);
+=>               <div class="prod-tagRow">
+=>                 <span class="store-home-productBadge prod-badgeDark">${escapeHtml(p.badge || 'à¸ªà¸´à¸™à¸„à¹‰à¸²')}</span>
+=>               <span class="prod-stockPill">${p.stock > 0 ? p.stock : 0}</span>
+=>               <div class="prod-priceRow">
+=>                 <strong>à¸¿ ${minVariantPrice.toFixed(2)}${maxVariantPrice.toFixed(2) !== minVariantPrice.toFixed(2) ? ` - à¸¿ ${maxVariantPrice.toFixed(2)}` : ''}</strong>
+=>                 <del>à¸¿ ${discountedPrice}</del>
+=>                 <span class="prod-discountTag">-${discountPct}%</span>
+=>               <div class="prod-statusLine ${p.stock > 0 ? 'is-in' : 'is-out'}">${isUpdating ? 'à¸›à¸´à¸”à¸›à¸£à¸±à¸šà¸›à¸£à¸¸à¸‡à¸Šà¸±à¹ˆà¸§à¸„à¸£à¸²à¸§' : isDisabled ? 'à¸›à¸´à¸”à¸ˆà¸³à¸«à¸™à¹ˆà¸²à¸¢à¸Šà¸±à¹ˆà¸§à¸„à¸£à¸²à¸§' : (p.stock > 0 ? `à¸žà¸£à¹‰à¸­à¸¡à¸ªà¹ˆà¸‡ - à¹€à¸«à¸¥à¸·à¸­ ${p.stock}` : 'à¸ªà¸´à¸™à¸„à¹‰à¸²à¸«à¸¡à¸”')}</div>
+=>             <div class="prod-actions">
+=>               <button type="button" class="prod-btn prod-btn-view" onclick="event.stopPropagation(); openProductDetailById('${p.id}');">à¸”à¸¹à¸ªà¸´à¸™à¸„à¹‰à¸²</button>
+=>               <button type="button" class="prod-btn prod-btn-buy" onclick="event.stopPropagation(); openProductDetailById('${p.id}');" ${buyBtnDisabled ? 'disabled' : ''}>${buyBtnDisabled ? buyBtnText : 'à¸‹à¸·à¹‰à¸­à¹€à¸¥à¸¢'}</button>
+=>               const maxVariantPrice = (p.variants && p.variants.length > 0)
+=>                 ? Math.max(...p.variants.map(v => parseFloat(v.price) || 0))
+=>                 : parseFloat(p.price);
+=>                     <div class="prod-tagRow">
+=>                       <span class="store-home-productBadge prod-badgeDark">${escapeHtml(p.badge || 'à¸ªà¸´à¸™à¸„à¹‰à¸²')}</span>
+=>                     <span class="prod-stockPill">${p.stock > 0 ? p.stock : 0}</span>
+=>                     <div class="prod-priceRow">
+=>                       <strong>à¸¿ ${minVariantPrice.toFixed(2)}${maxVariantPrice.toFixed(2) !== minVariantPrice.toFixed(2) ? ` - à¸¿ ${maxVariantPrice.toFixed(2)}` : ''}</strong>
+=>                       <del>à¸¿ ${discountedPrice}</del>
+=>                       <span class="prod-discountTag">-${discountPct}%</span>
+=>                     <div class="prod-statusLine ${p.stock > 0 ? 'is-in' : 'is-out'}">${isUpdating ? 'à¸›à¸´à¸”à¸›à¸£à¸±à¸šà¸›à¸£à¸¸à¸‡à¸Šà¸±à¹ˆà¸§à¸„à¸£à¸²à¸§' : isDisabled ? 'à¸›à¸´à¸”à¸ˆà¸³à¸«à¸™à¹ˆà¸²à¸¢à¸Šà¸±à¹ˆà¸§à¸„à¸£à¸²à¸§' : (p.stock > 0 ? `à¸žà¸£à¹‰à¸­à¸¡à¸ªà¹ˆà¸‡ - à¹€à¸«à¸¥à¸·à¸­ ${p.stock}` : 'à¸ªà¸´à¸™à¸„à¹‰à¸²à¸«à¸¡à¸”')}</div>
+=>                   <div class="prod-actions">
+=>                     <button type="button" class="prod-btn prod-btn-view" onclick="event.stopPropagation(); openProductDetailById('${p.id}');">à¸”à¸¹à¸ªà¸´à¸™à¸„à¹‰à¸²</button>
+=>                     <button type="button" class="prod-btn prod-btn-buy" onclick="event.stopPropagation(); openProductDetailById('${p.id}');" ${buyBtnDisabled ? 'disabled' : ''}>${buyBtnDisabled ? buyBtnText : 'à¸‹à¸·à¹‰à¸­à¹€à¸¥à¸¢'}</button>
+=>                   </div>
+=>     }
+=>     }
+=>     }
+=>             </div>
+=>     }
+=>     }
+=>     }
+=>     }
+=>     }
+=>       } catch(e) {}
+=>       try {
+=>         // à¸«à¸¡à¸²à¸¢à¹€à¸«à¸•à¸¸: à¸­à¸¢à¹ˆà¸² auto-login à¸à¸¥à¸±à¸š à¸–à¹‰à¸²à¸œà¸¹à¹‰à¹ƒà¸Šà¹‰à¹€à¸„à¸¢à¸à¸” "à¸­à¸­à¸à¸ˆà¸²à¸à¸£à¸°à¸šà¸š" (à¸˜à¸‡ demoxshop_logged_out)
+=>         let _wasLoggedOut = false;
+=>         try { _wasLoggedOut = localStorage.getItem('demoxshop_logged_out') === '1'; } catch(e) {}
+=>         if (!localStorage.getItem(KEY_CURRENT_USER) && !_wasLoggedOut) {
+=>           }
+<=       adminUser: "admin",
+<=       adminPass: "admin888",
+<=         username: "admin",
+<=         password: "admin888",
+<=       const adminName = (cfg && cfg.adminUser) ? cfg.adminUser : 'admin';
+<=       const adminPass = (cfg && cfg.adminPass) ? cfg.adminPass : 'admin888';
+<=       const validAdminUser = (cfg && cfg.adminUser ? cfg.adminUser : 'admin').toLowerCase();
+<=         // Default to Melinda2Margarita if available
+<=         const melinda = users.find(u => u.username === 'Melinda2Margarita') || users[0];
+<=         if (melinda) {
+<=           setCurrentUser(melinda);
+<=           user = melinda;
+<=       const validAdminUser = (cfg && cfg.adminUser) ? cfg.adminUser : 'admin';
+<=       const validAdminPass = (cfg && cfg.adminPass) ? cfg.adminPass : 'admin888';
+<=       closeDropdown();
+<=       sessionStorage.removeItem('demoxshop_admin_session');
+<=       sessionStorage.removeItem('demoxshop_admin_auth');
+<=       localStorage.removeItem('demoxshop_admin_session');
+<=       setCurrentUser(null);
+<=       updateAdminVisibility();
+<=                   <span>à¸”à¸¹à¸ªà¸´à¸™à¸„à¹‰à¸²</span>
+<=               <div style="position: absolute; top: 8px; left: 8px; display: flex; gap: 4px; z-index: 4; flex-wrap: wrap;">
+<=                 <span class="store-home-productBadge" style="background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(6px); border: 1px solid rgba(0, 210, 255, 0.4); color: #bae6fd;">${escapeHtml(p.badge || 'à¸ªà¸´à¸™à¸„à¹‰à¸²')}</span>
+<=               <div style="position:absolute; top:8px; right:8px; z-index:4;">
+<=                 <span style="background:rgba(239,68,68,0.85); color:#fff; font-size:10px; font-weight:800; padding:2px 6px; border-radius:999px;">-${discountPct}%</span>
+<=               <div class="store-home-productMeta">
+<=                 <span style="color:${p.stock > 0 ? '#34d399' : '#f87171'}; font-weight:600;">ðŸ“¦ ${p.stock > 0 ? `à¹€à¸«à¸¥à¸·à¸­ ${p.stock} à¸Šà¸´à¹‰à¸™` : 'à¸«à¸¡à¸”'}</span>
+<=                 ${(p.variants && p.variants.length > 0) ? `<span style="font-size:10.5px; color:#f472b6; font-weight:700;">â±ï¸ à¸¡à¸µ ${p.variants.length} à¹à¸šà¸šà¸£à¸²à¸„à¸²</span>` : `<span style="color:#64748b;">âš¡ à¸­à¸±à¸•à¹‚à¸™à¸¡à¸±à¸•à¸´</span>`}
+<=               <div class="store-home-productPrice">
+<=                 <div style="display:flex; align-items:baseline; gap:6px; flex-wrap:wrap;">
+<=                   <strong>${(p.variants && p.variants.length > 1) ? `à¹€à¸£à¸´à¹ˆà¸¡à¸•à¹‰à¸™ à¸¿ ${minVariantPrice.toFixed(2)}` : `à¸¿ ${parseFloat(p.price).toFixed(2)}`}</strong>
+<=                   <del>à¸¿ ${discountedPrice}</del>
+<=                 </div>
+<=                 <div style="font-size:11px; color:#a78bfa; font-weight:600; margin-top:2px;">ðŸ‘‘ à¸ªà¸¡à¸²à¸Šà¸´à¸: à¸¿ ${parseFloat(memberP).toFixed(2)}</div>
+<=             <button type="button" class="store-home-productBuyBtn" onclick="event.stopPropagation(); openProductDetailById('${p.id}');" ${buyBtnDisabled ? 'disabled style="background:rgba(100,116,139,0.3); cursor:not-allowed;"' : ''}>
+<=               <svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5'><circle cx='8' cy='21' r='1'/><circle cx='19' cy='21' r='1'/><path d='M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12'/></svg>
+<=               ${buyBtnText}
+<=             </button>
+<=                     <div style="position:absolute;top:8px;left:8px;display:flex;gap:4px;z-index:4;flex-wrap:wrap;">
+<=                       <span class="store-home-productBadge" style="background:rgba(0,0,0,0.6);backdrop-filter:blur(6px);border:1px solid rgba(0,210,255,0.4);color:#bae6fd;">${escapeHtml(p.badge || 'à¸ªà¸´à¸™à¸„à¹‰à¸²')}</span>
+<=                     <div style="position:absolute;top:8px;right:8px;z-index:4;">
+<=                       <span style="background:rgba(239,68,68,0.85);color:#fff;font-size:10px;font-weight:800;padding:2px 6px;border-radius:999px;">-${discountPct}%</span>
+<=                     <div class="store-home-productMeta">
+<=                       <span style="color:${p.stock > 0 ? '#34d399' : '#f87171'};font-weight:600;">ðŸ“¦ ${p.stock > 0 ? `à¹€à¸«à¸¥à¸·à¸­ ${p.stock} à¸Šà¸´à¹‰à¸™` : 'à¸«à¸¡à¸”'}</span>
+<=                       ${(p.variants && p.variants.length > 0) ? `<span style="font-size:10.5px; color:#f472b6; font-weight:700;">â±ï¸ à¸¡à¸µ ${p.variants.length} à¹à¸šà¸šà¸£à¸²à¸„à¸²</span>` : `<span style="color:#64748b;">à¸”à¸¹à¸£à¸²à¸¢à¸¥à¸°à¹€à¸­à¸µà¸¢à¸” â†—</span>`}
+<=                     </div>
+<=                     <div class="store-home-productPrice">
+<=                       <div style="display:flex;align-items:baseline;gap:6px;flex-wrap:wrap;">
+<=                         <strong>${(p.variants && p.variants.length > 1) ? `à¹€à¸£à¸´à¹ˆà¸¡à¸•à¹‰à¸™ à¸¿ ${minVariantPrice.toFixed(2)}` : `à¸¿ ${parseFloat(p.price).toFixed(2)}`}</strong>
+<=                         <del>à¸¿ ${discountedPrice}</del>
+<=                       </div>
+<=                       <div style="font-size:11px;color:#a78bfa;font-weight:600;margin-top:2px;">ðŸ‘‘ à¸ªà¸¡à¸²à¸Šà¸´à¸: à¸¿ ${parseFloat(memberP).toFixed(2)}</div>
+<=                     </div>
+<=                   <button type="button" class="store-home-productBuyBtn" onclick="event.stopPropagation(); openProductDetailById('${p.id}');" ${buyBtnDisabled ? 'disabled style="background:rgba(100,116,139,0.3);cursor:not-allowed;"' : ''}>
+<=                     <svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5'><circle cx='8' cy='21' r='1'/><circle cx='19' cy='21' r='1'/><path d='M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12'/></svg>
+<=                     ${buyBtnText}
+<=                   </button>
+<=               </div>
+<=               </div>
+<=         const users = getUsers();
+<=         if (!localStorage.getItem(KEY_CURRENT_USER)) {
