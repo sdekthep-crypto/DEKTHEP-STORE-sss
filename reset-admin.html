@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>Reset Admin Credentials – DEMOxSHOP</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #0a0f1e; color: #fff; font-family: 'Segoe UI', sans-serif; display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+  .card { background: #111827; border: 1px solid rgba(0,210,255,0.25); border-radius: 16px; padding: 36px; max-width: 460px; width: 100%; box-shadow: 0 25px 60px rgba(0,0,0,0.7); }
+  h1 { font-size: 20px; color: #00d2ff; margin-bottom: 6px; }
+  p { font-size: 13px; color: #94a3b8; margin-bottom: 22px; }
+  label { font-size: 12px; color: #94a3b8; display: block; margin-bottom: 5px; }
+  input { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 10px 14px; color: #fff; font-size: 14px; margin-bottom: 14px; outline: none; }
+  input:focus { border-color: #00d2ff; }
+  .btn { width: 100%; padding: 12px; border: none; border-radius: 10px; font-size: 15px; font-weight: 700; cursor: pointer; margin-bottom: 10px; }
+  .btn-primary { background: linear-gradient(135deg, #0066ff, #00d2ff); color: #fff; }
+  .btn-danger { background: linear-gradient(135deg, #e53e3e, #c53030); color: #fff; }
+  .btn-outline { background: transparent; border: 1px solid rgba(255,255,255,0.2); color: #94a3b8; font-size: 13px; }
+  .log { background: rgba(0,0,0,0.4); border-radius: 8px; padding: 12px; font-size: 12px; color: #94a3b8; margin-top: 16px; max-height: 200px; overflow-y: auto; font-family: monospace; }
+  .success { color: #48bb78; }
+  .warn { color: #f6ad55; }
+  .section-title { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: #475569; margin: 18px 0 10px; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 14px; }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 20px; font-size: 11px; background: rgba(0,210,255,0.1); color: #00d2ff; border: 1px solid rgba(0,210,255,0.25); margin-left: 6px; }
+  a { color: #00d2ff; text-decoration: none; font-size: 13px; }
+</style>
+</head>
+<body>
+<div class="card">
+  <h1>🔧 Admin Reset Tool</h1>
+  <p>ใช้เครื่องมือนี้เพื่อรีเซ็ตรหัสผ่านแอดมินและล้างการล็อกออก <span class="badge">DEMOxSHOP</span></p>
+
+  <div id="currentInfo" style="background: rgba(0,102,255,0.08); border: 1px solid rgba(0,102,255,0.2); border-radius: 8px; padding: 12px; margin-bottom: 18px; font-size: 12px; color: #94a3b8;"></div>
+
+  <div class="section-title">🔑 ตั้งค่า Credentials ใหม่</div>
+  <label>Username แอดมิน</label>
+  <input type="text" id="newUser" value="admin" />
+  <label>Password ใหม่</label>
+  <input type="password" id="newPass" value="admin888" />
+  <label>ยืนยัน Password</label>
+  <input type="password" id="newPassConfirm" value="admin888" />
+
+  <button class="btn btn-primary" onclick="doReset()">✅ รีเซ็ตและบันทึก Credentials</button>
+
+  <div class="section-title">⚠️ ล้างข้อมูล Lockout & Session</div>
+  <button class="btn btn-danger" onclick="clearLockout()">🔓 ล้าง Lockout (ปลดล็อกบัญชี)</button>
+  <button class="btn btn-outline" onclick="clearSession()">🚪 ออกจากระบบ / ล้าง Session</button>
+
+  <div class="log" id="logBox">รอดำเนินการ...</div>
+
+  <div style="margin-top: 18px; text-align: center;">
+    <a href="admin.html">← กลับไปหน้า Admin Login</a>
+  </div>
+</div>
+
+<script>
+  const KEY_SETTINGS = 'demoxshop_settings';
+  const ADMIN_LOCKOUT_KEY = 'demoxshop_admin_lockout';
+  const ADMIN_SESSION_KEY = 'demoxshop_admin_session';
+  const KEY_AUTH = 'demoxshop_admin_auth';
+
+  const logBox = document.getElementById('logBox');
+  function log(msg, cls = '') {
+    const d = new Date().toLocaleTimeString('th-TH');
+    logBox.innerHTML += `<div class="${cls}">[${d}] ${msg}</div>`;
+    logBox.scrollTop = logBox.scrollHeight;
+  }
+
+  function showCurrentInfo() {
+    const raw = localStorage.getItem(KEY_SETTINGS);
+    const info = document.getElementById('currentInfo');
+    if (raw) {
+      const s = JSON.parse(raw);
+      info.innerHTML = `📋 <strong>Current:</strong> User = <code style="color:#00d2ff">${s.adminUser || '(none)'}</code> &nbsp;|&nbsp; Pass = <code style="color:#f6ad55">${s.adminPass ? '••••••' : '(none)'}</code>`;
+      document.getElementById('newUser').value = s.adminUser || 'admin';
+    } else {
+      info.innerHTML = `⚠️ ไม่พบข้อมูล Settings ใน localStorage — จะใช้ค่า default: <code>admin</code> / <code>admin888</code>`;
+    }
+    const lockRaw = localStorage.getItem(ADMIN_LOCKOUT_KEY);
+    if (lockRaw) {
+      const lock = JSON.parse(lockRaw);
+      const locked = lock.lockedUntil && Date.now() < lock.lockedUntil;
+      info.innerHTML += `<br>🔐 Lockout: ${locked ? `<span style="color:#fc8181">ล็อกอยู่จนถึง ${new Date(lock.lockedUntil).toLocaleTimeString('th-TH')}</span>` : `ไม่ได้ล็อก (attempts: ${lock.attempts || 0})`}`;
+    }
+  }
+
+  function doReset() {
+    const user = document.getElementById('newUser').value.trim();
+    const pass = document.getElementById('newPass').value.trim();
+    const confirm = document.getElementById('newPassConfirm').value.trim();
+
+    if (!user || !pass) { log('⛔ กรุณากรอก Username และ Password', 'warn'); return; }
+    if (pass !== confirm) { log('⛔ Password และยืนยัน Password ไม่ตรงกัน', 'warn'); return; }
+
+    const raw = localStorage.getItem(KEY_SETTINGS);
+    let settings = raw ? JSON.parse(raw) : {};
+
+    settings.adminUser = user;
+    settings.adminPass = pass;
+    localStorage.setItem(KEY_SETTINGS, JSON.stringify(settings));
+
+    // Clear lockout too
+    localStorage.removeItem(ADMIN_LOCKOUT_KEY);
+    sessionStorage.removeItem(ADMIN_SESSION_KEY);
+    sessionStorage.removeItem(KEY_AUTH);
+
+    log(`✅ บันทึก Credentials สำเร็จ: User = "${user}"`, 'success');
+    log('🔓 ล้าง Lockout และ Session เรียบร้อย', 'success');
+    log('→ กลับไปลองล็อกอินใหม่ที่ admin.html', 'success');
+    showCurrentInfo();
+  }
+
+  function clearLockout() {
+    localStorage.removeItem(ADMIN_LOCKOUT_KEY);
+    log('🔓 ล้าง Lockout เรียบร้อยแล้ว', 'success');
+    showCurrentInfo();
+  }
+
+  function clearSession() {
+    sessionStorage.removeItem(ADMIN_SESSION_KEY);
+    sessionStorage.removeItem(KEY_AUTH);
+    log('🚪 ล้าง Session เรียบร้อยแล้ว', 'success');
+  }
+
+  showCurrentInfo();
+</script>
+</body>
+</html>
