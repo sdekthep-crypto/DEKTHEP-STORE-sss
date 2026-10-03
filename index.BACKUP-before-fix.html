@@ -2496,80 +2496,6 @@
       }
     }
   </style>
-
-  <!-- ============================================================ -->
-  <!-- 🔄 UI REFRESH: โครงสร้างการ์ดแบบเว็บอ้างอิง (ใช้สี/ธีม/รูปเดิม) -->
-  <!-- ============================================================ -->
-  <style id="ui-refresh-style">
-    /* --- การ์ดสินค้า: แถวป้ายบนรูป --- */
-    .prod-tagRow { position: absolute; top: 8px; left: 8px; display: flex; gap: 4px; z-index: 4; flex-wrap: wrap; }
-    .prod-badgeDark {
-      background: rgba(0, 0, 0, 0.62);
-      backdrop-filter: blur(6px);
-      border: 1px solid rgba(var(--theme-sec-rgb, 0, 210, 255), 0.4);
-      color: #bae6fd;
-    }
-    /* --- ป้ายจำนวนสต็อกมุมขวาบนของรูป (แบบเดียวกับเว็บอ้างอิง) --- */
-    .prod-stockPill {
-      position: absolute; top: 8px; right: 8px; z-index: 4;
-      min-width: 26px; height: 22px; padding: 0 8px;
-      display: inline-flex; align-items: center; justify-content: center;
-      border-radius: 8px;
-      background: rgba(0, 0, 0, 0.62);
-      backdrop-filter: blur(6px);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      color: #ffffff; font-size: 11px; font-weight: 800; letter-spacing: 0.02em;
-    }
-    /* --- แถวราคาแบบช่วง (min - max) --- */
-    .prod-priceRow { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
-    .prod-priceRow strong {
-      font-size: 15px; font-weight: 800;
-      color: var(--theme-sec, #00d2ff);
-      display: block; line-height: 1.25;
-    }
-    .prod-priceRow del { font-size: 11px; color: #475569; }
-    .prod-discountTag {
-      font-size: 10px; font-weight: 800; color: #fca5a5;
-      background: rgba(239, 68, 68, 0.18);
-      border: 1px solid rgba(239, 68, 68, 0.35);
-      border-radius: 6px; padding: 1px 5px;
-    }
-    /* --- บรรทัดสถานะสินค้า --- */
-    .prod-statusLine { font-size: 11px; font-weight: 600; color: #94a3b8; }
-    .prod-statusLine.is-in { color: #34d399; }
-    .prod-statusLine.is-out { color: #f87171; }
-    /* --- ปุ่มคู่ ดูสินค้า / ซื้อเลย (แสดงตลอดเวลา) --- */
-    .prod-actions { display: flex; gap: 8px; padding: 0 12px 12px; margin-top: 2px; }
-    .prod-btn {
-      flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 6px;
-      padding: 9px 8px; border-radius: 9px;
-      font-size: 12px; font-weight: 700; cursor: pointer;
-      border: 1px solid transparent;
-      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
-      white-space: nowrap;
-    }
-    .prod-btn-view {
-      background: rgba(255, 255, 255, 0.04);
-      border-color: rgba(255, 255, 255, 0.12);
-      color: #e2e8f0;
-    }
-    .prod-btn-view:hover { background: rgba(255, 255, 255, 0.09); transform: translateY(-1px); }
-    .prod-btn-buy {
-      background: linear-gradient(135deg, var(--theme-main, #0066ff), var(--theme-sec, #00d2ff));
-      color: #ffffff;
-      box-shadow: 0 4px 14px rgba(var(--theme-main-rgb, 0, 102, 255), 0.4);
-    }
-    .prod-btn-buy:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(var(--theme-main-rgb, 0, 102, 255), 0.65); }
-    .prod-btn:disabled { opacity: 0.55; cursor: not-allowed; box-shadow: none; transform: none; }
-
-    /* --- การ์ดหมวดหมู่: ให้ปุ่ม "คลิกดูสินค้า" แสดงตลอดเวลา --- */
-    .store-home-category .store-home-categoryAction { opacity: 1 !important; transform: none !important; }
-
-    @media (max-width: 480px) {
-      .prod-btn { font-size: 11px; padding: 8px 6px; }
-      .prod-priceRow strong { font-size: 14px; }
-    }
-  </style>
 </head>
 <body class="antialiased" style="background-color: var(--theme-bg, #09090b)">
 
@@ -5061,8 +4987,6 @@
       if (user) {
         CyberDefense.signUser(user);
         localStorage.setItem(KEY_CURRENT_USER, JSON.stringify(user));
-        // มีการล็อกอิน/สลับผู้ใช้ -> ยกเลิกธง "ออกจากระบบ" เพื่อให้จำเซสชันตามปกติ
-        try { localStorage.removeItem('demoxshop_logged_out'); } catch(e) {}
       } else {
         localStorage.removeItem(KEY_CURRENT_USER);
       }
@@ -5145,20 +5069,12 @@
       const mobileArea = document.getElementById('mobileAuthArea');
 
       if (!user) {
-        // ❗ ห้าม auto-login กลับเข้าสู่ระบบ ถ้าผู้ใช้กด "ออกจากระบบ" ไปแล้ว
-        // (เดิมเป็นบั๊ก: handleUserLogout() -> setCurrentUser(null) -> renderUserAuthUI()
-        //  แล้ว setCurrentUser(melinda) กลับทันที จึงเหมือนกดออกไม่ได้)
-        let loggedOut = false;
-        try { loggedOut = localStorage.getItem('demoxshop_logged_out') === '1'; } catch(e) {}
-
-        if (!loggedOut) {
-          // Default to Melinda2Margarita if available (เฉพาะครั้งแรกที่ยังไม่เคยกด logout)
-          const users = getUsers();
-          const melinda = users.find(u => u.username === 'Melinda2Margarita') || users[0];
-          if (melinda) {
-            setCurrentUser(melinda);
-            user = melinda;
-          }
+        // Default to Melinda2Margarita if available
+        const users = getUsers();
+        const melinda = users.find(u => u.username === 'Melinda2Margarita') || users[0];
+        if (melinda) {
+          setCurrentUser(melinda);
+          user = melinda;
         }
       }
 
@@ -5801,16 +5717,12 @@
     }
 
     function handleUserLogout() {
-      try { closeDropdown(); } catch(e) {}
-      // ตั้งธงว่าผู้ใช้ "ออกจากระบบ" แล้ว เพื่อกันไม่ให้ renderUserAuthUI() auto-login กลับ
-      try { localStorage.setItem('demoxshop_logged_out', '1'); } catch(e) {}
-      try {
-        sessionStorage.removeItem('demoxshop_admin_session');
-        sessionStorage.removeItem('demoxshop_admin_auth');
-        localStorage.removeItem('demoxshop_admin_session');
-      } catch(e) {}
-      try { setCurrentUser(null); } catch(e) {}
-      try { updateAdminVisibility(); } catch(e) {}
+      closeDropdown();
+      sessionStorage.removeItem('demoxshop_admin_session');
+      sessionStorage.removeItem('demoxshop_admin_auth');
+      localStorage.removeItem('demoxshop_admin_session');
+      setCurrentUser(null);
+      updateAdminVisibility();
       showToast('ออกจากระบบเรียบร้อย');
     }
 
@@ -8991,7 +8903,7 @@
                   <p>${escapeHtml(cat.desc || `${count} สินค้าพร้อมจำหน่าย`)}</p>
                 </div>
                 <span class="store-home-categoryAction">
-                  <span>คลิกดูสินค้า</span>
+                  <span>ดูสินค้า</span>
                   <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg>
                 </span>
               </div>
@@ -9348,34 +9260,38 @@
         const minVariantPrice = (p.variants && p.variants.length > 0)
           ? Math.min(...p.variants.map(v => parseFloat(v.price) || 999999))
           : parseFloat(p.price);
-        const maxVariantPrice = (p.variants && p.variants.length > 0)
-          ? Math.max(...p.variants.map(v => parseFloat(v.price) || 0))
-          : parseFloat(p.price);
 
         div.innerHTML = `
           <div class="store-home-product" onclick="openProductDetailById('${p.id}')" style="cursor: pointer; ${isUpdating || isDisabled ? 'opacity: 0.85;' : ''}">
             ${cardOverlay}
             <div class="store-home-productImage">
               ${imgHtml}
-              <div class="prod-tagRow">
-                <span class="store-home-productBadge prod-badgeDark">${escapeHtml(p.badge || 'สินค้า')}</span>
+              <div style="position: absolute; top: 8px; left: 8px; display: flex; gap: 4px; z-index: 4; flex-wrap: wrap;">
+                <span class="store-home-productBadge" style="background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(6px); border: 1px solid rgba(0, 210, 255, 0.4); color: #bae6fd;">${escapeHtml(p.badge || 'สินค้า')}</span>
                 ${statusBadge}
               </div>
-              <span class="prod-stockPill">${p.stock > 0 ? p.stock : 0}</span>
+              <div style="position:absolute; top:8px; right:8px; z-index:4;">
+                <span style="background:rgba(239,68,68,0.85); color:#fff; font-size:10px; font-weight:800; padding:2px 6px; border-radius:999px;">-${discountPct}%</span>
+              </div>
             </div>
             <div class="store-home-productBody">
-              <h3>${escapeHtml(p.name)}</h3>
-              <div class="prod-priceRow">
-                <strong>฿ ${minVariantPrice.toFixed(2)}${maxVariantPrice.toFixed(2) !== minVariantPrice.toFixed(2) ? ` - ฿ ${maxVariantPrice.toFixed(2)}` : ''}</strong>
-                <del>฿ ${discountedPrice}</del>
-                <span class="prod-discountTag">-${discountPct}%</span>
+              <div class="store-home-productMeta">
+                <span style="color:${p.stock > 0 ? '#34d399' : '#f87171'}; font-weight:600;">📦 ${p.stock > 0 ? `เหลือ ${p.stock} ชิ้น` : 'หมด'}</span>
+                ${(p.variants && p.variants.length > 0) ? `<span style="font-size:10.5px; color:#f472b6; font-weight:700;">⏱️ มี ${p.variants.length} แบบราคา</span>` : `<span style="color:#64748b;">⚡ อัตโนมัติ</span>`}
               </div>
-              <div class="prod-statusLine ${p.stock > 0 ? 'is-in' : 'is-out'}">${isUpdating ? 'ปิดปรับปรุงชั่วคราว' : isDisabled ? 'ปิดจำหน่ายชั่วคราว' : (p.stock > 0 ? `พร้อมส่ง - เหลือ ${p.stock}` : 'สินค้าหมด')}</div>
+              <h3>${escapeHtml(p.name)}</h3>
+              <div class="store-home-productPrice">
+                <div style="display:flex; align-items:baseline; gap:6px; flex-wrap:wrap;">
+                  <strong>${(p.variants && p.variants.length > 1) ? `เริ่มต้น ฿ ${minVariantPrice.toFixed(2)}` : `฿ ${parseFloat(p.price).toFixed(2)}`}</strong>
+                  <del>฿ ${discountedPrice}</del>
+                </div>
+                <div style="font-size:11px; color:#a78bfa; font-weight:600; margin-top:2px;">👑 สมาชิก: ฿ ${parseFloat(memberP).toFixed(2)}</div>
+              </div>
             </div>
-            <div class="prod-actions">
-              <button type="button" class="prod-btn prod-btn-view" onclick="event.stopPropagation(); openProductDetailById('${p.id}');">ดูสินค้า</button>
-              <button type="button" class="prod-btn prod-btn-buy" onclick="event.stopPropagation(); openProductDetailById('${p.id}');" ${buyBtnDisabled ? 'disabled' : ''}>${buyBtnDisabled ? buyBtnText : 'ซื้อเลย'}</button>
-            </div>
+            <button type="button" class="store-home-productBuyBtn" onclick="event.stopPropagation(); openProductDetailById('${p.id}');" ${buyBtnDisabled ? 'disabled style="background:rgba(100,116,139,0.3); cursor:not-allowed;"' : ''}>
+              <svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5'><circle cx='8' cy='21' r='1'/><circle cx='19' cy='21' r='1'/><path d='M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12'/></svg>
+              ${buyBtnText}
+            </button>
           </div>
         `;
         grid.appendChild(div);
@@ -9483,34 +9399,38 @@
               const minVariantPrice = (p.variants && p.variants.length > 0)
                 ? Math.min(...p.variants.map(v => parseFloat(v.price) || 999999))
                 : parseFloat(p.price);
-              const maxVariantPrice = (p.variants && p.variants.length > 0)
-                ? Math.max(...p.variants.map(v => parseFloat(v.price) || 0))
-                : parseFloat(p.price);
 
               div.innerHTML = `
                 <div class="store-home-product" onclick="openProductDetailById('${p.id}')" style="cursor:pointer; ${isUpdating || isDisabled ? 'opacity:0.85;' : ''}">
                   ${cardOverlay}
                   <div class="store-home-productImage">
                     ${imgHtml}
-                    <div class="prod-tagRow">
-                      <span class="store-home-productBadge prod-badgeDark">${escapeHtml(p.badge || 'สินค้า')}</span>
+                    <div style="position:absolute;top:8px;left:8px;display:flex;gap:4px;z-index:4;flex-wrap:wrap;">
+                      <span class="store-home-productBadge" style="background:rgba(0,0,0,0.6);backdrop-filter:blur(6px);border:1px solid rgba(0,210,255,0.4);color:#bae6fd;">${escapeHtml(p.badge || 'สินค้า')}</span>
                       ${statusBadge}
                     </div>
-                    <span class="prod-stockPill">${p.stock > 0 ? p.stock : 0}</span>
+                    <div style="position:absolute;top:8px;right:8px;z-index:4;">
+                      <span style="background:rgba(239,68,68,0.85);color:#fff;font-size:10px;font-weight:800;padding:2px 6px;border-radius:999px;">-${discountPct}%</span>
+                    </div>
                   </div>
                   <div class="store-home-productBody">
-                    <h3>${escapeHtml(p.name)}</h3>
-                    <div class="prod-priceRow">
-                      <strong>฿ ${minVariantPrice.toFixed(2)}${maxVariantPrice.toFixed(2) !== minVariantPrice.toFixed(2) ? ` - ฿ ${maxVariantPrice.toFixed(2)}` : ''}</strong>
-                      <del>฿ ${discountedPrice}</del>
-                      <span class="prod-discountTag">-${discountPct}%</span>
+                    <div class="store-home-productMeta">
+                      <span style="color:${p.stock > 0 ? '#34d399' : '#f87171'};font-weight:600;">📦 ${p.stock > 0 ? `เหลือ ${p.stock} ชิ้น` : 'หมด'}</span>
+                      ${(p.variants && p.variants.length > 0) ? `<span style="font-size:10.5px; color:#f472b6; font-weight:700;">⏱️ มี ${p.variants.length} แบบราคา</span>` : `<span style="color:#64748b;">ดูรายละเอียด ↗</span>`}
                     </div>
-                    <div class="prod-statusLine ${p.stock > 0 ? 'is-in' : 'is-out'}">${isUpdating ? 'ปิดปรับปรุงชั่วคราว' : isDisabled ? 'ปิดจำหน่ายชั่วคราว' : (p.stock > 0 ? `พร้อมส่ง - เหลือ ${p.stock}` : 'สินค้าหมด')}</div>
+                    <h3>${escapeHtml(p.name)}</h3>
+                    <div class="store-home-productPrice">
+                      <div style="display:flex;align-items:baseline;gap:6px;flex-wrap:wrap;">
+                        <strong>${(p.variants && p.variants.length > 1) ? `เริ่มต้น ฿ ${minVariantPrice.toFixed(2)}` : `฿ ${parseFloat(p.price).toFixed(2)}`}</strong>
+                        <del>฿ ${discountedPrice}</del>
+                      </div>
+                      <div style="font-size:11px;color:#a78bfa;font-weight:600;margin-top:2px;">👑 สมาชิก: ฿ ${parseFloat(memberP).toFixed(2)}</div>
+                    </div>
                   </div>
-                  <div class="prod-actions">
-                    <button type="button" class="prod-btn prod-btn-view" onclick="event.stopPropagation(); openProductDetailById('${p.id}');">ดูสินค้า</button>
-                    <button type="button" class="prod-btn prod-btn-buy" onclick="event.stopPropagation(); openProductDetailById('${p.id}');" ${buyBtnDisabled ? 'disabled' : ''}>${buyBtnDisabled ? buyBtnText : 'ซื้อเลย'}</button>
-                  </div>
+                  <button type="button" class="store-home-productBuyBtn" onclick="event.stopPropagation(); openProductDetailById('${p.id}');" ${buyBtnDisabled ? 'disabled style="background:rgba(100,116,139,0.3);cursor:not-allowed;"' : ''}>
+                    <svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5'><circle cx='8' cy='21' r='1'/><circle cx='19' cy='21' r='1'/><path d='M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12'/></svg>
+                    ${buyBtnText}
+                  </button>
                 </div>`;
               catalogGrid.appendChild(div);
             });
@@ -10291,10 +10211,7 @@
             }
           } catch(e) {}
         }
-        // หมายเหตุ: อย่า auto-login กลับ ถ้าผู้ใช้เคยกด "ออกจากระบบ" (ธง demoxshop_logged_out)
-        let _wasLoggedOut = false;
-        try { _wasLoggedOut = localStorage.getItem('demoxshop_logged_out') === '1'; } catch(e) {}
-        if (!localStorage.getItem(KEY_CURRENT_USER) && !_wasLoggedOut) {
+        if (!localStorage.getItem(KEY_CURRENT_USER)) {
           const uList = getUsers();
           const mel = uList.find(u => u.username === 'Melinda2Margarita') || uList[0];
           if (mel) setCurrentUser(mel);
