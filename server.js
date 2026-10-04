@@ -21,14 +21,14 @@ if (process.env.DATABASE_URL) {
 
 const defaultSettings = {
   storeName: 'DECK THE STORE',
-  logoUrl: 'assets/x2-logo.svg',
+  logoUrl: '',
   themePrimary: '#0066ff',
   themeAccent: '#00d2ff'
 };
 
 async function ensureDb() {
   if (!pool) return;
-  await pool.query(`CREATE TABLE IF NOT EXISTS demoxshop_settings (
+  await pool.query(`CREATE TABLE IF NOT EXISTS deck-the-store_settings (
     id INTEGER PRIMARY KEY,
     settings JSONB NOT NULL,
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
@@ -38,7 +38,7 @@ async function ensureDb() {
 async function readSettings() {
   if (pool) {
     await ensureDb();
-    const { rows } = await pool.query('SELECT settings FROM demoxshop_settings WHERE id = 1');
+    const { rows } = await pool.query('SELECT settings FROM deck-the-store_settings WHERE id = 1');
     return rows[0] ? rows[0].settings : null;
   }
   try {
@@ -52,7 +52,7 @@ async function writeSettings(settings) {
   if (pool) {
     await ensureDb();
     await pool.query(
-      `INSERT INTO demoxshop_settings (id, settings, updated_at)
+      `INSERT INTO deck-the-store_settings (id, settings, updated_at)
        VALUES (1, $1::jsonb, NOW())
        ON CONFLICT (id) DO UPDATE SET settings = EXCLUDED.settings, updated_at = NOW()`,
       [JSON.stringify(settings)]
@@ -96,12 +96,12 @@ async function readStoreData(key) {
   if (!STORE_DATA_KEYS.has(key)) throw new Error('invalid_store_data_key');
   if (pool) {
     await ensureDb();
-    await pool.query(`CREATE TABLE IF NOT EXISTS demoxshop_store_data (
+    await pool.query(`CREATE TABLE IF NOT EXISTS deck-the-store_store_data (
       data_key TEXT PRIMARY KEY,
       data JSONB NOT NULL,
       updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
     )`);
-    const { rows } = await pool.query('SELECT data FROM demoxshop_store_data WHERE data_key = $1', [key]);
+    const { rows } = await pool.query('SELECT data FROM deck-the-store_store_data WHERE data_key = $1', [key]);
     return rows[0] ? rows[0].data : null;
   }
   try {
@@ -114,12 +114,12 @@ async function writeStoreData(key, data) {
   if (!STORE_DATA_KEYS.has(key)) throw new Error('invalid_store_data_key');
   if (pool) {
     await ensureDb();
-    await pool.query(`CREATE TABLE IF NOT EXISTS demoxshop_store_data (
+    await pool.query(`CREATE TABLE IF NOT EXISTS deck-the-store_store_data (
       data_key TEXT PRIMARY KEY,
       data JSONB NOT NULL,
       updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
     )`);
-    await pool.query(`INSERT INTO demoxshop_store_data (data_key, data, updated_at)
+    await pool.query(`INSERT INTO deck-the-store_store_data (data_key, data, updated_at)
       VALUES ($1, $2::jsonb, NOW())
       ON CONFLICT (data_key) DO UPDATE SET data = EXCLUDED.data, updated_at = NOW()`,
       [key, JSON.stringify(data)]);
@@ -163,6 +163,6 @@ app.get('/health', (req, res) => res.json({ ok: true }));
 app.use(express.static(ROOT, { index: 'index.html', extensions: ['html'] }));
 
 app.listen(PORT, () => {
-  console.log(`DEMOxSHOP server listening on port ${PORT}`);
+  console.log(`DECK THE STORE server listening on port ${PORT}`);
   console.log(pool ? 'Settings storage: PostgreSQL' : 'Settings storage: local JSON fallback');
 });

@@ -61,20 +61,20 @@
 =>       .prod-btn { font-size: 11px; padding: 8px 6px; }
 =>       .prod-priceRow strong { font-size: 14px; }
 =>   </style>
-=>       adminUser: "DEKTHEPSTORE",
+=>       adminUser: "DECK THE STORESTORE",
 =>       adminPass: "147",
-=>         username: "DEKTHEPSTORE",
+=>         username: "DECK THE STORESTORE",
 =>         password: "147",
-=>       const adminName = (cfg && cfg.adminUser) ? cfg.adminUser : 'DEKTHEPSTORE';
+=>       const adminName = (cfg && cfg.adminUser) ? cfg.adminUser : 'DECK THE STORESTORE';
 =>       const adminPass = (cfg && cfg.adminPass) ? cfg.adminPass : '147';
 =>         // à¸¡à¸µà¸à¸²à¸£à¸¥à¹‡à¸­à¸à¸­à¸´à¸™/à¸ªà¸¥à¸±à¸šà¸œà¸¹à¹‰à¹ƒà¸Šà¹‰ -> à¸¢à¸à¹€à¸¥à¸´à¸à¸˜à¸‡ "à¸­à¸­à¸à¸ˆà¸²à¸à¸£à¸°à¸šà¸š" à¹€à¸žà¸·à¹ˆà¸­à¹ƒà¸«à¹‰à¸ˆà¸³à¹€à¸‹à¸ªà¸Šà¸±à¸™à¸•à¸²à¸¡à¸›à¸à¸•à¸´
-=>         try { localStorage.removeItem('demoxshop_logged_out'); } catch(e) {}
-=>       const validAdminUser = (cfg && cfg.adminUser ? cfg.adminUser : 'DEKTHEPSTORE').toLowerCase();
+=>         try { localStorage.removeItem('deck-the-store_logged_out'); } catch(e) {}
+=>       const validAdminUser = (cfg && cfg.adminUser ? cfg.adminUser : 'DECK THE STORESTORE').toLowerCase();
 =>         // â— à¸«à¹‰à¸²à¸¡ auto-login à¸à¸¥à¸±à¸šà¹€à¸‚à¹‰à¸²à¸ªà¸¹à¹ˆà¸£à¸°à¸šà¸š à¸–à¹‰à¸²à¸œà¸¹à¹‰à¹ƒà¸Šà¹‰à¸à¸” "à¸­à¸­à¸à¸ˆà¸²à¸à¸£à¸°à¸šà¸š" à¹„à¸›à¹à¸¥à¹‰à¸§
 =>         // (à¹€à¸”à¸´à¸¡à¹€à¸›à¹‡à¸™à¸šà¸±à¹Šà¸: handleUserLogout() -> setCurrentUser(null) -> renderUserAuthUI()
 =>         //  à¹à¸¥à¹‰à¸§ setCurrentUser(melinda) à¸à¸¥à¸±à¸šà¸—à¸±à¸™à¸—à¸µ à¸ˆà¸¶à¸‡à¹€à¸«à¸¡à¸·à¸­à¸™à¸à¸”à¸­à¸­à¸à¹„à¸¡à¹ˆà¹„à¸”à¹‰)
 =>         let loggedOut = false;
-=>         try { loggedOut = localStorage.getItem('demoxshop_logged_out') === '1'; } catch(e) {}
+=>         try { loggedOut = localStorage.getItem('deck-the-store_logged_out') === '1'; } catch(e) {}
 =>         if (!loggedOut) {
 =>           // Default to Melinda2Margarita if available (à¹€à¸‰à¸žà¸²à¸°à¸„à¸£à¸±à¹‰à¸‡à¹à¸£à¸à¸—à¸µà¹ˆà¸¢à¸±à¸‡à¹„à¸¡à¹ˆà¹€à¸„à¸¢à¸à¸” logout)
 =>           const users = getUsers();
@@ -82,14 +82,14 @@
 =>           if (melinda) {
 =>             setCurrentUser(melinda);
 =>             user = melinda;
-=>       const validAdminUser = (cfg && cfg.adminUser) ? cfg.adminUser : 'DEKTHEPSTORE';
+=>       const validAdminUser = (cfg && cfg.adminUser) ? cfg.adminUser : 'DECK THE STORESTORE';
 =>       const validAdminPass = (cfg && cfg.adminPass) ? cfg.adminPass : '147';
 =>       try { closeDropdown(); } catch(e) {}
 =>       // à¸•à¸±à¹‰à¸‡à¸˜à¸‡à¸§à¹ˆà¸²à¸œà¸¹à¹‰à¹ƒà¸Šà¹‰ "à¸­à¸­à¸à¸ˆà¸²à¸à¸£à¸°à¸šà¸š" à¹à¸¥à¹‰à¸§ à¹€à¸žà¸·à¹ˆà¸­à¸à¸±à¸™à¹„à¸¡à¹ˆà¹ƒà¸«à¹‰ renderUserAuthUI() auto-login à¸à¸¥à¸±à¸š
-=>       try { localStorage.setItem('demoxshop_logged_out', '1'); } catch(e) {}
-=>         sessionStorage.removeItem('demoxshop_admin_session');
-=>         sessionStorage.removeItem('demoxshop_admin_auth');
-=>         localStorage.removeItem('demoxshop_admin_session');
+=>       try { localStorage.setItem('deck-the-store_logged_out', '1'); } catch(e) {}
+=>         sessionStorage.removeItem('deck-the-store_admin_session');
+=>         sessionStorage.removeItem('deck-the-store_admin_auth');
+=>         localStorage.removeItem('deck-the-store_admin_session');
 =>       try { setCurrentUser(null); } catch(e) {}
 =>       try { updateAdminVisibility(); } catch(e) {}
 =>                   <span>à¸„à¸¥à¸´à¸à¸”à¸¹à¸ªà¸´à¸™à¸„à¹‰à¸²</span>
@@ -133,9 +133,9 @@
 =>     }
 =>       } catch(e) {}
 =>       try {
-=>         // à¸«à¸¡à¸²à¸¢à¹€à¸«à¸•à¸¸: à¸­à¸¢à¹ˆà¸² auto-login à¸à¸¥à¸±à¸š à¸–à¹‰à¸²à¸œà¸¹à¹‰à¹ƒà¸Šà¹‰à¹€à¸„à¸¢à¸à¸” "à¸­à¸­à¸à¸ˆà¸²à¸à¸£à¸°à¸šà¸š" (à¸˜à¸‡ demoxshop_logged_out)
+=>         // à¸«à¸¡à¸²à¸¢à¹€à¸«à¸•à¸¸: à¸­à¸¢à¹ˆà¸² auto-login à¸à¸¥à¸±à¸š à¸–à¹‰à¸²à¸œà¸¹à¹‰à¹ƒà¸Šà¹‰à¹€à¸„à¸¢à¸à¸” "à¸­à¸­à¸à¸ˆà¸²à¸à¸£à¸°à¸šà¸š" (à¸˜à¸‡ deck-the-store_logged_out)
 =>         let _wasLoggedOut = false;
-=>         try { _wasLoggedOut = localStorage.getItem('demoxshop_logged_out') === '1'; } catch(e) {}
+=>         try { _wasLoggedOut = localStorage.getItem('deck-the-store_logged_out') === '1'; } catch(e) {}
 =>         if (!localStorage.getItem(KEY_CURRENT_USER) && !_wasLoggedOut) {
 =>           }
 <=       adminUser: "admin",
@@ -153,9 +153,9 @@
 <=       const validAdminUser = (cfg && cfg.adminUser) ? cfg.adminUser : 'admin';
 <=       const validAdminPass = (cfg && cfg.adminPass) ? cfg.adminPass : 'admin888';
 <=       closeDropdown();
-<=       sessionStorage.removeItem('demoxshop_admin_session');
-<=       sessionStorage.removeItem('demoxshop_admin_auth');
-<=       localStorage.removeItem('demoxshop_admin_session');
+<=       sessionStorage.removeItem('deck-the-store_admin_session');
+<=       sessionStorage.removeItem('deck-the-store_admin_auth');
+<=       localStorage.removeItem('deck-the-store_admin_session');
 <=       setCurrentUser(null);
 <=       updateAdminVisibility();
 <=                   <span>à¸”à¸¹à¸ªà¸´à¸™à¸„à¹‰à¸²</span>

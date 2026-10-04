@@ -4,11 +4,11 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title id="adminPageTitle">DECK THE STORE - ระบบจัดการหลังบ้าน Pro (Admin Dashboard)</title>
-  <link id="adminFavicon" rel="icon" href="assets/dek-thep-logo.png" type="image/png"/>
+  <link id="adminFavicon" rel="icon" href="" type="image/png"/>
   <script>
     (function() {
       try {
-        var s = localStorage.getItem('demoxshop_settings');
+        var s = localStorage.getItem('deck-the-store_settings');
         if (s) {
           var cfg = JSON.parse(s);
           if (cfg.storeName) document.title = cfg.storeName + ' - ระบบจัดการหลังบ้าน Pro (Admin Dashboard)';
@@ -1385,7 +1385,7 @@
           ADMIN SECURITY GATE
         </div>
         <h2 style="margin: 0; font-size: 22px; color: #fff;">เข้าสู่ระบบผู้ดูแลร้านค้า</h2>
-        <p style="margin: 6px 0 0; font-size: 12.5px; color: var(--admin-muted);" id="loginSubtitle">DEK THEP STORE Advanced Control Center</p>
+        <p style="margin: 6px 0 0; font-size: 12.5px; color: var(--admin-muted);" id="loginSubtitle">DECK THE STORE Advanced Control Center</p>
       </div>
 
       <!-- Lockout warning message -->
@@ -1436,10 +1436,10 @@
   <aside class="admin-sidebar" id="sidebar">
     <div class="sidebar-brand">
       <div class="sidebar-logo-icon" id="sidebarLogoWrapper" style="overflow: hidden; padding: 2px;">
-        <img id="sidebarLogoImg" src="assets/dek-thep-logo.png" style="width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 0 8px rgba(0, 210, 255, 0.4));" alt="Logo" onerror="this.src='assets/logo.png';"/>
+        <div id="sidebarLogoImg" aria-hidden="true" style="display:none;"></div>
       </div>
       <div>
-        <div style="font-weight: 700; font-size: 15px; color: #fff; letter-spacing: 0.05em;" id="sidebarStoreName">DEK THEP STORE</div>
+        <div style="font-weight: 700; font-size: 15px; color: #fff; letter-spacing: 0.05em;" id="sidebarStoreName">DECK THE STORE</div>
         <div style="font-size: 10px; color: var(--admin-accent); font-weight: 600; letter-spacing: 0.1em;">CONTROL CENTER</div>
       </div>
     </div>
@@ -1494,7 +1494,7 @@
       <div style="display: flex; align-items: center; gap: 10px;">
         <div style="width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, #0066ff, #00d2ff); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px;">A</div>
         <div>
-          <div style="font-size: 13px; font-weight: 600; color: #fff;" id="sidebarAdminUser">DEKTHEPSTORE</div>
+          <div style="font-size: 13px; font-weight: 600; color: #fff;" id="sidebarAdminUser">DECK THE STORESTORE</div>
           <div style="font-size: 10px; color: var(--admin-muted);">Super Administrator</div>
         </div>
       </div>
@@ -1962,7 +1962,7 @@
               </div>
               <div class="form-group" style="margin-bottom: 10px;">
                 <label style="font-size: 11.5px; color: var(--admin-muted);">ชื่อบัญชีพร้อมเพย์ (แสดงในหน้าเติมเงิน):</label>
-                <input type="text" id="cfgPpName" class="form-control" placeholder="DEK THEP STORE" value="DEK THEP STORE"/>
+                <input type="text" id="cfgPpName" class="form-control" placeholder="DECK THE STORE" value="DECK THE STORE"/>
               </div>
               <div style="background: rgba(0, 210, 255, 0.05); border: 1px solid rgba(0, 210, 255, 0.2); border-radius: 8px; padding: 9px 12px; font-size: 11px; color: #94a3b8; line-height: 1.4;">
                 <strong style="color: #00d2ff; display: block; margin-bottom: 2px;">🛡️ ระบบตรวจสอบการสแกน & โอนเงินจริง:</strong>
@@ -2074,7 +2074,7 @@
                   </div>
                   <div class="form-group" style="margin-bottom: 0;">
                     <label style="font-size: 11.5px; color: var(--admin-muted);">ชื่อบัญชีผู้รับเงิน (แสดงให้ลูกค้าตรวจสอบ):</label>
-                    <input type="text" id="cfgBankAccountName" class="form-control" placeholder="บจก. เทพสโตร์ ดิจิทัล" value="บจก. เทพสโตร์ ดิจิทัล (DEK THEP STORE)"/>
+                    <input type="text" id="cfgBankAccountName" class="form-control" placeholder="บจก. เทพสโตร์ ดิจิทัล" value="บจก. เทพสโตร์ ดิจิทัล (DECK THE STORE)"/>
                   </div>
                 </div>
 
@@ -2098,7 +2098,7 @@
                     </label>
                     <div style="display: flex; gap: 6px;">
                       <div style="position: relative; flex: 1;">
-                        <input type="password" id="cfgBankApiKey" class="form-control" placeholder="ใส่ API Key เช่น sk_live_..." value="sk_live_easyslip_dekthep_secure" style="padding-right: 36px;"/>
+                        <input type="password" id="cfgBankApiKey" class="form-control" placeholder="ใส่ API Key เช่น sk_live_..." value="" style="padding-right: 36px;"/>
                         <button type="button" onclick="toggleApiKeyVisibility()" style="position: absolute; right: 8px; top: 50%; transform: translateY(-50%); background: none; border: none; color: #94a3b8; cursor: pointer; padding: 2px;">👁️</button>
                       </div>
                       <button type="button" class="btn btn-outline btn-sm" onclick="testAdminSlipApi()" style="white-space: nowrap; height: 38px; display: flex; align-items: center; gap: 6px;">
@@ -2193,7 +2193,7 @@
                   </div>
                   <div class="form-group" style="margin-bottom: 0;">
                     <label style="font-size: 11px; color: var(--admin-muted);">ลิงก์ติดต่อ:</label>
-                    <input type="text" id="cfgTopupSupportUrl" class="form-control" placeholder="https://discord.gg/..." value="https://discord.gg/dekthep"/>
+                    <input type="text" id="cfgTopupSupportUrl" class="form-control" placeholder="https://discord.gg/..." value=""/>
                   </div>
                 </div>
               </div>
@@ -2442,7 +2442,7 @@
                   <span class="preset-swatch" style="background: linear-gradient(135deg, #0066ff, #00d2ff);"></span>
                   <div>
                     <div style="font-size: 12.5px; font-weight: 600;">Neon Blue</div>
-                    <div style="font-size: 10px; color: var(--admin-muted);">DEK THEP ฟ้า-น้ำเงิน</div>
+                    <div style="font-size: 10px; color: var(--admin-muted);">DECK THE STORE ฟ้า-น้ำเงิน</div>
                   </div>
                 </button>
                 <button type="button" class="theme-preset-btn" data-theme="red" onclick="selectThemePreset('red', '#dc2626', '#f87171')">
@@ -2526,7 +2526,7 @@
                 <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; border-radius: 8px; background: rgba(255,255,255,0.02); border: 1px solid var(--admin-card-border);" id="previewHeaderBar">
                   <div style="display: flex; align-items: center; gap: 8px;">
                     <div id="previewDot" style="width: 10px; height: 10px; border-radius: 50%; background: #00d2ff; box-shadow: 0 0 10px #00d2ff;"></div>
-                    <span style="font-weight: 700; font-size: 13px;" id="previewTitleText">DEK THEP STORE</span>
+                    <span style="font-weight: 700; font-size: 13px;" id="previewTitleText">DECK THE STORE</span>
                   </div>
                   <span id="previewBadge" style="font-size: 11px; padding: 3px 8px; border-radius: 999px; background: rgba(0,102,255,0.25); border: 1px solid #00d2ff; color: #00d2ff; font-weight: 600;">
                     LIVE PREVIEW
@@ -2901,8 +2901,8 @@
                   <!-- Mock Header in Preview -->
                   <div style="position: relative; z-index: 2; display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; border-radius: 8px; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.08);">
                     <div style="display: flex; align-items: center; gap: 8px;">
-                      <img id="liveBgMockLogo" src="assets/dek-thep-logo.png" style="width: 22px; height: 22px; object-fit: contain;" alt="Logo" onerror="this.src='assets/logo.png';"/>
-                      <span id="liveBgMockStoreName" style="font-size: 12px; font-weight: 700; color: #fff;">DEK THEP STORE</span>
+                      <div id="liveBgMockLogo" aria-hidden="true" style="display:none;"></div>
+                      <span id="liveBgMockStoreName" style="font-size: 12px; font-weight: 700; color: #fff;">DECK THE STORE</span>
                     </div>
                     <div style="display: flex; gap: 6px;">
                       <span style="font-size: 10px; padding: 2px 6px; border-radius: 4px; background: rgba(255,255,255,0.06); color: #cbd5e1;">สินค้า</span>
@@ -2977,29 +2977,17 @@
               <div class="admin-form-group">
                 <label class="admin-label">โลโก้ร้านค้า (Store Logo URL / Image)</label>
                 <div style="display: flex; gap: 8px;">
-                  <input type="text" id="cfgLogoUrl" class="admin-input" placeholder="assets/x2-logo.svg หรือใส่ลิงก์รูปภาพ..." oninput="updateLogoPreview(this.value)"/>
+                  <input type="text" id="cfgLogoUrl" class="admin-input" placeholder=" หรือใส่ลิงก์รูปภาพ..." oninput="updateLogoPreview(this.value)"/>
                   <button type="button" class="btn btn-outline btn-sm" onclick="previewCurrentLogo()">ดูตัวอย่าง</button>
                 </div>
 
                 <!-- Preset Buttons -->
                 <div style="display: flex; gap: 8px; margin-top: 10px; align-items: center; flex-wrap: wrap;">
                   <span style="font-size: 11.5px; color: #94a3b8; font-weight: 600;">เลือกโลโก้ด่วน:</span>
-                  <button type="button" class="btn btn-outline btn-sm" onclick="setPresetLogo('assets/x2-logo.svg')" style="display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; font-size: 11.5px;">
-                    <img src="assets/x2-logo.svg" style="width: 16px; height: 16px; object-fit: contain;"/>
-                    <span>X2 Gaming Logo</span>
-                  </button>
-                  <button type="button" class="btn btn-outline btn-sm" onclick="setPresetLogo('assets/dek-thep-logo.png')" style="display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; font-size: 11.5px;">
-                    <img src="assets/dek-thep-logo.png" style="width: 16px; height: 16px; object-fit: contain;"/>
-                    <span>DEK THEP Logo</span>
-                  </button>
-                  <button type="button" class="btn btn-outline btn-sm" onclick="setPresetLogo('assets/dek-thep-logo-transparent.png')" style="display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; font-size: 11.5px;">
-                    <img src="assets/dek-thep-logo-transparent.png" style="width: 16px; height: 16px; object-fit: contain;"/>
-                    <span>DEK THEP (Transparent)</span>
-                  </button>
-                  <button type="button" class="btn btn-outline btn-sm" onclick="setPresetLogo('assets/logo.png')" style="display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; font-size: 11.5px;">
-                    <img src="assets/logo.png" style="width: 16px; height: 16px; object-fit: contain;"/>
-                    <span>โลโก้หลัก</span>
-                  </button>
+                  
+                  
+                  
+                  
                 </div>
 
                 <div style="display: flex; gap: 8px; margin-top: 10px; align-items: center; flex-wrap: wrap;">
@@ -3012,7 +3000,7 @@
 
                 <div style="margin-top: 10px; padding: 12px; border-radius: 10px; background: rgba(0,0,0,0.4); border: 1px dashed rgba(0, 102, 255, 0.35); display: flex; align-items: center; gap: 14px;">
                   <div style="width: 54px; height: 54px; border-radius: 10px; background: #0c0e14; display: flex; align-items: center; justify-content: center; border: 1.5px solid rgba(0, 210, 255, 0.5); overflow: hidden; padding: 4px; box-shadow: 0 0 12px rgba(0, 210, 255, 0.25);">
-                    <img id="logoPreviewDisplay" src="assets/x2-logo.svg" style="max-width: 100%; max-height: 100%; object-fit: contain; filter: drop-shadow(0 0 6px rgba(0, 210, 255, 0.4));" alt="Logo Preview" onerror="this.src='assets/x2-logo.svg';"/>
+                    <div id="logoPreviewDisplay" aria-hidden="true" style="display:none;"></div>
                   </div>
                   <div>
                     <div style="font-size: 12.5px; font-weight: 600; color: #fff;">ตัวอย่างโลโก้ปัจจุบัน</div>
@@ -3130,7 +3118,7 @@
               <!-- Store Name -->
               <div class="admin-form-group">
                 <label class="admin-label">ชื่อร้าน (Badge Text)</label>
-                <input type="text" id="maintenanceStoreName" class="admin-input" placeholder="DEK THEP STORE"/>
+                <input type="text" id="maintenanceStoreName" class="admin-input" placeholder="DECK THE STORE"/>
               </div>
               <!-- Subtitle -->
               <div class="admin-form-group" style="grid-column: 1 / -1;">
@@ -3462,14 +3450,14 @@
         <div class="admin-form-group">
           <label class="admin-label">รูปภาพสินค้า (Image URL)</label>
           <div style="display: flex; gap: 10px; align-items: center;">
-            <input type="text" id="prodImage" class="admin-input" placeholder="เช่น assets/dek-thep-logo.png หรือ URL รูปภาพ https://..." oninput="updateProductImagePreview(this.value)"/>
+            <input type="text" id="prodImage" class="admin-input" placeholder="เช่น  หรือ URL รูปภาพ https://..." oninput="updateProductImagePreview(this.value)"/>
             <div id="prodImagePreviewWrap" style="width: 44px; height: 44px; border-radius: 8px; border: 1px solid var(--admin-card-border); background: #000; overflow: hidden; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-              <img id="prodImagePreview" src="assets/dek-thep-logo.png" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='assets/dek-thep-logo.png'"/>
+              <div id="prodImagePreview" aria-hidden="true" style="display:none;"></div>
             </div>
           </div>
           <div style="display: flex; gap: 6px; margin-top: 6px; font-size: 11px; flex-wrap: wrap;">
             <span style="color: var(--admin-muted);">รูปแนะนำด่วน:</span>
-            <a href="javascript:void(0)" onclick="setPresetProdImage('assets/dek-thep-logo.png')" style="color: #00d2ff; text-decoration: none;">โลโก้ร้าน</a>
+            <a href="javascript:void(0)" onclick="setPresetProdImage('')" style="color: #00d2ff; text-decoration: none;">โลโก้ร้าน</a>
             <span style="color: rgba(255,255,255,0.2);">|</span>
             <a href="javascript:void(0)" onclick="setPresetProdImage('https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800&fit=crop&q=80')" style="color: #00d2ff; text-decoration: none;">FiveM/Gaming</a>
             <span style="color: rgba(255,255,255,0.2);">|</span>
@@ -3806,7 +3794,7 @@
           <!-- Image Presets -->
           <div style="display: flex; gap: 6px; margin-bottom: 10px; flex-wrap: wrap; align-items: center;">
             <span style="font-size: 11px; color: var(--admin-muted);">รูปตัวอย่างด่วน (1200×329):</span>
-            <button type="button" class="btn btn-outline btn-sm" style="font-size: 11px; padding: 2px 8px;" onclick="setCatPresetImage('assets/dek-thep-logo.png')">Logo ร้าน</button>
+            <button type="button" class="btn btn-outline btn-sm" style="font-size: 11px; padding: 2px 8px;" onclick="setCatPresetImage('')">Logo ร้าน</button>
             <button type="button" class="btn btn-outline btn-sm" style="font-size: 11px; padding: 2px 8px;" onclick="setCatPresetImage('https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1200&h=329&fit=crop&crop=center&q=80')">Fivem & PC</button>
             <button type="button" class="btn btn-outline btn-sm" style="font-size: 11px; padding: 2px 8px;" onclick="setCatPresetImage('https://images.unsplash.com/photo-1511512578047-dfb367046420?w=1200&h=329&fit=crop&crop=center&q=80')">PC Games</button>
             <button type="button" class="btn btn-outline btn-sm" style="font-size: 11px; padding: 2px 8px;" onclick="setCatPresetImage('https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1200&h=329&fit=crop&crop=center&q=80')">App Premium</button>
@@ -3814,11 +3802,11 @@
             <button type="button" class="btn btn-danger btn-sm" style="font-size: 11px; padding: 2px 8px; margin-left: auto;" onclick="clearCatImage()">ลบรูปภาพ</button>
           </div>
 
-          <!-- Live Image Preview Card (1200:329 Demoxshop Banner Aspect Ratio) -->
+          <!-- Live Image Preview Card (1200:329 deck-the-store Banner Aspect Ratio) -->
           <div style="border: 1px dashed rgba(0, 102, 255, 0.35); border-radius: 12px; background: rgba(0,0,0,0.4); padding: 12px; margin-top: 8px;">
             <div style="font-size: 11.5px; color: var(--admin-muted); margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center;">
               <strong style="color: #fff;">ตัวอย่างแบนเนอร์หมวดหมู่ (1200 × 329):</strong>
-              <span style="color: var(--admin-accent); font-size: 11px;">Demoxshop Spec</span>
+              <span style="color: var(--admin-accent); font-size: 11px;">deck-the-store Spec</span>
             </div>
             <div style="width: 100%; aspect-ratio: 1200 / 329; border-radius: 10px; background: #0c0e14; border: 1px solid rgba(255,255,255,0.1); overflow: hidden; display: flex; align-items: center; justify-content: center; position: relative;">
               <img id="catImgPreview" src="" alt="Preview" style="display: none; width: 100%; height: 100%; object-fit: cover;"/>
@@ -3896,25 +3884,25 @@
   <!-- Core Backend & Live Sync JavaScript -->
   <script>
     // Storage Keys
-    const KEY_PRODUCTS = 'demoxshop_products';
-    const KEY_SETTINGS = 'demoxshop_settings';
-    const KEY_ORDERS = 'demoxshop_orders';
-    const KEY_CATEGORIES = 'demoxshop_categories';
-    const KEY_USERS = 'demoxshop_users';
-    const KEY_PAYMENTS = 'demoxshop_payments';
-    const KEY_AUTH = 'demoxshop_admin_session';
-    const KEY_COUPONS = 'demoxshop_coupons';
-    const KEY_REDEEMED_VOUCHERS = 'demoxshop_redeemed_vouchers';
-    const KEY_VERIFIED_SLIPS = 'demoxshop_verified_slips';
+    const KEY_PRODUCTS = 'deck-the-store_products';
+    const KEY_SETTINGS = 'deck-the-store_settings';
+    const KEY_ORDERS = 'deck-the-store_orders';
+    const KEY_CATEGORIES = 'deck-the-store_categories';
+    const KEY_USERS = 'deck-the-store_users';
+    const KEY_PAYMENTS = 'deck-the-store_payments';
+    const KEY_AUTH = 'deck-the-store_admin_session';
+    const KEY_COUPONS = 'deck-the-store_coupons';
+    const KEY_REDEEMED_VOUCHERS = 'deck-the-store_redeemed_vouchers';
+    const KEY_VERIFIED_SLIPS = 'deck-the-store_verified_slips';
 
     // Default Demo Data
     const DEFAULT_SETTINGS = {
       storeName: "DECK THE STORE",
-      logoUrl: "assets/x2-logo.svg",
+      logoUrl: "",
       announcement: "ยินดีต้อนรับสู่ DECK THE STORE บริการจำหน่ายโปรแกรมช่วยเล่น Fivem / ปลดแบน Fivem และบริการดิจิทัล ตลอด 24 ชม.",
-      discordLink: "https://discord.gg/x2squad",
-      facebookLink: "https://facebook.com/x2squad",
-      youtubeLink: "https://www.youtube.com/@x2squadstxre",
+      discordLink: "",
+      facebookLink: "",
+      youtubeLink: "",
       contactConfig: {
         modalTitle: "ติดต่อเรา & ศูนย์ช่วยเหลือ",
         modalSubtitle: "ทีมงานพร้อมดูแลและแก้ไขปัญหา ตลอด 24 ชั่วโมง",
@@ -3923,12 +3911,12 @@
         discordEnabled: true,
         discordTitle: "Discord Community & Ticket Support",
         discordDesc: "เปิดทิคเก็ตพูดคุยกับแอดมินโดยตรงตลอด 24 ชม.",
-        discordLink: "https://discord.gg/x2squad",
+        discordLink: "",
         discordBtnText: "เข้าร่วม ↗",
         facebookEnabled: true,
         facebookTitle: "Facebook Fanpage",
         facebookDesc: "ติดตามข่าวสาร โปรโมชั่น และอัปเดตใหม่ๆ",
-        facebookLink: "https://facebook.com/x2squad",
+        facebookLink: "",
         facebookBtnText: "ติดตาม ↗",
         lineEnabled: false,
         lineTitle: "LINE Official Account",
@@ -3936,7 +3924,7 @@
         lineLink: "",
         lineBtnText: "แอดไลน์ ↗"
       },
-      adminUser: "DEKTHEPSTORE",
+      adminUser: "DECK THE STORESTORE",
       adminPass: "147",
       themeName: "blue",
       themePrimary: "#0066ff",
@@ -3972,14 +3960,14 @@
         promptpay: {
           enabled: true,
           id: "0812345678",
-          name: "DEK THEP STORE",
+          name: "DECK THE STORE",
           title: "พร้อมเพย์ QR Code",
           desc: "สแกนจ่ายได้ทุกธนาคาร เงินเข้าทันที"
         },
         truemoney: {
           enabled: true,
           phone: "0812345678",
-          name: "DEK THEP STORE",
+          name: "DECK THE STORE",
           title: "ซองอั้งเปา TrueMoney",
           desc: "วางลิงก์ซองจาก Wallet",
           feeText: "ไม่มีค่าธรรมเนียม",
@@ -3993,9 +3981,9 @@
           bankCode: "kbank",
           bankName: "ธนาคารกสิกรไทย (KBANK)",
           accountNumber: "123-4-56789-0",
-          accountName: "บจก. เทพสโตร์ ดิจิทัล (DEK THEP STORE)",
+          accountName: "บจก. เทพสโตร์ ดิจิทัล (DECK THE STORE)",
           apiProvider: "built_in",
-          apiKey: "sk_live_easyslip_dekthep_secure",
+          apiKey: "",
           autoApprove: true,
           antiDuplicate: true,
           lockAmount: true,
@@ -4008,7 +3996,7 @@
         supportBar: {
           title: "เติมเงินไม่สำเร็จ? หรือต้องการความช่วยเหลือ",
           btnText: "ติดต่อร้านค้า",
-          url: "https://discord.gg/dekthep"
+          url: ""
         },
         coupon: {
           enabled: true
@@ -4017,7 +4005,7 @@
       maintenanceConfig: {
         enabled: false,
         title: "SOMETHING GREAT IS COMING",
-        storeName: "DEK THEP STORE",
+        storeName: "DECK THE STORE",
         subtitle: "เตรียมพบกับร้านค้าออนไลน์รูปแบบใหม่ เรากำลังเตรียมบางสิ่งที่พิเศษสำหรับคุณ",
         launchText: "ติดตามการเปิดตัวได้เร็ว ๆ นี้",
         discordUrl: "",
@@ -4028,7 +4016,7 @@
     };
 
     const DEFAULT_COUPONS = [
-      { code: "DEKTHEP50", amount: 50, maxUses: 100, usedCount: 14, enabled: true, date: "01/10/2026", usedUsers: [] },
+      { code: "DECK THE STORE50", amount: 50, maxUses: 100, usedCount: 14, enabled: true, date: "01/10/2026", usedUsers: [] },
       { code: "VIP100", amount: 100, maxUses: 50, usedCount: 8, enabled: true, date: "01/10/2026", usedUsers: [] },
       { code: "BONUS300", amount: 300, maxUses: 20, usedCount: 3, enabled: true, date: "01/10/2026", usedUsers: [] }
     ];
@@ -4213,7 +4201,7 @@
         announcement: parsed.announcement || DEFAULT_SETTINGS.announcement,
         discordLink: parsed.discordLink !== undefined ? parsed.discordLink : DEFAULT_SETTINGS.discordLink,
         facebookLink: parsed.facebookLink !== undefined ? parsed.facebookLink : DEFAULT_SETTINGS.facebookLink,
-        youtubeLink: parsed.youtubeLink !== undefined ? parsed.youtubeLink : "https://www.youtube.com/@x2squadstxre",
+        youtubeLink: parsed.youtubeLink !== undefined ? parsed.youtubeLink : "",
         adminUser: parsed.adminUser || DEFAULT_SETTINGS.adminUser,
         adminPass: parsed.adminPass || DEFAULT_SETTINGS.adminPass,
         themeName: parsed.themeName || DEFAULT_SETTINGS.themeName,
@@ -4285,7 +4273,7 @@
         if (!res.ok) throw new Error('HTTP ' + res.status);
         return true;
       } catch (err) {
-        console.warn('[DEMOxSHOP] Store data sync failed:', resource, err);
+        console.warn('[DECK THE STORE] Store data sync failed:', resource, err);
         return false;
       }
     }
@@ -4299,7 +4287,7 @@
         localStorage.setItem(STORE_DATA_KEYS[resource], JSON.stringify(data));
         return true;
       } catch (err) {
-        console.warn('[DEMOxSHOP] Could not load remote store data:', resource, err);
+        console.warn('[DECK THE STORE] Could not load remote store data:', resource, err);
         return false;
       }
     }
@@ -4328,7 +4316,7 @@
         if (!res.ok) throw new Error('HTTP ' + res.status);
         return true;
       } catch (err) {
-        console.warn('[DEMOxSHOP] Server settings sync failed:', err);
+        console.warn('[DECK THE STORE] Server settings sync failed:', err);
         return false;
       }
     }
@@ -4344,7 +4332,7 @@
         applySettingsToUI(remote);
         return true;
       } catch (err) {
-        console.warn('[DEMOxSHOP] Could not load remote settings:', err);
+        console.warn('[DECK THE STORE] Could not load remote settings:', err);
         return false;
       }
     }
@@ -4371,8 +4359,8 @@
     // ==========================================
     // 🛡️ STRICT ADMIN AUTH & SECURITY CONTROLLER
     // ==========================================
-    const ADMIN_LOCKOUT_KEY = 'demoxshop_admin_lockout';
-    const ADMIN_SESSION_KEY = 'demoxshop_admin_session';
+    const ADMIN_LOCKOUT_KEY = 'deck-the-store_admin_lockout';
+    const ADMIN_SESSION_KEY = 'deck-the-store_admin_session';
 
     function checkLockoutStatus() {
       const warning = document.getElementById('adminLockoutWarning');
@@ -4452,7 +4440,7 @@
       const pass = (document.getElementById('loginPassword').value || '').trim();
       const cfg = getStoredSettings();
 
-      const validUser = (cfg && cfg.adminUser) ? cfg.adminUser : 'DEKTHEPSTORE';
+      const validUser = (cfg && cfg.adminUser) ? cfg.adminUser : 'DECK THE STORESTORE';
       const validPass = (cfg && cfg.adminPass) ? cfg.adminPass : '147';
 
       // Strict Authentication: ONLY configured admin credentials accepted
@@ -5403,7 +5391,7 @@
       current.maintenanceConfig = {
         enabled:         !!(document.getElementById('maintenanceEnabled')?.checked),
         title:           document.getElementById('maintenanceTitle')?.value.trim()          || 'SOMETHING GREAT IS COMING',
-        storeName:       document.getElementById('maintenanceStoreName')?.value.trim()       || current.storeName || 'DEK THEP STORE',
+        storeName:       document.getElementById('maintenanceStoreName')?.value.trim()       || current.storeName || 'DECK THE STORE',
         subtitle:        document.getElementById('maintenanceSubtitle')?.value.trim()        || 'เรากำลังเตรียมบางสิ่งที่พิเศษสำหรับคุณ',
         launchText:      document.getElementById('maintenanceLaunchText')?.value.trim()      || 'ติดตามการเปิดตัวได้เร็ว ๆ นี้',
         discordUrl:      document.getElementById('maintenanceDiscordUrl')?.value.trim()      || '',
@@ -5609,7 +5597,7 @@
       const statusNotice = document.getElementById('prodStatusNotice') ? document.getElementById('prodStatusNotice').value.trim() : '';
       const rawKeys = document.getElementById('prodKeys') ? document.getElementById('prodKeys').value.trim() : '';
       const keys = rawKeys ? rawKeys.split('\n').map(k => k.trim()).filter(Boolean) : [];
-      const imageUrl = (document.getElementById('prodImage') ? document.getElementById('prodImage').value.trim() : '') || 'assets/dek-thep-logo.png';
+      const imageUrl = (document.getElementById('prodImage') ? document.getElementById('prodImage').value.trim() : '') || '';
 
       const products = getStoredProducts();
       const newId = 'P' + (100 + products.length + 1);
@@ -6036,7 +6024,7 @@
 
     function updateLogoPreview(url) {
       const img = document.getElementById('logoPreviewDisplay');
-      if (img) img.src = url || 'assets/x2-logo.svg';
+      if (img) img.src = url || '';
     }
 
     function previewCurrentLogo() {
@@ -6164,7 +6152,7 @@
       }
 
       const current = getStoredSettings();
-      current.adminUser = user || 'DEKTHEPSTORE';
+      current.adminUser = user || 'DECK THE STORESTORE';
       current.adminPass = pass || '147';
       saveSettings(current);
 
@@ -6236,7 +6224,7 @@
         const s = p.status || 'active';
         const vCount = (p.variants && p.variants.length) || 0;
         const imgHtml = p.imageUrl ? 
-          `<img src="${p.imageUrl}" alt="" style="width: 38px; height: 38px; border-radius: 8px; object-fit: cover; border: 1px solid rgba(255,255,255,0.15); flex-shrink: 0;" onerror="this.onerror=null; this.src='assets/dek-thep-logo.png';"/>` :
+          `<img src="${p.imageUrl}" alt="" style="width: 38px; height: 38px; border-radius: 8px; object-fit: cover; border: 1px solid rgba(255,255,255,0.15); flex-shrink: 0;" onerror="this.onerror=null; this.src='';"/>` :
           `<div style="width: 38px; height: 38px; border-radius: 8px; background: rgba(0,102,255,0.12); border: 1px solid rgba(0,210,255,0.25); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0;">🎮</div>`;
 
         const tr = document.createElement('tr');
@@ -6370,7 +6358,7 @@
       if (url && url.trim()) {
         preview.src = url.trim();
       } else {
-        preview.src = 'assets/dek-thep-logo.png';
+        preview.src = '';
       }
     }
 
@@ -6756,11 +6744,11 @@
 
     // Users Management
     function getStoredUsers() {
-      const data = localStorage.getItem('demoxshop_users');
+      const data = localStorage.getItem('deck-the-store_users');
       return data ? JSON.parse(data) : [
         {
           username: "demo_user",
-          email: "demo@demoxshop.site",
+          email: "demo@deck-the-store.site",
           password: "123",
           wallet: 500.00,
           role: "VIP Member",
@@ -6802,16 +6790,16 @@
 
       const newRole = (user.role === 'Admin') ? 'Member' : 'Admin';
       user.role = newRole;
-      localStorage.setItem('demoxshop_users', JSON.stringify(users));
+      localStorage.setItem('deck-the-store_users', JSON.stringify(users));
 
       // Sync active user in index.html if current
-      const cur = localStorage.getItem('demoxshop_current_user');
+      const cur = localStorage.getItem('deck-the-store_current_user');
       if (cur) {
         try {
           const curObj = JSON.parse(cur);
           if (curObj.username === username) {
             curObj.role = newRole;
-            localStorage.setItem('demoxshop_current_user', JSON.stringify(curObj));
+            localStorage.setItem('deck-the-store_current_user', JSON.stringify(curObj));
           }
         } catch(e){}
       }
@@ -6828,16 +6816,16 @@
       const addStr = prompt(`ปรับยอดเงินให้ "${username}" (ระบุยอดเงินใหม่):`, user.wallet);
       if (addStr !== null && !isNaN(parseFloat(addStr))) {
         user.wallet = parseFloat(addStr);
-        localStorage.setItem('demoxshop_users', JSON.stringify(users));
+        localStorage.setItem('deck-the-store_users', JSON.stringify(users));
 
         // If adjusting current logged-in user, sync current_user too
-        const cur = localStorage.getItem('demoxshop_current_user');
+        const cur = localStorage.getItem('deck-the-store_current_user');
         if (cur) {
           try {
             const curObj = JSON.parse(cur);
             if (curObj.username === username) {
               curObj.wallet = user.wallet;
-              localStorage.setItem('demoxshop_current_user', JSON.stringify(curObj));
+              localStorage.setItem('deck-the-store_current_user', JSON.stringify(curObj));
             }
           } catch(e){}
         }
@@ -6851,7 +6839,7 @@
       if (confirm(`คุณต้องการลบผู้ใช้งาน "${username}" ใช่หรือไม่?`)) {
         let users = getStoredUsers();
         users = users.filter(u => u.username !== username);
-        localStorage.setItem('demoxshop_users', JSON.stringify(users));
+        localStorage.setItem('deck-the-store_users', JSON.stringify(users));
         renderUsersTable();
         updateDashboardCounts();
         showToast(`ลบผู้ใช้ "${username}" เรียบร้อย`);
@@ -6867,13 +6855,13 @@
       const users = getStoredUsers();
       users.push({
         username: name,
-        email: `${name}@demoxshop.site`,
+        email: `${name}@deck-the-store.site`,
         password: pass,
         wallet: isNaN(bal) ? 0 : bal,
         role: "Member",
         joined: new Date().toISOString().split('T')[0]
       });
-      localStorage.setItem('demoxshop_users', JSON.stringify(users));
+      localStorage.setItem('deck-the-store_users', JSON.stringify(users));
       renderUsersTable();
       updateDashboardCounts();
       showToast(`เพิ่มสมาชิก "${name}" เรียบร้อยแล้ว`);
@@ -7016,23 +7004,23 @@
       p.status = 'success';
       const creditAmt = parseFloat(p.creditAmount || p.amount) || 0;
 
-      // Credit user in demoxshop_users
-      const rawUsers = localStorage.getItem('demoxshop_users');
+      // Credit user in deck-the-store_users
+      const rawUsers = localStorage.getItem('deck-the-store_users');
       let users = rawUsers ? JSON.parse(rawUsers) : DEFAULT_USERS;
       const uIdx = users.findIndex(u => u.username === p.username);
       if (uIdx !== -1) {
         users[uIdx].wallet = (parseFloat(users[uIdx].wallet) || 0) + creditAmt;
-        localStorage.setItem('demoxshop_users', JSON.stringify(users));
+        localStorage.setItem('deck-the-store_users', JSON.stringify(users));
       }
 
       // If current active user in index.html is this user
-      const rawCur = localStorage.getItem('demoxshop_current_user');
+      const rawCur = localStorage.getItem('deck-the-store_current_user');
       if (rawCur) {
         try {
           const cur = JSON.parse(rawCur);
           if (cur.username === p.username) {
             cur.wallet = (parseFloat(cur.wallet) || 0) + creditAmt;
-            localStorage.setItem('demoxshop_current_user', JSON.stringify(cur));
+            localStorage.setItem('deck-the-store_current_user', JSON.stringify(cur));
           }
         } catch(e){}
       }
@@ -7124,7 +7112,7 @@
       const elPpNm = document.getElementById('cfgPpName');
       if (elPpEn) elPpEn.checked = pp.enabled !== false;
       if (elPpId) elPpId.value = pp.id || '0812345678';
-      if (elPpNm) elPpNm.value = pp.name || cfg.storeName || 'DEK THEP STORE';
+      if (elPpNm) elPpNm.value = pp.name || cfg.storeName || 'DECK THE STORE';
 
       // TrueMoney
       const tmv = pCfg.truemoney || DEFAULT_SETTINGS.paymentConfig.truemoney;
@@ -7170,10 +7158,10 @@
         handleAdminBankSelect(bank.bankCode || 'kbank');
       }
       if (elBkAc) elBkAc.value = bank.accountNumber || '123-4-56789-0';
-      if (elBkNm) elBkNm.value = bank.accountName || 'บจก. เทพสโตร์ ดิจิทัล (DEK THEP STORE)';
+      if (elBkNm) elBkNm.value = bank.accountName || 'บจก. เทพสโตร์ ดิจิทัล (DECK THE STORE)';
       if (elBkAp) elBkAp.checked = bank.autoApprove !== false;
       if (elBkProv) elBkProv.value = bank.apiProvider || 'built_in';
-      if (elBkKey) elBkKey.value = bank.apiKey || 'sk_live_easyslip_dekthep_secure';
+      if (elBkKey) elBkKey.value = bank.apiKey || '';
       if (elBkDup) elBkDup.checked = bank.antiDuplicate !== false;
       if (elBkLock) elBkLock.checked = bank.lockAmount !== false;
       if (elBkStrict) elBkStrict.checked = bank.strictAccount !== false;
@@ -7189,7 +7177,7 @@
       const elSupUrl = document.getElementById('cfgTopupSupportUrl');
       if (elSupTitle) elSupTitle.value = sup.title || 'เติมเงินไม่สำเร็จ? หรือต้องการความช่วยเหลือ';
       if (elSupBtn) elSupBtn.value = sup.btnText || 'ติดต่อร้านค้า';
-      if (elSupUrl) elSupUrl.value = sup.url || 'https://discord.gg/dekthep';
+      if (elSupUrl) elSupUrl.value = sup.url || '';
 
       // General Rates
       const elMin = document.getElementById('cfgMinTopup');
@@ -7363,7 +7351,7 @@
         promptpay: {
           enabled: document.getElementById('cfgPpEnabled').checked,
           id: document.getElementById('cfgPpId').value.trim() || '0812345678',
-          name: document.getElementById('cfgPpName').value.trim() || 'DEK THEP STORE'
+          name: document.getElementById('cfgPpName').value.trim() || 'DECK THE STORE'
         },
         truemoney: {
           enabled: document.getElementById('cfgTmvEnabled').checked,
@@ -7371,7 +7359,7 @@
           desc: document.getElementById('cfgTmvCardDesc') ? document.getElementById('cfgTmvCardDesc').value.trim() : 'วางลิงก์ซองจาก Wallet',
           feeText: document.getElementById('cfgTmvFeeText') ? document.getElementById('cfgTmvFeeText').value.trim() : 'ไม่มีค่าธรรมเนียม',
           phone: document.getElementById('cfgTmvPhone').value.trim() || '0812345678',
-          name: 'DEK THEP STORE',
+          name: 'DECK THE STORE',
           antiPhishing: document.getElementById('cfgTmvAntiPhish') ? document.getElementById('cfgTmvAntiPhish').checked : true,
           antiReuse: document.getElementById('cfgTmvAntiReuse') ? document.getElementById('cfgTmvAntiReuse').checked : true
         },
@@ -7382,7 +7370,7 @@
           bankCode: bankCode,
           bankName: bankNames[bankCode] || 'ธนาคารกสิกรไทย (KBANK)',
           accountNumber: document.getElementById('cfgBankAccountNo').value.trim() || '123-4-56789-0',
-          accountName: document.getElementById('cfgBankAccountName').value.trim() || 'บจก. เทพสโตร์ ดิจิทัล (DEK THEP STORE)',
+          accountName: document.getElementById('cfgBankAccountName').value.trim() || 'บจก. เทพสโตร์ ดิจิทัล (DECK THE STORE)',
           apiProvider: document.getElementById('cfgBankApiProvider') ? document.getElementById('cfgBankApiProvider').value : 'built_in',
           apiKey: document.getElementById('cfgBankApiKey') ? document.getElementById('cfgBankApiKey').value.trim() : '',
           autoApprove: document.getElementById('cfgBankAutoApprove') ? document.getElementById('cfgBankAutoApprove').checked : true,
@@ -7397,7 +7385,7 @@
         supportBar: {
           title: document.getElementById('cfgTopupSupportTitle') ? document.getElementById('cfgTopupSupportTitle').value.trim() : 'เติมเงินไม่สำเร็จ? หรือต้องการความช่วยเหลือ',
           btnText: document.getElementById('cfgTopupSupportBtn') ? document.getElementById('cfgTopupSupportBtn').value.trim() : 'ติดต่อร้านค้า',
-          url: document.getElementById('cfgTopupSupportUrl') ? document.getElementById('cfgTopupSupportUrl').value.trim() : 'https://discord.gg/dekthep'
+          url: document.getElementById('cfgTopupSupportUrl') ? document.getElementById('cfgTopupSupportUrl').value.trim() : ''
         },
         coupon: {
           enabled: true
@@ -7879,7 +7867,7 @@
     // Initial Startup
     window.addEventListener('DOMContentLoaded', () => {
       checkAuth();
-      // Ensure seed settings exist & update to DEK THEP STORE with transparent logo
+      // Ensure seed settings exist & update to DECK THE STORE with transparent logo
       if (!localStorage.getItem(KEY_SETTINGS)) {
         localStorage.setItem(KEY_SETTINGS, JSON.stringify(DEFAULT_SETTINGS));
       } else {
@@ -7988,7 +7976,7 @@
       try {
         console.clear();
         console.log(
-          '%c🛡️ DEK THEP STORE ADMIN - CYBER DEFENSE SHIELD ACTIVE%c\\n' +
+          '%c🛡️ DECK THE STORE ADMIN - CYBER DEFENSE SHIELD ACTIVE%c\\n' +
           '%c⚠️ คำเตือนด้านความปลอดภัย: พื้นที่ควบคุมส่วนผู้ดูแลระบบได้รับการเข้ารหัสและเฝ้าระวังความปลอดภัยแบบเรียลไทม์',
           'background: #dc2626; color: #fff; font-size: 16px; font-weight: bold; padding: 6px 12px; border-radius: 4px;',
           '',

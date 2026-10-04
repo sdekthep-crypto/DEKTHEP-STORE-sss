@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title id="pageTitleText">X2SQUAD STORE — ร้านค้าออนไลน์ที่คุณไว้วางใจ</title>
-  <meta name="description" content="X2SQUAD STORE - ร้านบริการจำหน่ายโปรแกรมช่วยเล่น Fivem / ปลดแบน Fivem และบริการดิจิทัล ระบบอัตโนมัติ 24 ชม."/>
-  <link id="pageFavicon" rel="icon" href="assets/x2-logo.svg" type="image/svg+xml"/>
+  <title id="pageTitleText">DECK THE STORE — ร้านค้าออนไลน์ที่คุณไว้วางใจ</title>
+  <meta name="description" content="DECK THE STORE - ร้านบริการจำหน่ายโปรแกรมช่วยเล่น Fivem / ปลดแบน Fivem และบริการดิจิทัล ระบบอัตโนมัติ 24 ชม."/>
+  <link id="pageFavicon" rel="icon" href="" type="image/svg+xml"/>
   <script>
     (function() {
       try {
-        var s = localStorage.getItem('demoxshop_settings');
+        var s = localStorage.getItem('deck-the-store_settings');
         if (s) {
           var cfg = JSON.parse(s);
           if (cfg.storeName) document.title = cfg.storeName + ' — ร้านค้าออนไลน์ที่คุณไว้วางใจ';
@@ -225,7 +225,7 @@
       overflow-y: auto;
     }
     /* ==========================================
-       💳 TOPUP MULTI-CHANNEL MODAL (DEMOXSHOP API)
+       💳 TOPUP MULTI-CHANNEL MODAL (DECK THE STORE API)
        ========================================== */
     #topupModal .modal-card {
       max-width: 620px;
@@ -1747,7 +1747,7 @@
     }
 
     /* ================================================================= */
-    /* 🏷️ AUTHENTIC DEMOXSHOP PRODUCT CATEGORY SYSTEM (100% SPEC MATCH)  */
+    /* 🏷️ AUTHENTIC DECK THE STORE PRODUCT CATEGORY SYSTEM (100% SPEC MATCH)  */
     /* ================================================================= */
     .store-home-categories {
       display: grid;
@@ -1787,7 +1787,7 @@
     .store-home-category.active {
       box-shadow: 0 0 25px rgba(var(--theme-main-rgb, 0, 102, 255), 0.25);
     }
-    /* Iconic Demoxshop Cyber Laser Corner Reticles */
+    /* Iconic deck-the-store Cyber Laser Corner Reticles */
     .store-home-category:after {
       --store-corner: rgba(var(--theme-main-rgb, 0, 102, 255), 0.95);
       content: "";
@@ -1943,7 +1943,7 @@
     }
 
     /* ================================================================= */
-    /* 📂 STORE CATALOG VIEW (Category filter page — like demoxshop.site) */
+    /* 📂 STORE CATALOG VIEW (Category filter page — like deck-the-store.site) */
     /* ================================================================= */
     .store-catalog-view {
       display: none; /* hidden by default, shown when category is active */
@@ -2098,7 +2098,7 @@
       }
     }
     /* ================================================================= */
-    /* 🛒 DEMOXSHOP PRODUCT GRID & CARD SYSTEM (PIXEL-PERFECT MATCH)     */
+    /* 🛒 DECK THE STORE PRODUCT GRID & CARD SYSTEM (PIXEL-PERFECT MATCH)     */
     /* ================================================================= */
     .store-home-productGrid {
       display: grid;
@@ -2301,7 +2301,7 @@
     .sx-reveal:nth-child(5)  { animation-delay: 0.16s; }
     .sx-reveal:nth-child(6)  { animation-delay: 0.20s; }
     /* ================================================================= */
-    /* 🔴 X2SQUAD TOP NAVIGATION BAR (Exact Match to Reference Screenshot) */
+    /* 🔴 DECK THE STORE TOP NAVIGATION BAR (Exact Match to Reference Screenshot) */
     /* ================================================================= */
     .store-nav-header {
       background: #09090b !important;
@@ -2599,10 +2599,10 @@
       </svg>
       <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;border-radius:50%;">
         <img id="sxSplashLogo"
-          src="assets/x2-logo.svg"
+          src=""
           alt="X2 Logo"
           style="width:64px;height:64px;object-fit:contain;border-radius:12px;"
-          onerror="this.src='assets/x2-logo.svg';"
+          onerror="this.src='';"
         />
       </div>
     </div>
@@ -2624,12 +2624,12 @@
     // ⚡ อ่าน settings จาก localStorage ทันที (sync) เพื่อใช้สี + โลโก้จากหลังบ้าน
     (function() {
       try {
-        var raw = localStorage.getItem('demoxshop_settings');
+        var raw = localStorage.getItem('deck-the-store_settings');
         if (!raw) return;
         var cfg = JSON.parse(raw);
 
         // โลโก้
-        var logo = cfg.logoUrl || 'assets/x2-logo.svg';
+        var logo = cfg.logoUrl || '';
         if (logo) {
           var logoEl = document.getElementById('sxSplashLogo');
           if (logoEl) logoEl.src = logo;
@@ -2682,7 +2682,7 @@
   </script>
 
   <!-- ============================================== -->
-  <!-- 🚀 WELCOME INTRO LANDING SCREEN (X2SQUAD STORE) -->
+  <!-- 🚀 WELCOME INTRO LANDING SCREEN (DECK THE STORE) -->
   <!-- ============================================== -->
   <div id="welcomeLandingScreen" class="welcome-landing-overlay hidden" style="display:none;">
     <div class="landing-stars"></div>
@@ -2691,19 +2691,19 @@
     <div class="welcome-landing-content">
       <!-- Logo Emblem -->
       <div class="landing-logo-box">
-        <img id="landingStoreLogo" src="assets/x2-logo.svg" alt="X2SQUAD STORE Logo" onerror="this.src='assets/x2-logo.svg';"/>
+        <img id="landingStoreLogo" src="" alt="DECK THE STORE Logo" onerror="this.src='';"/>
       </div>
 
       <!-- Welcome Capsule Pill -->
       <div class="landing-pill">
         <span class="landing-pill-dot" style="background: #ef4444; box-shadow: 0 0 10px #ef4444;"></span>
-        <span id="landingPillText">WELCOME TO X2SQUAD STORE</span>
+        <span id="landingPillText">WELCOME TO DECK THE STORE</span>
       </div>
 
       <!-- Bold Glow Headline -->
       <h1 class="landing-headline">
         <span class="text-white">ยินดีต้อนรับสู่</span>
-        <span class="text-red-glow" id="landingMainTitle" style="color: #ef4444; text-shadow: 0 0 25px rgba(239, 68, 68, 0.8), 0 0 50px rgba(239, 68, 68, 0.5);">X2SQUAD STORE</span>
+        <span class="text-red-glow" id="landingMainTitle" style="color: #ef4444; text-shadow: 0 0 25px rgba(239, 68, 68, 0.8), 0 0 50px rgba(239, 68, 68, 0.5);">DECK THE STORE</span>
       </h1>
 
       <!-- Subtitle -->
@@ -2741,7 +2741,7 @@
 
       <!-- Copyright Footer -->
       <div class="landing-footer">
-        © 2026 <span id="landingFooterName">X2SQUAD STORE</span> — All rights reserved.
+        © 2026 <span id="landingFooterName">DECK THE STORE</span> — All rights reserved.
       </div>
     </div>
   </div>
@@ -2749,13 +2749,13 @@
   <div class="store-page-transition">
     <div class="store-layout min-h-screen flex flex-col glow-header">
 
-      <!-- Navigation Header (Exact Match to X2SQUAD Reference Screenshot) -->
+      <!-- Navigation Header (Exact Match to DECK THE STORE Reference Screenshot) -->
       <header class="store-nav-header" data-storefront-nav="true" style="opacity: 1; transform: none;">
         <div class="x2-nav-shell">
           <!-- Left Brand Logo & Name -->
           <div style="display: flex; align-items: center;">
             <a href="#home" onclick="switchX2Nav(document.getElementById('x2NavLinkHome'), 'home'); return false;" class="x2-brand-wrap" id="navBrandLink" title="หน้าหลัก">
-              <img id="navStoreLogo" src="assets/x2-logo.svg" alt="Store Logo" class="x2-brand-logo-img" onerror="this.onerror=null; this.src='assets/x2-logo.svg';"/>
+              <img id="navStoreLogo" src="" alt="Store Logo" class="x2-brand-logo-img" onerror="this.onerror=null; this.src='';"/>
               <span class="x2-brand-text" id="navStoreName">DECK THE STORE</span>
             </a>
             <span class="x2-brand-divider"></span>
@@ -2812,7 +2812,7 @@
 
             <!-- 5: Discord Link -->
             <div class="x2-nav-item">
-              <a href="https://discord.gg/x2squad" target="_blank" rel="noopener" class="x2-nav-link" id="x2NavLinkDiscord" title="เข้าร่วม Discord">
+              <a href="" target="_blank" rel="noopener" class="x2-nav-link" id="x2NavLinkDiscord" title="เข้าร่วม Discord">
                 <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.894.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
                 </svg>
@@ -2873,11 +2873,11 @@
             <span class="announcement-dot"></span>
             <div style="font-size: 13px; color: #ededed; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
               <strong style="color: #00d2ff;">ประกาศร้านค้า:</strong>
-              <span id="storeAnnouncementText">ยินดีต้อนรับสู่ DEK THEP STORE บริการจำหน่ายโปรแกรมช่วยเล่น Fivem / ปลดแบน Fivem และบริการดิจิทัล ตลอด 24 ชม.</span>
+              <span id="storeAnnouncementText">ยินดีต้อนรับสู่ DECK THE STORE บริการจำหน่ายโปรแกรมช่วยเล่น Fivem / ปลดแบน Fivem และบริการดิจิทัล ตลอด 24 ชม.</span>
             </div>
           </div>
 
-          <!-- Live Store Stats Grid (Matching x2squadxstore.com) -->
+          <!-- Live Store Stats Grid (Matching DECK THE STORE) -->
           <div class="store-stats-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; margin: 20px 0 32px;">
             <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(0, 102, 255, 0.2); border-radius: 14px; padding: 14px 18px; display: flex; align-items: center; gap: 14px; transition: transform 0.2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
               <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(0, 102, 255, 0.15); border: 1px solid rgba(0, 210, 255, 0.3); display: flex; align-items: center; justify-content: center; font-size: 20px;">👥</div>
@@ -3121,7 +3121,7 @@
             <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px;">
               <div style="display: flex; align-items: center; gap: 10px;">
                 <div style="width: 28px; height: 28px; border-radius: 8px; background: linear-gradient(135deg, #0066ff, #00d2ff); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; color: #fff;">D</div>
-                <span style="font-weight: 700; letter-spacing: 0.05em; color: #fff; font-size: 16px;" id="footerStoreName">DEMOxSHOP</span>
+                <span style="font-weight: 700; letter-spacing: 0.05em; color: #fff; font-size: 16px;" id="footerStoreName">DECK THE STORE</span>
                 <span style="font-size: 11px; padding: 2px 8px; border-radius: 999px; background: rgba(0, 102, 255, 0.15); color: #00d2ff; border: 1px solid rgba(0, 102, 255, 0.3);">ACTIVE STORE</span>
               </div>
               <div style="display: flex; gap: 20px; font-size: 13px; color: #a1a1aa; flex-wrap: wrap;">
@@ -3136,7 +3136,7 @@
             <div style="height: 1px; background: rgba(255, 255, 255, 0.06);"></div>
 
             <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; font-size: 11px; color: #71717a;">
-              <span>© 2026 DEMOxSHOP · สงวนลิขสิทธิ์ทั้งหมด</span>
+              <span>© 2026 DECK THE STORE · สงวนลิขสิทธิ์ทั้งหมด</span>
               <span style="display: flex; align-items: center; gap: 6px;">
                 <span style="width: 6px; height: 6px; border-radius: 50%; background: #00d2ff;"></span>
                 Created and designed by Twelve
@@ -3155,7 +3155,7 @@
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.08);">
         <div style="display: flex; align-items: center; gap: 8px;">
           <img class="store-nav-chibi" src="assets/01-wave.webp" width="32" height="32" alt="Mascot"/>
-          <strong style="color: #fff; font-size: 16px;">DEMOxSHOP</strong>
+          <strong style="color: #fff; font-size: 16px;">DECK THE STORE</strong>
         </div>
         <button type="button" onclick="toggleMobileMenu()" style="background: none; border: none; color: #a1a1aa; cursor: pointer; padding: 4px;">
           ✕
@@ -3178,7 +3178,7 @@
         <a href="#" onclick="toggleMobileMenu(); openMyOrdersModal();" style="display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 8px; color: #a1a1aa; text-decoration: none;">
           <span>คำสั่งซื้อของฉัน</span>
         </a>
-        <a href="https://discord.gg/x2squad" target="_blank" rel="noopener" id="mobileDiscordLink" style="display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 8px; color: #5865F2; text-decoration: none; background: rgba(88, 101, 242, 0.1); border: 1px solid rgba(88, 101, 242, 0.25);">
+        <a href="" target="_blank" rel="noopener" id="mobileDiscordLink" style="display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 8px; color: #5865F2; text-decoration: none; background: rgba(88, 101, 242, 0.1); border: 1px solid rgba(88, 101, 242, 0.25);">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.894.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
           <span style="font-weight: 600;">เข้าสู่ Discord</span>
         </a>
@@ -3360,7 +3360,7 @@
     </div>
   </div>
 
-  <!-- MODAL 2: TOPUP (REAL INTERACTIVE - DEMOXSHOP API INTEGRATED) -->
+  <!-- MODAL 2: TOPUP (REAL INTERACTIVE - DECK THE STORE API INTEGRATED) -->
   <div class="modal-overlay" id="topupModal" onclick="if(event.target === this) closeModal('topupModal')">
     <div class="modal-card" style="max-width: 820px; width: 95vw; padding: 0; background: #0d0f18; border: 1px solid rgba(255,255,255,0.07); border-radius: 20px; overflow: hidden;">
 
@@ -3418,10 +3418,10 @@
           <button onclick="switchTopupTab('cards')" style="background: none; border: none; color: #94a3b8; font-size: 12px; cursor: pointer;">← กลับ</button>
           <h4 style="margin: 0; color: #fff; font-size: 15px;">🎟️ โค้ดคูปอง / โค้ดของขวัญ</h4>
         </div>
-        <input type="text" id="couponCodeInput" class="modal-input" placeholder="เช่น DEKTHEP50 หรือ VIP100" style="text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em; margin-bottom: 10px;"/>
+        <input type="text" id="couponCodeInput" class="modal-input" placeholder="เช่น DECK THE STORE50 หรือ VIP100" style="text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em; margin-bottom: 10px;"/>
         <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px;">
           <span style="font-size: 11px; color: #64748b; align-self: center;">โค้ดแนะนำ:</span>
-          <button class="btn-secondary" style="padding: 4px 10px; font-size: 11px; min-height: auto;" onclick="fillTestCoupon('DEKTHEP50')">🎁 DEKTHEP50</button>
+          <button class="btn-secondary" style="padding: 4px 10px; font-size: 11px; min-height: auto;" onclick="fillTestCoupon('DECK THE STORE50')">🎁 DECK THE STORE50</button>
           <button class="btn-secondary" style="padding: 4px 10px; font-size: 11px; min-height: auto;" onclick="fillTestCoupon('VIP100')">💎 VIP100</button>
         </div>
         <button onclick="redeemCouponCode()" class="btn-primary" style="background: linear-gradient(135deg, #a855f7, #7c3aed); box-shadow: 0 4px 15px rgba(168,85,247,0.4);">✨ แลกรับเครดิตเข้ากระเป๋า</button>
@@ -3450,7 +3450,7 @@
             <!-- Logo with Store Logo & PromptPay sub-badge -->
             <div style="display: flex; justify-content: center; margin-bottom: 16px;">
               <div style="width: 80px; height: 80px; background: rgba(0, 45, 98, 0.45); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,102,255,0.4); border: 2px solid rgba(0,210,255,0.4); overflow: hidden; position: relative; padding: 10px;">
-                <img id="ppCardStoreLogo" src="assets/dek-thep-logo.png" alt="Store Logo" style="width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 0 6px rgba(0,210,255,0.6));" onerror="this.src='assets/logo.png'; this.onerror=null;"/>
+                <img id="ppCardStoreLogo" src="" alt="Store Logo" style="width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 0 6px rgba(0,210,255,0.6));" onerror="this.src=''; this.onerror=null;"/>
                 <div style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0, 30, 80, 0.92); font-size: 8px; font-weight: 800; color: #00d2ff; text-align: center; padding: 2px 0; letter-spacing: 0.05em; border-top: 1px solid rgba(0,210,255,0.3);">
                   PROMPTPAY
                 </div>
@@ -3458,11 +3458,11 @@
             </div>
             <!-- Title with Store Name -->
             <h3 id="ppCardTitleDisplay" style="margin: 0 0 4px; font-size: 17px; font-weight: 800; color: #fff;">
-              <span id="ppCardStoreName">DEK THEP STORE</span>
+              <span id="ppCardStoreName">DECK THE STORE</span>
             </h3>
             <p id="ppCardDescDisplay" style="margin: 0 0 4px; font-size: 12px; color: #94a3b8;">สแกน QR Code พร้อมเพย์ (ทุกธนาคาร)</p>
             <p id="ppFeeTextDisplay" style="margin: 0 0 14px; font-size: 11px; color: #64748b;">
-              บัญชีร้าน: <strong id="ppAccountNameBadge" style="color: #00d2ff;">DEK THEP STORE</strong> · ยอดเข้าทันที
+              บัญชีร้าน: <strong id="ppAccountNameBadge" style="color: #00d2ff;">DECK THE STORE</strong> · ยอดเข้าทันที
             </p>
             <!-- Preset Buttons -->
             <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 12px;">
@@ -3487,8 +3487,8 @@
             <div id="qrCodeContainer" style="display: none; margin-top: 14px; background: rgba(0,0,0,0.55); border: 1px solid rgba(0,210,255,0.4); border-radius: 14px; padding: 16px; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.7);">
               <!-- Store Brand in QR Header -->
               <div style="display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 4px;">
-                <img id="qrInlineStoreLogo" src="assets/dek-thep-logo.png" style="width: 22px; height: 22px; object-fit: contain; filter: drop-shadow(0 0 4px rgba(0,210,255,0.5));" onerror="this.src='assets/logo.png';"/>
-                <strong id="qrInlineStoreName" style="color: #fff; font-size: 14px;">DEK THEP STORE</strong>
+                <div id="qrInlineStoreLogo" aria-hidden="true" style="width:0;height:0;display:none;"></div>
+                <strong id="qrInlineStoreName" style="color: #fff; font-size: 14px;">DECK THE STORE</strong>
               </div>
               <div style="font-size: 11px; color: #94a3b8; margin-bottom: 4px;">สแกนเพื่อชำระเงิน (ระบบตรวจอัตโนมัติ)</div>
               <div style="font-size: 12.5px; color: #cbd5e1; margin-bottom: 2px;">
@@ -3501,11 +3501,11 @@
                 <div style="position: relative; display: inline-block; background: #ffffff; padding: 8px; border-radius: 10px; box-shadow: 0 0 20px rgba(0,210,255,0.3); overflow: hidden; border: 2px solid #ef4444;">
                   <img id="qrRealImage" src="" alt="PromptPay QR Code" style="width: 175px; height: 175px; display: block;"/>
                   <!-- Watermark text -->
-                  <div id="qrInlineWmTop" style="position: absolute; top: 10px; left: 0; right: 0; text-align: center; font-family: monospace; font-size: 10px; font-weight: 900; color: #dc2626; text-shadow: 0 0 2px #fff; pointer-events: none;">THB 100.00 DEK THEP STORE</div>
-                  <div id="qrInlineWmBottom" style="position: absolute; bottom: 10px; left: 0; right: 0; text-align: center; font-family: monospace; font-size: 10px; font-weight: 900; color: #dc2626; text-shadow: 0 0 2px #fff; pointer-events: none;">THB 100.00 DEK THEP STORE</div>
+                  <div id="qrInlineWmTop" style="position: absolute; top: 10px; left: 0; right: 0; text-align: center; font-family: monospace; font-size: 10px; font-weight: 900; color: #dc2626; text-shadow: 0 0 2px #fff; pointer-events: none;">THB 100.00 DECK THE STORE</div>
+                  <div id="qrInlineWmBottom" style="position: absolute; bottom: 10px; left: 0; right: 0; text-align: center; font-family: monospace; font-size: 10px; font-weight: 900; color: #dc2626; text-shadow: 0 0 2px #fff; pointer-events: none;">THB 100.00 DECK THE STORE</div>
                   <!-- Center Store Logo Overlay -->
                   <div style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 42px; height: 42px; background: rgba(255,255,255,0.96); border-radius: 6px; border: 2px solid #ef4444; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 8px rgba(0,0,0,0.4); padding: 3px; z-index: 5;">
-                    <img id="qrInlineCenterLogo" src="assets/dek-thep-logo.png" alt="Store Logo" style="width: 100%; height: 100%; object-fit: contain;" onerror="this.src='assets/logo.png';"/>
+                    <div id="qrInlineCenterLogo" aria-hidden="true" style="width:0;height:0;display:none;"></div>
                   </div>
                 </div>
               </div>
@@ -3644,7 +3644,7 @@
           </div>
         </div>
 
-        <!-- Bank List (เหมือน demoxshop.site/th/topup เป๊ะๆ) -->
+        <!-- Bank List (เหมือน deck-the-store.site/th/topup เป๊ะๆ) -->
         <div style="margin-top: 24px; text-align: center;">
           <p style="font-size: 12.5px; color: #64748b; margin: 0 0 12px; font-weight: 500; letter-spacing: 0.02em;">รองรับทุกธนาคาร</p>
           <div style="display: flex; justify-content: center; align-items: center; gap: 10px; flex-wrap: wrap;">
@@ -3690,7 +3690,7 @@
             <span style="color: #c084fc;">💬</span>
             <span id="topupSupportTitleDisplay" style="font-size: 13px; color: #94a3b8;">เติมเงินไม่สำเร็จ? หรือต้องการความช่วยเหลือ</span>
           </div>
-          <a id="topupSupportLinkDisplay" href="https://discord.gg/x2squad" target="_blank" rel="noopener" style="display: flex; align-items: center; gap: 6px; font-size: 13px; color: #ef4444; text-decoration: none; font-weight: 600;">
+          <a id="topupSupportLinkDisplay" href="" target="_blank" rel="noopener" style="display: flex; align-items: center; gap: 6px; font-size: 13px; color: #ef4444; text-decoration: none; font-weight: 600;">
             <span id="topupSupportBtnDisplay">ติดต่อร้าน</span>
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
           </a>
@@ -3956,7 +3956,7 @@
           <div class="inspect-logo-ring-inner"></div>
           <!-- Center Logo (Rotating smoothly) -->
           <div class="inspect-logo-center">
-            <img id="inspectSpinLogo" src="assets/dek-thep-logo.png" alt="Verifying" class="inspect-spinning-logo" onerror="this.src='assets/logo.png';"/>
+            <div id="inspectSpinLogo" aria-hidden="true" style="width:0;height:0;display:none;"></div>
           </div>
         </div>
 
@@ -4093,12 +4093,12 @@
       <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; text-align: left;">
         <div style="display: flex; align-items: center; gap: 12px;">
           <div style="width: 42px; height: 42px; border-radius: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 4px; flex-shrink: 0;">
-            <img id="modalPpHeaderStoreLogo" src="assets/dek-thep-logo.png" alt="Store Logo" style="width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 0 4px rgba(0,210,255,0.5));" onerror="this.src='assets/logo.png';"/>
+            <div id="modalPpHeaderStoreLogo" aria-hidden="true" style="width:0;height:0;display:none;"></div>
           </div>
           <div>
             <h3 id="modalPpHeaderTitle" style="margin: 0; font-size: 16px; font-weight: 800; color: #fff; display: flex; align-items: center; gap: 6px;">
               <span>PromptPay QR</span>
-              <span id="modalPpHeaderStoreTag" style="font-size: 11px; background: rgba(0,210,255,0.15); color: #00d2ff; padding: 1px 6px; border-radius: 6px; border: 1px solid rgba(0,210,255,0.3); font-weight: 700;">DEK THEP STORE</span>
+              <span id="modalPpHeaderStoreTag" style="font-size: 11px; background: rgba(0,210,255,0.15); color: #00d2ff; padding: 1px 6px; border-radius: 6px; border: 1px solid rgba(0,210,255,0.3); font-weight: 700;">DECK THE STORE</span>
             </h3>
             <p style="margin: 3px 0 0; font-size: 11.5px; color: #94a3b8;">สแกนผ่านแอปธนาคารใดก็ได้ - ระบบตรวจสอบอัตโนมัติภายใน 1-3 นาที</p>
           </div>
@@ -4123,21 +4123,21 @@
           <img id="modalPpQrImage" src="" alt="PromptPay QR Code" style="width: 220px; height: 220px; display: block;"/>
 
           <!-- Watermarks -->
-          <div id="modalPpWmTop" style="position: absolute; top: 12px; left: 0; right: 0; text-align: center; font-family: monospace; font-size: 11.5px; font-weight: 900; color: #dc2626; text-shadow: 0 0 3px #fff, 0 0 2px #fff; pointer-events: none; letter-spacing: 0.5px;">THB 50.00 DEK THEP STORE</div>
-          <div id="modalPpWmBottom" style="position: absolute; bottom: 12px; left: 0; right: 0; text-align: center; font-family: monospace; font-size: 11.5px; font-weight: 900; color: #dc2626; text-shadow: 0 0 3px #fff, 0 0 2px #fff; pointer-events: none; letter-spacing: 0.5px;">THB 50.00 DEK THEP STORE</div>
-          <div id="modalPpWmLeft" style="position: absolute; left: 4px; top: 50%; transform: translateY(-50%) rotate(-90deg); font-family: monospace; font-size: 10px; font-weight: 900; color: #dc2626; text-shadow: 0 0 3px #fff; pointer-events: none; letter-spacing: 0.5px;">DEK THEP STORE</div>
-          <div id="modalPpWmRight" style="position: absolute; right: 4px; top: 50%; transform: translateY(-50%) rotate(90deg); font-family: monospace; font-size: 10px; font-weight: 900; color: #dc2626; text-shadow: 0 0 3px #fff; pointer-events: none; letter-spacing: 0.5px;">DEK THEP STORE</div>
+          <div id="modalPpWmTop" style="position: absolute; top: 12px; left: 0; right: 0; text-align: center; font-family: monospace; font-size: 11.5px; font-weight: 900; color: #dc2626; text-shadow: 0 0 3px #fff, 0 0 2px #fff; pointer-events: none; letter-spacing: 0.5px;">THB 50.00 DECK THE STORE</div>
+          <div id="modalPpWmBottom" style="position: absolute; bottom: 12px; left: 0; right: 0; text-align: center; font-family: monospace; font-size: 11.5px; font-weight: 900; color: #dc2626; text-shadow: 0 0 3px #fff, 0 0 2px #fff; pointer-events: none; letter-spacing: 0.5px;">THB 50.00 DECK THE STORE</div>
+          <div id="modalPpWmLeft" style="position: absolute; left: 4px; top: 50%; transform: translateY(-50%) rotate(-90deg); font-family: monospace; font-size: 10px; font-weight: 900; color: #dc2626; text-shadow: 0 0 3px #fff; pointer-events: none; letter-spacing: 0.5px;">DECK THE STORE</div>
+          <div id="modalPpWmRight" style="position: absolute; right: 4px; top: 50%; transform: translateY(-50%) rotate(90deg); font-family: monospace; font-size: 10px; font-weight: 900; color: #dc2626; text-shadow: 0 0 3px #fff; pointer-events: none; letter-spacing: 0.5px;">DECK THE STORE</div>
 
           <!-- Center Store Logo Overlay -->
           <div style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 50px; height: 50px; background: rgba(255,255,255,0.96); border-radius: 8px; border: 2px solid #ef4444; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 12px rgba(0,0,0,0.5); padding: 4px; z-index: 5;">
-            <img id="modalPpCenterLogo" src="assets/dek-thep-logo.png" alt="Store Logo" style="width: 100%; height: 100%; object-fit: contain;" onerror="this.src='assets/logo.png';"/>
+            <div id="modalPpCenterLogo" aria-hidden="true" style="width:0;height:0;display:none;"></div>
           </div>
         </div>
       </div>
 
       <!-- Recipient Account Info -->
       <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; padding: 10px 14px; margin-bottom: 14px; font-size: 12px; display: flex; justify-content: space-between; align-items: center;">
-        <span style="color: #94a3b8;">ชื่อบัญชีผู้รับ: <strong id="modalPpAccNameDisplay" style="color: #fff;">DEK THEP STORE</strong></span>
+        <span style="color: #94a3b8;">ชื่อบัญชีผู้รับ: <strong id="modalPpAccNameDisplay" style="color: #fff;">DECK THE STORE</strong></span>
         <span style="color: #64748b;">พร้อมเพย์: <code id="modalPpIdDisplay" style="color: #00d2ff; font-family: monospace;">0812345678</code></span>
       </div>
 
@@ -4247,7 +4247,7 @@
 
       <!-- Contact Options -->
       <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px;">
-        <a id="contactModalDiscord" href="https://discord.gg/x2squad" target="_blank" rel="noopener" style="display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: rgba(88, 101, 242, 0.12); border: 1px solid rgba(88, 101, 242, 0.35); border-radius: 12px; text-decoration: none; transition: all 0.2s;">
+        <a id="contactModalDiscord" href="" target="_blank" rel="noopener" style="display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: rgba(88, 101, 242, 0.12); border: 1px solid rgba(88, 101, 242, 0.35); border-radius: 12px; text-decoration: none; transition: all 0.2s;">
           <div style="display: flex; align-items: center; gap: 12px;">
             <div style="width: 36px; height: 36px; border-radius: 10px; background: #5865F2; display: flex; align-items: center; justify-content: center; color: #fff;">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.893.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
@@ -4260,7 +4260,7 @@
           <span id="contactModalDiscordBtn" style="font-size: 13px; color: #5865F2; font-weight: 700;">เข้าร่วม ↗</span>
         </a>
 
-        <a id="contactModalFacebook" href="https://facebook.com/x2squad" target="_blank" rel="noopener" style="display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: rgba(24, 119, 242, 0.12); border: 1px solid rgba(24, 119, 242, 0.35); border-radius: 12px; text-decoration: none; transition: all 0.2s;">
+        <a id="contactModalFacebook" href="" target="_blank" rel="noopener" style="display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: rgba(24, 119, 242, 0.12); border: 1px solid rgba(24, 119, 242, 0.35); border-radius: 12px; text-decoration: none; transition: all 0.2s;">
           <div style="display: flex; align-items: center; gap: 12px;">
             <div style="width: 36px; height: 36px; border-radius: 10px; background: #1877F2; display: flex; align-items: center; justify-content: center; color: #fff;">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
@@ -4291,7 +4291,7 @@
         ปิดหน้าต่าง
       </button>
     </div>
-  <!-- MODAL: RESET HWID (X2SQUAD STORE) -->
+  <!-- MODAL: RESET HWID (DECK THE STORE) -->
   <div class="modal-overlay" id="resetHwidModal" onclick="if(event.target === this) closeModal('resetHwidModal')">
     <div class="modal-card" style="max-width: 480px; padding: 24px; background: #0f1015; border: 1px solid rgba(239, 68, 68, 0.35); border-radius: 18px; box-shadow: 0 25px 60px rgba(0,0,0,0.9), 0 0 30px rgba(220, 38, 38, 0.2);">
       <!-- Header -->
@@ -4388,17 +4388,17 @@
   <!-- Real Full Functional Logic JavaScript -->
   <script>
     // Storage Keys
-    const KEY_PRODUCTS = 'demoxshop_products';
-    const KEY_SETTINGS = 'demoxshop_settings';
-    const KEY_ORDERS = 'demoxshop_orders';
-    const KEY_CATEGORIES = 'demoxshop_categories';
-    const KEY_USERS = 'demoxshop_users';
-    const KEY_PAYMENTS = 'demoxshop_payments';
-    const KEY_CURRENT_USER = 'demoxshop_current_user';
-    const KEY_COUPONS = 'demoxshop_coupons';
-    const KEY_REDEEMED_VOUCHERS = 'demoxshop_redeemed_vouchers';
-    const KEY_VERIFIED_SLIPS = 'demoxshop_verified_slips';
-    const KEY_SECURITY_LOGS = 'demoxshop_security_audit_logs';
+    const KEY_PRODUCTS = 'deck-the-store_products';
+    const KEY_SETTINGS = 'deck-the-store_settings';
+    const KEY_ORDERS = 'deck-the-store_orders';
+    const KEY_CATEGORIES = 'deck-the-store_categories';
+    const KEY_USERS = 'deck-the-store_users';
+    const KEY_PAYMENTS = 'deck-the-store_payments';
+    const KEY_CURRENT_USER = 'deck-the-store_current_user';
+    const KEY_COUPONS = 'deck-the-store_coupons';
+    const KEY_REDEEMED_VOUCHERS = 'deck-the-store_redeemed_vouchers';
+    const KEY_VERIFIED_SLIPS = 'deck-the-store_verified_slips';
+    const KEY_SECURITY_LOGS = 'deck-the-store_security_audit_logs';
     const CYBER_SECURITY_SALT = 'DEMOX_CYBER_SHIELD_V4_SECURE_99281';
 
     // ==============================================================
@@ -4604,7 +4604,7 @@
     try {
       console.clear();
       console.log(
-        '%c🛡️ DEK THEP STORE - CYBER DEFENSE SHIELD ACTIVE%c\\n' +
+        '%c🛡️ DECK THE STORE - CYBER DEFENSE SHIELD ACTIVE%c\\n' +
         '%c⚠️ คำเตือนด้านความปลอดภัยระดับสูงสุด:\\n' +
         'ระบบนี้ได้รับการปกป้องด้วยอัลกอริทึม SHA-256 HMAC Integrity & Anti-Tamper Shield\\n' +
         'การพยายามเจาะระบบ, ขโมยข้อมูล, ดัดแปลงยอดเงิน, หรือรันสคริปต์อันตรายใดๆ\\n' +
@@ -4618,11 +4618,11 @@
     // Initial Defaults
     const DEFAULT_SETTINGS = {
       storeName: "DECK THE STORE",
-      logoUrl: "assets/x2-logo.svg",
+      logoUrl: "",
       announcement: "ยินดีต้อนรับสู่ DECK THE STORE บริการจำหน่ายโปรแกรมช่วยเล่น Fivem / ปลดแบน Fivem และบริการดิจิทัล ตลอด 24 ชม.",
-      discordLink: "https://discord.gg/x2squad",
-      facebookLink: "https://facebook.com/x2squad",
-      youtubeLink: "https://www.youtube.com/@x2squadstxre",
+      discordLink: "",
+      facebookLink: "",
+      youtubeLink: "",
       contactConfig: {
         modalTitle: "ติดต่อเรา & ศูนย์ช่วยเหลือ",
         modalSubtitle: "ทีมงานพร้อมดูแลและแก้ไขปัญหา ตลอด 24 ชั่วโมง",
@@ -4631,12 +4631,12 @@
         discordEnabled: true,
         discordTitle: "Discord Community & Ticket Support",
         discordDesc: "เปิดทิคเก็ตพูดคุยกับแอดมินโดยตรงตลอด 24 ชม.",
-        discordLink: "https://discord.gg/x2squad",
+        discordLink: "",
         discordBtnText: "เข้าร่วม ↗",
         facebookEnabled: true,
         facebookTitle: "Facebook Fanpage",
         facebookDesc: "ติดตามข่าวสาร โปรโมชั่น และอัปเดตใหม่ๆ",
-        facebookLink: "https://facebook.com/x2squad",
+        facebookLink: "",
         facebookBtnText: "ติดตาม ↗",
         lineEnabled: false,
         lineTitle: "LINE Official Account",
@@ -4644,7 +4644,7 @@
         lineLink: "",
         lineBtnText: "แอดไลน์ ↗"
       },
-      adminUser: "DEKTHEPSTORE",
+      adminUser: "DECK THE STORESTORE",
       adminPass: "147",
       themeName: "red",
       themePrimary: "#ef4444",
@@ -4677,21 +4677,21 @@
         promptpay: {
           enabled: true,
           id: "0812345678",
-          name: "DEK THEP STORE"
+          name: "DECK THE STORE"
         },
         truemoney: {
           enabled: true,
           phone: "0812345678",
-          name: "DEK THEP STORE"
+          name: "DECK THE STORE"
         },
         bankSlip: {
           enabled: true,
           bankCode: "kbank",
           bankName: "ธนาคารกสิกรไทย (KBANK)",
           accountNumber: "123-4-56789-0",
-          accountName: "บจก. เทพสโตร์ ดิจิทัล (DEK THEP STORE)",
+          accountName: "บจก. เทพสโตร์ ดิจิทัล (DECK THE STORE)",
           apiProvider: "built_in",
-          apiKey: "sk_live_easyslip_dekthep_secure",
+          apiKey: "",
           autoApprove: true,
           antiDuplicate: true,
           maxSlipAgeHours: 24,
@@ -4705,7 +4705,7 @@
       maintenanceConfig: {
         enabled: false,
         title: "SOMETHING GREAT IS COMING",
-        storeName: "DEK THEP STORE",
+        storeName: "DECK THE STORE",
         subtitle: "เตรียมพบกับร้านค้าออนไลน์รูปแบบใหม่ เรากำลังเตรียมบางสิ่งที่พิเศษสำหรับคุณ",
         launchText: "ติดตามการเปิดตัวได้เร็ว ๆ นี้",
         discordUrl: "",
@@ -4716,7 +4716,7 @@
     };
 
     const DEFAULT_COUPONS = [
-      { code: "DEKTHEP50", amount: 50, maxUses: 100, usedCount: 14, enabled: true, date: "01/10/2026", usedUsers: [] },
+      { code: "DECK THE STORE50", amount: 50, maxUses: 100, usedCount: 14, enabled: true, date: "01/10/2026", usedUsers: [] },
       { code: "VIP100", amount: 100, maxUses: 50, usedCount: 8, enabled: true, date: "01/10/2026", usedUsers: [] },
       { code: "BONUS300", amount: 300, maxUses: 20, usedCount: 3, enabled: true, date: "01/10/2026", usedUsers: [] }
     ];
@@ -4825,7 +4825,7 @@
     const DEFAULT_USERS = [
       {
         username: "Melinda2Margarita",
-        email: "melinda@x2squad.store",
+        email: "customer@example.com",
         password: "123",
         wallet: 265.00,
         role: "Member",
@@ -4835,15 +4835,15 @@
       },
       {
         username: "demo_user",
-        email: "demo@demoxshop.site",
+        email: "demo@deck-the-store.site",
         password: "123",
         wallet: 500.00,
         role: "VIP Member",
         joined: "2026-09-30"
       },
       {
-        username: "DEKTHEPSTORE",
-        email: "admin@demoxshop.site",
+        username: "DECK THE STORESTORE",
+        email: "admin@deck-the-store.site",
         password: "147",
         wallet: 99999.00,
         role: "Admin",
@@ -5017,12 +5017,12 @@
       const data = localStorage.getItem(KEY_USERS);
       let users = data ? JSON.parse(data) : DEFAULT_USERS;
       const cfg = getStoredSettings();
-      const adminName = (cfg && cfg.adminUser) ? cfg.adminUser : 'DEKTHEPSTORE';
+      const adminName = (cfg && cfg.adminUser) ? cfg.adminUser : 'DECK THE STORESTORE';
       const adminPass = (cfg && cfg.adminPass) ? cfg.adminPass : '147';
       if (!users.some(u => (u.username || '').toLowerCase() === adminName.toLowerCase())) {
         users.push({
           username: adminName,
-          email: "admin@demoxshop.site",
+          email: "admin@deck-the-store.site",
           password: adminPass,
           wallet: 99999.00,
           role: "Admin",
@@ -5070,7 +5070,7 @@
         CyberDefense.signUser(user);
         localStorage.setItem(KEY_CURRENT_USER, JSON.stringify(user));
         // มีการล็อกอิน/สลับผู้ใช้ -> ยกเลิกธง "ออกจากระบบ" เพื่อให้จำเซสชันตามปกติ
-        try { localStorage.removeItem('demoxshop_logged_out'); } catch(e) {}
+        try { localStorage.removeItem('deck-the-store_logged_out'); } catch(e) {}
       } else {
         localStorage.removeItem(KEY_CURRENT_USER);
       }
@@ -5081,7 +5081,7 @@
     function isCurrentUserAdmin() {
       const user = getCurrentUser();
       const cfg = getStoredSettings();
-      const validAdminUser = (cfg && cfg.adminUser ? cfg.adminUser : 'DEKTHEPSTORE').toLowerCase();
+      const validAdminUser = (cfg && cfg.adminUser ? cfg.adminUser : 'DECK THE STORESTORE').toLowerCase();
 
       // Check current user object
       if (user) {
@@ -5092,7 +5092,7 @@
 
       // Check active admin session token
       try {
-        const rawSess = sessionStorage.getItem('demoxshop_admin_session') || localStorage.getItem('demoxshop_admin_session');
+        const rawSess = sessionStorage.getItem('deck-the-store_admin_session') || localStorage.getItem('deck-the-store_admin_session');
         if (rawSess) {
           const sess = JSON.parse(rawSess);
           if (sess && sess.token && Date.now() < (sess.expiresAt || Infinity)) return true;
@@ -5139,9 +5139,9 @@
           lastActive: Date.now(),
           expiresAt: Date.now() + (30 * 60 * 1000)
         };
-        sessionStorage.setItem('demoxshop_admin_session', JSON.stringify(session));
-        sessionStorage.setItem('demoxshop_admin_auth', 'true');
-        localStorage.setItem('demoxshop_admin_session', JSON.stringify(session));
+        sessionStorage.setItem('deck-the-store_admin_session', JSON.stringify(session));
+        sessionStorage.setItem('deck-the-store_admin_auth', 'true');
+        localStorage.setItem('deck-the-store_admin_session', JSON.stringify(session));
       } catch(err) {}
 
       return true;
@@ -5157,7 +5157,7 @@
         // (เดิมเป็นบั๊ก: handleUserLogout() -> setCurrentUser(null) -> renderUserAuthUI()
         //  แล้ว setCurrentUser(melinda) กลับทันที จึงเหมือนกดออกไม่ได้)
         let loggedOut = false;
-        try { loggedOut = localStorage.getItem('demoxshop_logged_out') === '1'; } catch(e) {}
+        try { loggedOut = localStorage.getItem('deck-the-store_logged_out') === '1'; } catch(e) {}
 
         if (!loggedOut) {
           // Default to Melinda2Margarita if available (เฉพาะครั้งแรกที่ยังไม่เคยกด logout)
@@ -5214,7 +5214,7 @@
     }
 
     // ==========================================
-    // 🔴 X2SQUAD TOP NAVIGATION & INTERACTIVE CONTROLLERS
+    // 🔴 DECK THE STORE TOP NAVIGATION & INTERACTIVE CONTROLLERS
     // ==========================================
     function switchX2Nav(element, tab) {
       document.querySelectorAll('.x2-nav-link').forEach(el => el.classList.remove('active'));
@@ -5311,7 +5311,7 @@
           <div style="display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; gap: 12px; transition: border-color 0.2s;" onmouseover="this.style.borderColor='rgba(239,68,68,0.4)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)'">
             <div style="display: flex; align-items: center; gap: 12px; min-width: 0; flex: 1;">
               <div style="width: 44px; height: 44px; border-radius: 10px; background: #1a1c23; border: 1px solid rgba(255,255,255,0.08); overflow: hidden; flex-shrink: 0; display: flex; align-items: center; justify-content: center;">
-                <img src="${escapeHtml(p.imageUrl || 'assets/logo.png')}" alt="${escapeHtml(p.name)}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='assets/logo.png';"/>
+                <img src="${escapeHtml(p.imageUrl || '')}" alt="${escapeHtml(p.name)}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='';"/>
               </div>
               <div style="min-width: 0;">
                 <div style="font-size: 13.5px; font-weight: 700; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${escapeHtml(p.name)}</div>
@@ -5715,15 +5715,15 @@
 
       // Support logging in directly as admin with settings credentials
       const cfg = getStoredSettings();
-      const validAdminUser = (cfg && cfg.adminUser) ? cfg.adminUser : 'DEKTHEPSTORE';
+      const validAdminUser = (cfg && cfg.adminUser) ? cfg.adminUser : 'DECK THE STORESTORE';
       const validAdminPass = (cfg && cfg.adminPass) ? cfg.adminPass : '147';
 
-      if (!found && (name.toLowerCase() === validAdminUser.toLowerCase() || name.toLowerCase() === 'admin@demoxshop.site') && pass === validAdminPass) {
+      if (!found && (name.toLowerCase() === validAdminUser.toLowerCase() || name.toLowerCase() === 'admin@deck-the-store.site') && pass === validAdminPass) {
         found = users.find(u => u.username.toLowerCase() === validAdminUser.toLowerCase());
         if (!found) {
           found = {
             username: validAdminUser,
-            email: "admin@demoxshop.site",
+            email: "admin@deck-the-store.site",
             password: validAdminPass,
             wallet: 99999.00,
             role: "Admin",
@@ -5745,9 +5745,9 @@
             lastActive: Date.now(),
             expiresAt: Date.now() + (30 * 60 * 1000)
           };
-          sessionStorage.setItem('demoxshop_admin_session', JSON.stringify(session));
-          sessionStorage.setItem('demoxshop_admin_auth', 'true');
-          localStorage.setItem('demoxshop_admin_session', JSON.stringify(session));
+          sessionStorage.setItem('deck-the-store_admin_session', JSON.stringify(session));
+          sessionStorage.setItem('deck-the-store_admin_auth', 'true');
+          localStorage.setItem('deck-the-store_admin_session', JSON.stringify(session));
         }
 
         setCurrentUser(found);
@@ -5869,11 +5869,11 @@
     function handleUserLogout() {
       try { closeDropdown(); } catch(e) {}
       // ตั้งธงว่าผู้ใช้ "ออกจากระบบ" แล้ว เพื่อกันไม่ให้ renderUserAuthUI() auto-login กลับ
-      try { localStorage.setItem('demoxshop_logged_out', '1'); } catch(e) {}
+      try { localStorage.setItem('deck-the-store_logged_out', '1'); } catch(e) {}
       try {
-        sessionStorage.removeItem('demoxshop_admin_session');
-        sessionStorage.removeItem('demoxshop_admin_auth');
-        localStorage.removeItem('demoxshop_admin_session');
+        sessionStorage.removeItem('deck-the-store_admin_session');
+        sessionStorage.removeItem('deck-the-store_admin_auth');
+        localStorage.removeItem('deck-the-store_admin_session');
       } catch(e) {}
       try { setCurrentUser(null); } catch(e) {}
       try { updateAdminVisibility(); } catch(e) {}
@@ -5881,7 +5881,7 @@
     }
 
     // ==========================================
-    // 💳 MULTI-CHANNEL TOPUP CONTROLLER (DEMOXSHOP API)
+    // 💳 MULTI-CHANNEL TOPUP CONTROLLER (DECK THE STORE API)
     // ==========================================
     let currentTopupTab = 'promptpay';
     let selectedTopupAmount = 100;
@@ -5945,8 +5945,8 @@
 
       // PromptPay Card Dynamic Customization & State
       const ppInfo = pCfg.promptpay || DEFAULT_SETTINGS.paymentConfig.promptpay || {};
-      const storeName = cfg.storeName || ppInfo.name || 'DEK THEP STORE';
-      const logoUrl = cfg.logoUrl || 'assets/dek-thep-logo.png';
+      const storeName = cfg.storeName || ppInfo.name || 'DECK THE STORE';
+      const logoUrl = cfg.logoUrl || '';
       const ppName = ppInfo.name || storeName;
 
       const ppCardLogo = document.getElementById('ppCardStoreLogo');
@@ -6014,7 +6014,7 @@
       if (supTitle) supTitle.innerText = sup.title || 'เติมเงินไม่สำเร็จ? หรือต้องการความช่วยเหลือ';
       if (supBtn) supBtn.innerText = sup.btnText || 'ติดต่อร้าน';
       if (supLink) {
-        supLink.href = sup.url || 'https://discord.gg/dekthep';
+        supLink.href = sup.url || '';
         supLink.onclick = null;
       }
 
@@ -6083,7 +6083,7 @@
       if (panel) panel.style.display = isOpen ? 'none' : 'block';
       if (chevron) chevron.style.transform = isOpen ? '' : 'rotate(180deg)';
       if (!isOpen) {
-        const payments = JSON.parse(localStorage.getItem('demoxshop_payments') || '[]');
+        const payments = JSON.parse(localStorage.getItem('deck-the-store_payments') || '[]');
         const tmvHistory = payments.filter(p => p.method === 'truemoney');
         const countEl = document.getElementById('giftHistoryCount');
         const bodyEl = document.getElementById('giftHistoryBody');
@@ -6131,9 +6131,9 @@
       selectedTopupAmount = amount;
       const ppInfo = pCfg.promptpay || DEFAULT_SETTINGS.paymentConfig.promptpay;
       const ppId = (ppInfo.id || '0812345678').replace(/[^0-9]/g, '');
-      const storeName = cfg.storeName || ppInfo.name || 'DEK THEP STORE';
+      const storeName = cfg.storeName || ppInfo.name || 'DECK THE STORE';
       const ppName = ppInfo.name || storeName;
-      const logoUrl = cfg.logoUrl || 'assets/dek-thep-logo.png';
+      const logoUrl = cfg.logoUrl || '';
       const qrUrl = `https://promptpay.io/${ppId}/${amount}.png`;
       const formattedAmount = `฿${amount.toFixed(2)}`;
       const wmText = `THB ${amount.toFixed(2)} ${storeName}`;
@@ -6298,7 +6298,7 @@
         const pCfg = cfg.paymentConfig || DEFAULT_SETTINGS.paymentConfig;
         const ppInfo = pCfg.promptpay || DEFAULT_SETTINGS.paymentConfig.promptpay || {};
         const ppId = (ppInfo.id || '0812345678').replace(/[^0-9]/g, '');
-        const ppName = ppInfo.name || cfg.storeName || 'DEK THEP STORE';
+        const ppName = ppInfo.name || cfg.storeName || 'DECK THE STORE';
         const scanMode = (pCfg.bankSlip && pCfg.bankSlip.scanMode) || 'high_accuracy';
 
         try {
@@ -6366,7 +6366,7 @@
       const pCfg = cfg.paymentConfig || DEFAULT_SETTINGS.paymentConfig;
       const ppInfo = pCfg.promptpay || DEFAULT_SETTINGS.paymentConfig.promptpay || {};
       const ppId = (ppInfo.id || '0812345678').replace(/[^0-9]/g, '');
-      const ppName = ppInfo.name || cfg.storeName || 'DEK THEP STORE';
+      const ppName = ppInfo.name || cfg.storeName || 'DECK THE STORE';
 
       showToast('📱 กำลังจำลองการสแกน QR Code และโอนเงินผ่านแอปธนาคาร...');
 
@@ -6600,7 +6600,7 @@
 
       if (spinLogo) {
         spinLogo.src = 'assets/truemoney-logo.png';
-        spinLogo.onerror = function() { this.src = 'assets/logo.png'; };
+        spinLogo.onerror = function() { this.src = ''; };
       }
 
       if (liveStatus) liveStatus.innerText = 'กำลังตรวจสอบซองของขวัญ TrueMoney...';
@@ -7318,7 +7318,7 @@
         senderName: 'นายธนภัทร สุขสมบัติ',
         senderAcc: '081-xxx-1829',
         receiverAcc: storeAcc,
-        receiverName: bankInfo.accountName || 'บจก. เทพสโตร์ ดิจิทัล (DEK THEP STORE)',
+        receiverName: bankInfo.accountName || 'บจก. เทพสโตร์ ดิจิทัล (DECK THE STORE)',
         amount: amount,
         transRef: '20261001' + Math.floor(10000000 + Math.random() * 90000000),
         date: new Date().toLocaleString('th-TH'),
@@ -7401,7 +7401,7 @@
         mock.bank = otherInfo.code;
         mock.bankName = otherInfo.name;
         mock.receiverAcc = storeAcc;
-        mock.receiverName = bankInfo.accountName || cfg.storeName || 'บจก. เทพสโตร์ ดิจิทัล (DEK THEP STORE)';
+        mock.receiverName = bankInfo.accountName || cfg.storeName || 'บจก. เทพสโตร์ ดิจิทัล (DECK THE STORE)';
         mock.amount = amount;
         if (amtInp) amtInp.value = amount;
         showToast(`❌ โหลดสลิปโอนเข้าธนาคารอื่น (${mock.bankName}) เพื่อทดสอบระบบตรวจธนาคารไม่ตรง`);
@@ -7438,7 +7438,7 @@
 
       if (preview) {
         preview.src = `assets/banks/${mock.bank.toLowerCase()}.png`;
-        preview.onerror = function() { this.src = 'assets/dek-thep-logo.png'; };
+        preview.onerror = function() { this.src = ''; };
       }
       const thumbImg = document.getElementById('inspectThumbImg');
       const thumbPlaceholder = document.getElementById('inspectThumbPlaceholder');
@@ -7842,8 +7842,8 @@
 
       // Set the rotating logo to store branding logo
       if (spinLogo) {
-        spinLogo.src = cfg.logoUrl || 'assets/dek-thep-logo.png';
-        spinLogo.onerror = function() { this.src = 'assets/logo.png'; };
+        spinLogo.src = cfg.logoUrl || '';
+        spinLogo.onerror = function() { this.src = ''; };
       }
 
       if (liveStatus) liveStatus.innerText = 'กำลังตรวจสอบสลิปการโอนเงิน...';
@@ -7962,8 +7962,8 @@
         const storeClean = (bankInfo.accountNumber || '123-4-56789-0').replace(/[^0-9]/g, '');
         const ppClean = (ppInfo.id || '0812345678').replace(/[^0-9]/g, '');
         const slipClean = (slip.receiverAcc || '').replace(/[^0-9]/g, '');
-        const configuredAccName = (bankInfo.accountName || cfg.storeName || 'DEK THEP STORE').trim();
-        const configuredPpName = (ppInfo.name || cfg.storeName || 'DEK THEP STORE').trim();
+        const configuredAccName = (bankInfo.accountName || cfg.storeName || 'DECK THE STORE').trim();
+        const configuredPpName = (ppInfo.name || cfg.storeName || 'DECK THE STORE').trim();
         const configuredStoreName = (cfg.storeName || '').trim();
 
         let isAccMatch = false;
@@ -8372,7 +8372,7 @@
         return;
       }
 
-      const raw = localStorage.getItem('demoxshop_payments');
+      const raw = localStorage.getItem('deck-the-store_payments');
       const allPayments = raw ? JSON.parse(raw) : [];
       const userPayments = allPayments.filter(p => p.username === user.username);
 
@@ -8399,11 +8399,11 @@
     }
 
     function recordPaymentTransaction(rec) {
-      const raw = localStorage.getItem('demoxshop_payments') || '[]';
+      const raw = localStorage.getItem('deck-the-store_payments') || '[]';
       let payments = [];
       try { payments = JSON.parse(raw); } catch(e){}
       payments.unshift(rec);
-      localStorage.setItem('demoxshop_payments', JSON.stringify(payments));
+      localStorage.setItem('deck-the-store_payments', JSON.stringify(payments));
     }
 
     // ==========================================
@@ -8428,7 +8428,7 @@
         if (!res.ok) throw new Error('HTTP ' + res.status);
         return true;
       } catch (err) {
-        console.warn('[DEMOxSHOP] Store data sync failed:', resource, err);
+        console.warn('[DECK THE STORE] Store data sync failed:', resource, err);
         return false;
       }
     }
@@ -8442,7 +8442,7 @@
         localStorage.setItem(STORE_DATA_KEYS[resource], JSON.stringify(data));
         return true;
       } catch (err) {
-        console.warn('[DEMOxSHOP] Remote store data unavailable:', resource, err);
+        console.warn('[DECK THE STORE] Remote store data unavailable:', resource, err);
         return false;
       }
     }
@@ -8469,7 +8469,7 @@
         if (navName && remote.storeName) navName.innerText = remote.storeName;
         return true;
       } catch (err) {
-        console.warn('[DEMOxSHOP] Remote settings unavailable; using local cache.', err);
+        console.warn('[DECK THE STORE] Remote settings unavailable; using local cache.', err);
         return false;
       }
     }
@@ -9141,11 +9141,11 @@
       // Fallback discord & facebook from main config if contactConfig link is empty or default
       const discordLink = (cc.discordLink && cc.discordLink !== DEFAULT_SETTINGS.contactConfig.discordLink)
         ? cc.discordLink
-        : (cfg.discordLink || cc.discordLink || DEFAULT_SETTINGS.discordLink || 'https://discord.gg/x2squad');
+        : (cfg.discordLink || cc.discordLink || DEFAULT_SETTINGS.discordLink || '');
 
       const facebookLink = (cc.facebookLink && cc.facebookLink !== DEFAULT_SETTINGS.contactConfig.facebookLink)
         ? cc.facebookLink
-        : (cfg.facebookLink || cc.facebookLink || DEFAULT_SETTINGS.facebookLink || 'https://facebook.com/x2squad');
+        : (cfg.facebookLink || cc.facebookLink || DEFAULT_SETTINGS.facebookLink || '');
 
       // 1. Header
       const titleEl = document.getElementById('contactModalTitle');
@@ -9270,7 +9270,7 @@
         if (mc.facebookUrl) socialHtml += `<a href="${escapeHtml(mc.facebookUrl)}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:rgba(24,119,242,0.15);border:1px solid rgba(24,119,242,0.4);border-radius:10px;text-decoration:none;color:#fff;font-size:13px;font-weight:600;transition:all 0.2s;">📘 Facebook</a>`;
 
         // Logo
-        const logoUrl = cfg.logoUrl || 'assets/dek-thep-logo.png';
+        const logoUrl = cfg.logoUrl || '';
         const primary = cfg.themePrimary || '#0066ff';
         const accent  = cfg.themeAccent  || '#00d2ff';
 
@@ -9303,7 +9303,7 @@
                 stroke-linecap="round" stroke-dasharray="220 120"/>
             </svg>
             <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
-              <img src="${escapeHtml(logoUrl)}" alt="Logo" style="width:72px;height:72px;object-fit:contain;border-radius:50%;" onerror="this.src='assets/dek-thep-logo.png';"/>
+              <div aria-hidden="true" style="display:none;"></div>
             </div>
           </div>
 
@@ -9364,7 +9364,7 @@
         });
       }
       const storeName = cfg.storeName || 'DECK THE STORE';
-      const logoUrl = cfg.logoUrl || 'assets/x2-logo.svg';
+      const logoUrl = cfg.logoUrl || '';
 
       // Apply dynamic colors & cursor & topup heading & payment channels
       applyDynamicTheme(cfg);
@@ -9376,7 +9376,7 @@
       renderContactModal(cfg);
 
       // Synchronize Discord links across navbar, icon button, and mobile menu
-      const dLink = (cfg.contactConfig && cfg.contactConfig.discordLink) || cfg.discordLink || 'https://discord.gg/x2squad';
+      const dLink = (cfg.contactConfig && cfg.contactConfig.discordLink) || cfg.discordLink || '';
       const navDiscord = document.getElementById('x2NavLinkDiscord');
       if (navDiscord) navDiscord.href = dLink;
       const navDiscordBtn = document.getElementById('x2DiscordNavBtn');
@@ -10208,7 +10208,7 @@
     // ==========================================
     // 🌐 MULTI-LANGUAGE SELECTOR (MATCHING media_1790871287614.png)
     // ==========================================
-    const KEY_LANG = 'demoxshop_lang';
+    const KEY_LANG = 'deck-the-store_lang';
     const LANG_DATA = {
       th: {
         flag: 'assets/th.svg',
@@ -10327,7 +10327,7 @@
         const show = cc.discordEnabled !== false;
         discordEl.style.display = show ? 'flex' : 'none';
         if (show) {
-          discordEl.href = cc.discordLink || cfg.discordLink || 'https://discord.gg/x2squad';
+          discordEl.href = cc.discordLink || cfg.discordLink || '';
           if (discordTitleEl) discordTitleEl.innerText = cc.discordTitle || 'Discord Community & Ticket Support';
           if (discordDescEl) discordDescEl.innerText = cc.discordDesc || 'เปิดทิคเก็ตพูดคุยกับแอดมินโดยตรงตลอด 24 ชม.';
           if (discordBtnEl) discordBtnEl.innerText = cc.discordBtnText || 'เข้าร่วม ↗';
@@ -10343,7 +10343,7 @@
         const showFb = cc.facebookEnabled !== false;
         fbEl.style.display = showFb ? 'flex' : 'none';
         if (showFb) {
-          fbEl.href = cc.facebookLink || cfg.facebookLink || 'https://facebook.com/x2squad';
+          fbEl.href = cc.facebookLink || cfg.facebookLink || '';
           if (fbTitleEl) fbTitleEl.innerText = cc.facebookTitle || 'Facebook Fanpage';
           if (fbDescEl) fbDescEl.innerText = cc.facebookDesc || 'ติดตามข่าวสาร โปรโมชั่น และอัปเดตใหม่ๆ';
           if (fbBtnEl) fbBtnEl.innerText = cc.facebookBtnText || 'ติดตาม ↗';
@@ -10381,7 +10381,7 @@
           if (changed) localStorage.setItem(KEY_SETTINGS, JSON.stringify(_c));
         }
       } catch(e) {}
-      // Ensure seed settings exist & update to X2SQUAD STORE
+      // Ensure seed settings exist & update to DECK THE STORE
       try {
         if (!localStorage.getItem(KEY_SETTINGS)) {
           localStorage.setItem(KEY_SETTINGS, JSON.stringify(DEFAULT_SETTINGS));
@@ -10425,9 +10425,9 @@
             }
           } catch(e) {}
         }
-        // หมายเหตุ: อย่า auto-login กลับ ถ้าผู้ใช้เคยกด "ออกจากระบบ" (ธง demoxshop_logged_out)
+        // หมายเหตุ: อย่า auto-login กลับ ถ้าผู้ใช้เคยกด "ออกจากระบบ" (ธง deck-the-store_logged_out)
         let _wasLoggedOut = false;
-        try { _wasLoggedOut = localStorage.getItem('demoxshop_logged_out') === '1'; } catch(e) {}
+        try { _wasLoggedOut = localStorage.getItem('deck-the-store_logged_out') === '1'; } catch(e) {}
         if (!localStorage.getItem(KEY_CURRENT_USER) && !_wasLoggedOut) {
           const uList = getUsers();
           const mel = uList.find(u => u.username === 'Melinda2Margarita') || uList[0];

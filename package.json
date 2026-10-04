@@ -1,5 +1,5 @@
 {
-  "name": "demoxshop-ui",
+  "name": "deck-the-store-ui",
   "version": "1.0.0",
   "private": true,
   "scripts": { "start": "node server.js" },

@@ -1,4 +1,4 @@
-# DEMOxSHOP - Storefront & Admin Dashboard UI Pro (Blue Theme)
+# DECK THE STORE - Storefront & Admin Dashboard UI Pro (Blue Theme)
 
 เทมเพลต UI เว็บไซต์สไตล์ **Dark Neon Blue (สีน้ำเงิน)** ครบทั้งหน้าบ้าน (Storefront) และระบบจัดการหลังบ้าน Pro (Admin Dashboard) พร้อมระบบ **Live Data Sync ผ่าน LocalStorage**
 
@@ -16,7 +16,7 @@
 
 ## 🔐 ข้อมูลเข้าสู่ระบบผู้ดูแล (Admin Login)
 - **หน้าล็อกอิน:** เปิดไฟล์ `admin.html`
-- **ชื่อผู้ใช้เริ่มต้น (Username):** `DEKTHEPSTORE`
+- **ชื่อผู้ใช้เริ่มต้น (Username):** `DECK THE STORESTORE`
 - **รหัสผ่านเริ่มต้น (Password):** `147`
 *(สามารถเปลี่ยนชื่อผู้ใช้และรหัสผ่านใหม่ได้ที่แท็บ **"ตั้งค่าระบบ & รหัสผ่าน"** ภายในระบบหลังบ้าน)*
 

@@ -2,7 +2,7 @@
 <html lang="th">
 <head>
 <meta charset="UTF-8">
-<title>Reset Admin Credentials – DEMOxSHOP</title>
+<title>Reset Admin Credentials – DECK THE STORE</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { background: #0a0f1e; color: #fff; font-family: 'Segoe UI', sans-serif; display: flex; align-items: center; justify-content: center; min-height: 100vh; }
@@ -27,13 +27,13 @@
 <body>
 <div class="card">
   <h1>🔧 Admin Reset Tool</h1>
-  <p>ใช้เครื่องมือนี้เพื่อรีเซ็ตรหัสผ่านแอดมินและล้างการล็อกออก <span class="badge">DEMOxSHOP</span></p>
+  <p>ใช้เครื่องมือนี้เพื่อรีเซ็ตรหัสผ่านแอดมินและล้างการล็อกออก <span class="badge">DECK THE STORE</span></p>
 
   <div id="currentInfo" style="background: rgba(0,102,255,0.08); border: 1px solid rgba(0,102,255,0.2); border-radius: 8px; padding: 12px; margin-bottom: 18px; font-size: 12px; color: #94a3b8;"></div>
 
   <div class="section-title">🔑 ตั้งค่า Credentials ใหม่</div>
   <label>Username แอดมิน</label>
-  <input type="text" id="newUser" value="DEKTHEPSTORE" />
+  <input type="text" id="newUser" value="DECK THE STORESTORE" />
   <label>Password ใหม่</label>
   <input type="password" id="newPass" value="147" />
   <label>ยืนยัน Password</label>
@@ -53,10 +53,10 @@
 </div>
 
 <script>
-  const KEY_SETTINGS = 'demoxshop_settings';
-  const ADMIN_LOCKOUT_KEY = 'demoxshop_admin_lockout';
-  const ADMIN_SESSION_KEY = 'demoxshop_admin_session';
-  const KEY_AUTH = 'demoxshop_admin_auth';
+  const KEY_SETTINGS = 'deck-the-store_settings';
+  const ADMIN_LOCKOUT_KEY = 'deck-the-store_admin_lockout';
+  const ADMIN_SESSION_KEY = 'deck-the-store_admin_session';
+  const KEY_AUTH = 'deck-the-store_admin_auth';
 
   const logBox = document.getElementById('logBox');
   function log(msg, cls = '') {
@@ -71,9 +71,9 @@
     if (raw) {
       const s = JSON.parse(raw);
       info.innerHTML = `📋 <strong>Current:</strong> User = <code style="color:#00d2ff">${s.adminUser || '(none)'}</code> &nbsp;|&nbsp; Pass = <code style="color:#f6ad55">${s.adminPass ? '••••••' : '(none)'}</code>`;
-      document.getElementById('newUser').value = s.adminUser || 'DEKTHEPSTORE';
+      document.getElementById('newUser').value = s.adminUser || 'DECK THE STORESTORE';
     } else {
-      info.innerHTML = `⚠️ ไม่พบข้อมูล Settings ใน localStorage — จะใช้ค่า default: <code>DEKTHEPSTORE</code> / <code>147</code>`;
+      info.innerHTML = `⚠️ ไม่พบข้อมูล Settings ใน localStorage — จะใช้ค่า default: <code>DECK THE STORESTORE</code> / <code>147</code>`;
     }
     const lockRaw = localStorage.getItem(ADMIN_LOCKOUT_KEY);
     if (lockRaw) {
