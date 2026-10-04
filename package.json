@@ -2,6 +2,12 @@
   "name": "deck-the-store-ui",
   "version": "1.0.0",
   "private": true,
-  "scripts": { "start": "node server.js" },
-  "dependencies": { "express": "^4.21.2", "pg": "^8.13.1" }
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "pg": "^8.13.1",
+    "compression": "^1.8.1"
+  }
 }

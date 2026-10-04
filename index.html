@@ -27,14 +27,10 @@
       } catch(e) {}
     })();
   </script>
-
-  <!-- Google Fonts Fallback & Local Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=Prompt:wght@400;500;600;700&display=swap" rel="stylesheet">
   
+  <link rel="preload" href="assets/fonts/IBMPlexSansThai.29a87474ab.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/IBMPlexSansThai.f0f73e05da.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/style.css"/>
-  <script src="assets/jsqr.min.js"></script>
 
   <style>
     @font-face {
@@ -2676,8 +2672,8 @@
         splash.style.opacity = '0';
         setTimeout(function() {
           splash.style.display = 'none';
-        }, 500);
-      }, 600);
+        }, 180);
+      }, 180);
     });
   </script>
 
@@ -2837,7 +2833,7 @@
               <div class="user-dropdown" id="userDropdownMenu">
                 <div style="padding: 6px 10px; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 4px;">
                   <div style="font-size: 11px; color: #a1a1aa;">เข้าสู่ระบบด้วย</div>
-                  <strong style="color: #fff; font-size: 13px;" id="dropdownUserName">ผู้ใช้</strong>
+                  <strong style="color: #fff; font-size: 13px;" id="dropdownUserName">Melinda2Margarita (Member)</strong>
                 </div>
                 <button class="dropdown-item" onclick="closeDropdown(); openModal('topupModal');">
                   <span>💳 เติมเงินเข้าระบบ</span>
@@ -3139,7 +3135,7 @@
               <span>© 2026 DECK THE STORE · สงวนลิขสิทธิ์ทั้งหมด</span>
               <span style="display: flex; align-items: center; gap: 6px;">
                 <span style="width: 6px; height: 6px; border-radius: 50%; background: #00d2ff;"></span>
-                DECK THE STORE
+                Created and designed by Twelve
               </span>
             </div>
           </div>
@@ -3154,7 +3150,7 @@
     <div class="drawer-content">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.08);">
         <div style="display: flex; align-items: center; gap: 8px;">
-          <img class="store-nav-chibi" src="assets/01-wave.webp" width="32" height="32" alt="Mascot"/>
+          <img class="store-nav-chibi" src="assets/01-wave.webp" width="32" height="32" alt="Mascot" loading="lazy" decoding="async"/>
           <strong style="color: #fff; font-size: 16px;">DECK THE STORE</strong>
         </div>
         <button type="button" onclick="toggleMobileMenu()" style="background: none; border: none; color: #a1a1aa; cursor: pointer; padding: 4px;">
@@ -3499,7 +3495,7 @@
               <!-- QR Box with Center Logo & Watermark (Image 2 style) -->
               <div style="display: flex; justify-content: center; margin-bottom: 10px;">
                 <div style="position: relative; display: inline-block; background: #ffffff; padding: 8px; border-radius: 10px; box-shadow: 0 0 20px rgba(0,210,255,0.3); overflow: hidden; border: 2px solid #ef4444;">
-                  <img id="qrRealImage" src="" alt="PromptPay QR Code" style="width: 175px; height: 175px; display: block;"/>
+                  <img id="qrRealImage" src="" alt="PromptPay QR Code" style="width: 175px; height: 175px; display: block;" loading="lazy" decoding="async"/>
                   <!-- Watermark text -->
                   <div id="qrInlineWmTop" style="position: absolute; top: 10px; left: 0; right: 0; text-align: center; font-family: monospace; font-size: 10px; font-weight: 900; color: #dc2626; text-shadow: 0 0 2px #fff; pointer-events: none;">THB 100.00 DECK THE STORE</div>
                   <div id="qrInlineWmBottom" style="position: absolute; bottom: 10px; left: 0; right: 0; text-align: center; font-family: monospace; font-size: 10px; font-weight: 900; color: #dc2626; text-shadow: 0 0 2px #fff; pointer-events: none;">THB 100.00 DECK THE STORE</div>
@@ -3551,7 +3547,7 @@
             <!-- Logo -->
             <div style="display: flex; justify-content: center; margin-bottom: 16px;">
               <div style="width: 80px; height: 80px; background: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.4); overflow: hidden;">
-                <img src="assets/truemoney-logo.png" alt="TrueMoney" style="width: 68px; height: 68px; object-fit: contain;" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/True_Money_logo.svg/200px-True_Money_logo.svg.png'; this.onerror=null;"/>
+                <img src="assets/truemoney-logo.png" alt="TrueMoney" style="width: 68px; height: 68px; object-fit: contain;" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/True_Money_logo.svg/200px-True_Money_logo.svg.png'; this.onerror=null;" loading="lazy" decoding="async"/>
               </div>
             </div>
             <!-- Title -->
@@ -3594,7 +3590,7 @@
             <!-- Bank Logo (dynamic) -->
             <div style="display: flex; justify-content: center; margin-bottom: 16px;">
               <div id="slipBankIconBadge" style="width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden; box-shadow: 0 4px 20px rgba(0, 150, 255, 0.35); background: transparent; transition: transform 0.25s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-                <img id="slipBankLogoImg" src="assets/banks/ktb.png" alt="Bank Logo" style="width: 100%; height: 100%; object-fit: contain; border-radius: 50%;"/>
+                <img id="slipBankLogoImg" src="assets/banks/ktb.png" alt="Bank Logo" style="width: 100%; height: 100%; object-fit: contain; border-radius: 50%;" loading="lazy" decoding="async"/>
                 <span id="slipBankIconText" style="display: none;">KTB</span>
               </div>
             </div>
@@ -3619,7 +3615,7 @@
             <!-- Slip Preview (hidden initially) -->
             <div id="slipPreviewSection" style="display: none; margin-top: 12px;">
               <div style="display: flex; align-items: center; gap: 10px; background: rgba(0,0,0,0.35); border: 1px solid rgba(0,210,255,0.2); border-radius: 10px; padding: 10px;">
-                <img id="slipPreviewImg" src="" alt="Slip" style="width: 50px; height: 64px; object-fit: cover; border-radius: 6px; border: 1px solid rgba(0,210,255,0.3);"/>
+                <img id="slipPreviewImg" src="" alt="Slip" style="width: 50px; height: 64px; object-fit: cover; border-radius: 6px; border: 1px solid rgba(0,210,255,0.3);" loading="lazy" decoding="async"/>
                 <div style="flex: 1; min-width: 0;">
                   <strong id="slipFileName" style="color: #fff; font-size: 12px; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">slip.jpg</strong>
                   <span id="slipFileSize" style="color: #34d399; font-size: 11px;">✓ สแกนสำเร็จ</span>
@@ -3649,21 +3645,21 @@
           <p style="font-size: 12.5px; color: #64748b; margin: 0 0 12px; font-weight: 500; letter-spacing: 0.02em;">รองรับทุกธนาคาร</p>
           <div style="display: flex; justify-content: center; align-items: center; gap: 10px; flex-wrap: wrap;">
             <!-- KBANK -->
-            <img src="assets/banks/kbank.png" alt="ธนาคารกสิกรไทย (KBANK)" title="ธนาคารกสิกรไทย (KBANK)" onclick="handleSupportedBankClick('kbank')" style="width: 34px; height: 34px; border-radius: 50%; object-fit: contain; cursor: pointer; transition: transform 0.2s, filter 0.2s; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.4));" onmouseover="this.style.transform='scale(1.18)'; this.style.filter='drop-shadow(0 0 8px rgba(0,169,80,0.8))'" onmouseout="this.style.transform='scale(1)'; this.style.filter='drop-shadow(0 2px 5px rgba(0,0,0,0.4))'"/>
+            <img src="assets/banks/kbank.png" alt="ธนาคารกสิกรไทย (KBANK)" title="ธนาคารกสิกรไทย (KBANK)" onclick="handleSupportedBankClick('kbank')" style="width: 34px; height: 34px; border-radius: 50%; object-fit: contain; cursor: pointer; transition: transform 0.2s, filter 0.2s; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.4));" onmouseover="this.style.transform='scale(1.18)'; this.style.filter='drop-shadow(0 0 8px rgba(0,169,80,0.8))'" onmouseout="this.style.transform='scale(1)'; this.style.filter='drop-shadow(0 2px 5px rgba(0,0,0,0.4))'" loading="lazy" decoding="async"/>
             <!-- KTB -->
-            <img src="assets/banks/ktb.png" alt="ธนาคารกรุงไทย (KTB)" title="ธนาคารกรุงไทย (KTB)" onclick="handleSupportedBankClick('ktb')" style="width: 34px; height: 34px; border-radius: 50%; object-fit: contain; cursor: pointer; transition: transform 0.2s, filter 0.2s; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.4));" onmouseover="this.style.transform='scale(1.18)'; this.style.filter='drop-shadow(0 0 8px rgba(0,159,223,0.8))'" onmouseout="this.style.transform='scale(1)'; this.style.filter='drop-shadow(0 2px 5px rgba(0,0,0,0.4))'"/>
+            <img src="assets/banks/ktb.png" alt="ธนาคารกรุงไทย (KTB)" title="ธนาคารกรุงไทย (KTB)" onclick="handleSupportedBankClick('ktb')" style="width: 34px; height: 34px; border-radius: 50%; object-fit: contain; cursor: pointer; transition: transform 0.2s, filter 0.2s; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.4));" onmouseover="this.style.transform='scale(1.18)'; this.style.filter='drop-shadow(0 0 8px rgba(0,159,223,0.8))'" onmouseout="this.style.transform='scale(1)'; this.style.filter='drop-shadow(0 2px 5px rgba(0,0,0,0.4))'" loading="lazy" decoding="async"/>
             <!-- BAY -->
-            <img src="assets/banks/bay.png" alt="ธนาคารกรุงศรีอยุธยา (BAY)" title="ธนาคารกรุงศรีอยุธยา (BAY)" onclick="handleSupportedBankClick('bay')" style="width: 34px; height: 34px; border-radius: 50%; object-fit: contain; cursor: pointer; transition: transform 0.2s, filter 0.2s; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.4));" onmouseover="this.style.transform='scale(1.18)'; this.style.filter='drop-shadow(0 0 8px rgba(255,126,0,0.8))'" onmouseout="this.style.transform='scale(1)'; this.style.filter='drop-shadow(0 2px 5px rgba(0,0,0,0.4))'"/>
+            <img src="assets/banks/bay.png" alt="ธนาคารกรุงศรีอยุธยา (BAY)" title="ธนาคารกรุงศรีอยุธยา (BAY)" onclick="handleSupportedBankClick('bay')" style="width: 34px; height: 34px; border-radius: 50%; object-fit: contain; cursor: pointer; transition: transform 0.2s, filter 0.2s; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.4));" onmouseover="this.style.transform='scale(1.18)'; this.style.filter='drop-shadow(0 0 8px rgba(255,126,0,0.8))'" onmouseout="this.style.transform='scale(1)'; this.style.filter='drop-shadow(0 2px 5px rgba(0,0,0,0.4))'" loading="lazy" decoding="async"/>
             <!-- TTB -->
-            <img src="assets/banks/ttb.png" alt="ธนาคารทหารไทยธนชาต (TTB)" title="ธนาคารทหารไทยธนชาต (TTB)" onclick="handleSupportedBankClick('ttb')" style="width: 34px; height: 34px; border-radius: 50%; object-fit: contain; cursor: pointer; transition: transform 0.2s, filter 0.2s; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.4));" onmouseover="this.style.transform='scale(1.18)'; this.style.filter='drop-shadow(0 0 8px rgba(0,86,179,0.8))'" onmouseout="this.style.transform='scale(1)'; this.style.filter='drop-shadow(0 2px 5px rgba(0,0,0,0.4))'"/>
+            <img src="assets/banks/ttb.png" alt="ธนาคารทหารไทยธนชาต (TTB)" title="ธนาคารทหารไทยธนชาต (TTB)" onclick="handleSupportedBankClick('ttb')" style="width: 34px; height: 34px; border-radius: 50%; object-fit: contain; cursor: pointer; transition: transform 0.2s, filter 0.2s; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.4));" onmouseover="this.style.transform='scale(1.18)'; this.style.filter='drop-shadow(0 0 8px rgba(0,86,179,0.8))'" onmouseout="this.style.transform='scale(1)'; this.style.filter='drop-shadow(0 2px 5px rgba(0,0,0,0.4))'" loading="lazy" decoding="async"/>
             <!-- GSB -->
-            <img src="assets/banks/gsb.png" alt="ธนาคารออมสิน (GSB)" title="ธนาคารออมสิน (GSB)" onclick="handleSupportedBankClick('gsb')" style="width: 34px; height: 34px; border-radius: 50%; object-fit: contain; cursor: pointer; transition: transform 0.2s, filter 0.2s; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.4));" onmouseover="this.style.transform='scale(1.18)'; this.style.filter='drop-shadow(0 0 8px rgba(235,25,133,0.8))'" onmouseout="this.style.transform='scale(1)'; this.style.filter='drop-shadow(0 2px 5px rgba(0,0,0,0.4))'"/>
+            <img src="assets/banks/gsb.png" alt="ธนาคารออมสิน (GSB)" title="ธนาคารออมสิน (GSB)" onclick="handleSupportedBankClick('gsb')" style="width: 34px; height: 34px; border-radius: 50%; object-fit: contain; cursor: pointer; transition: transform 0.2s, filter 0.2s; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.4));" onmouseover="this.style.transform='scale(1.18)'; this.style.filter='drop-shadow(0 0 8px rgba(235,25,133,0.8))'" onmouseout="this.style.transform='scale(1)'; this.style.filter='drop-shadow(0 2px 5px rgba(0,0,0,0.4))'" loading="lazy" decoding="async"/>
             <!-- UOB -->
-            <img src="assets/banks/uob.png" alt="ธนาคารยูโอบี (UOB)" title="ธนาคารยูโอบี (UOB)" onclick="handleSupportedBankClick('uob')" style="width: 34px; height: 34px; border-radius: 50%; object-fit: contain; cursor: pointer; transition: transform 0.2s, filter 0.2s; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.4));" onmouseover="this.style.transform='scale(1.18)'; this.style.filter='drop-shadow(0 0 8px rgba(0,48,135,0.8))'" onmouseout="this.style.transform='scale(1)'; this.style.filter='drop-shadow(0 2px 5px rgba(0,0,0,0.4))'"/>
+            <img src="assets/banks/uob.png" alt="ธนาคารยูโอบี (UOB)" title="ธนาคารยูโอบี (UOB)" onclick="handleSupportedBankClick('uob')" style="width: 34px; height: 34px; border-radius: 50%; object-fit: contain; cursor: pointer; transition: transform 0.2s, filter 0.2s; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.4));" onmouseover="this.style.transform='scale(1.18)'; this.style.filter='drop-shadow(0 0 8px rgba(0,48,135,0.8))'" onmouseout="this.style.transform='scale(1)'; this.style.filter='drop-shadow(0 2px 5px rgba(0,0,0,0.4))'" loading="lazy" decoding="async"/>
             <!-- BBL -->
-            <img src="assets/banks/bbl.png" alt="ธนาคารกรุงเทพ (BBL)" title="ธนาคารกรุงเทพ (BBL)" onclick="handleSupportedBankClick('bbl')" style="width: 34px; height: 34px; border-radius: 50%; object-fit: contain; cursor: pointer; transition: transform 0.2s, filter 0.2s; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.4));" onmouseover="this.style.transform='scale(1.18)'; this.style.filter='drop-shadow(0 0 8px rgba(30,55,153,0.8))'" onmouseout="this.style.transform='scale(1)'; this.style.filter='drop-shadow(0 2px 5px rgba(0,0,0,0.4))'"/>
+            <img src="assets/banks/bbl.png" alt="ธนาคารกรุงเทพ (BBL)" title="ธนาคารกรุงเทพ (BBL)" onclick="handleSupportedBankClick('bbl')" style="width: 34px; height: 34px; border-radius: 50%; object-fit: contain; cursor: pointer; transition: transform 0.2s, filter 0.2s; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.4));" onmouseover="this.style.transform='scale(1.18)'; this.style.filter='drop-shadow(0 0 8px rgba(30,55,153,0.8))'" onmouseout="this.style.transform='scale(1)'; this.style.filter='drop-shadow(0 2px 5px rgba(0,0,0,0.4))'" loading="lazy" decoding="async"/>
             <!-- SCB -->
-            <img src="assets/banks/scb.png" alt="ธนาคารไทยพาณิชย์ (SCB)" title="ธนาคารไทยพาณิชย์ (SCB)" onclick="handleSupportedBankClick('scb')" style="width: 34px; height: 34px; border-radius: 50%; object-fit: contain; cursor: pointer; transition: transform 0.2s, filter 0.2s; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.4));" onmouseover="this.style.transform='scale(1.18)'; this.style.filter='drop-shadow(0 0 8px rgba(78,42,132,0.8))'" onmouseout="this.style.transform='scale(1)'; this.style.filter='drop-shadow(0 2px 5px rgba(0,0,0,0.4))'"/>
+            <img src="assets/banks/scb.png" alt="ธนาคารไทยพาณิชย์ (SCB)" title="ธนาคารไทยพาณิชย์ (SCB)" onclick="handleSupportedBankClick('scb')" style="width: 34px; height: 34px; border-radius: 50%; object-fit: contain; cursor: pointer; transition: transform 0.2s, filter 0.2s; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.4));" onmouseover="this.style.transform='scale(1.18)'; this.style.filter='drop-shadow(0 0 8px rgba(78,42,132,0.8))'" onmouseout="this.style.transform='scale(1)'; this.style.filter='drop-shadow(0 2px 5px rgba(0,0,0,0.4))'" loading="lazy" decoding="async"/>
           </div>
         </div>
 
@@ -3723,7 +3719,7 @@
         <div>
           <!-- Poster Image with glowing border & duration price badge -->
           <div id="detailPosterWrap" style="width: 100%; aspect-ratio: 1/1; border-radius: 18px; overflow: hidden; background: #151620; border: 1.5px solid rgba(var(--theme-accent-rgb, 0, 210, 255), 0.4); box-shadow: 0 0 28px rgba(var(--theme-primary-rgb, 0, 102, 255), 0.22); position: relative; margin-bottom: 18px;">
-            <img id="detailProductImage" src="assets/game-poster.jpg" alt="Product Poster" style="width: 100%; height: 100%; object-fit: cover; display: block;" onerror="this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800&fit=crop&q=80';"/>
+            <img id="detailProductImage" src="assets/game-poster.jpg" alt="Product Poster" style="width: 100%; height: 100%; object-fit: cover; display: block;" onerror="this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800&fit=crop&q=80';" loading="lazy" decoding="async"/>
             <div id="detailImageBadge" style="position: absolute; top: 14px; right: 14px; background: linear-gradient(135deg, var(--theme-primary, #0066ff), var(--theme-accent, #00d2ff)); color: #fff; font-size: 14px; font-weight: 900; padding: 5px 14px; border-radius: 999px; box-shadow: 0 4px 14px rgba(var(--theme-primary-rgb, 0, 102, 255), 0.55); letter-spacing: 0.02em;">
               1วัน 25.-
             </div>
@@ -4120,7 +4116,7 @@
       <div style="display: flex; justify-content: center; margin-bottom: 16px;">
         <div id="modalPpQrWrap" style="position: relative; display: inline-block; background: #ffffff; padding: 12px; border-radius: 14px; box-shadow: 0 0 30px rgba(0,0,0,0.8), 0 0 15px rgba(239,68,68,0.25); overflow: hidden; border: 2px solid #ef4444;">
           <!-- QR Code Image -->
-          <img id="modalPpQrImage" src="" alt="PromptPay QR Code" style="width: 220px; height: 220px; display: block;"/>
+          <img id="modalPpQrImage" src="" alt="PromptPay QR Code" style="width: 220px; height: 220px; display: block;" loading="lazy" decoding="async"/>
 
           <!-- Watermarks -->
           <div id="modalPpWmTop" style="position: absolute; top: 12px; left: 0; right: 0; text-align: center; font-family: monospace; font-size: 11.5px; font-weight: 900; color: #dc2626; text-shadow: 0 0 3px #fff, 0 0 2px #fff; pointer-events: none; letter-spacing: 0.5px;">THB 50.00 DECK THE STORE</div>
@@ -5311,7 +5307,7 @@
           <div style="display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; gap: 12px; transition: border-color 0.2s;" onmouseover="this.style.borderColor='rgba(239,68,68,0.4)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)'">
             <div style="display: flex; align-items: center; gap: 12px; min-width: 0; flex: 1;">
               <div style="width: 44px; height: 44px; border-radius: 10px; background: #1a1c23; border: 1px solid rgba(255,255,255,0.08); overflow: hidden; flex-shrink: 0; display: flex; align-items: center; justify-content: center;">
-                <img src="${escapeHtml(p.imageUrl || '')}" alt="${escapeHtml(p.name)}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='';"/>
+                <img src="${escapeHtml(p.imageUrl || '')}" alt="${escapeHtml(p.name)}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='';" loading="lazy" decoding="async"/>
               </div>
               <div style="min-width: 0;">
                 <div style="font-size: 13.5px; font-weight: 700; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${escapeHtml(p.name)}</div>
@@ -6592,7 +6588,7 @@
 
       if (titleEl) titleEl.innerText = '🎁 ตรวจสอบซอง TrueMoney Wallet';
       if (subtitleEl) subtitleEl.innerText = 'ระบบกำลังยืนยันยอดเงินจากซองของขวัญ กรุณารอสักครู่...';
-      if (iconBox) iconBox.innerHTML = '<img src="assets/truemoney-logo.png" style="width:24px;height:24px;object-fit:contain;"/>';
+      if (iconBox) iconBox.innerHTML = '<img src="assets/truemoney-logo.png" style="width:24px;height:24px;object-fit:contain;" loading="lazy" decoding="async"/>';
       if (btnClose) btnClose.style.display = 'flex';
       if (loadingBox) loadingBox.style.display = 'flex';
       if (resultCard) resultCard.style.display = 'none';
@@ -6707,7 +6703,7 @@
           <div style="background: rgba(249, 115, 22, 0.12); border: 1px solid rgba(249, 115, 22, 0.35); border-radius: 12px; padding: 16px; animation: enter 0.25s ease-out;">
             <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
               <div style="display: flex; align-items: center; gap: 8px;">
-                <img src="assets/truemoney-logo.png" style="width: 28px; height: 28px; object-fit: contain; background: #fff; border-radius: 6px; padding: 2px;"/>
+                <img src="assets/truemoney-logo.png" style="width: 28px; height: 28px; object-fit: contain; background: #fff; border-radius: 6px; padding: 2px;" loading="lazy" decoding="async"/>
                 <div>
                   <strong style="color: #fb923c; font-size: 14.5px; display: block;">TrueMoney Wallet ได้รับเงินแล้ว</strong>
                   <span style="font-size: 11px; color: #94a3b8;">Redeemed via TrueMoney OpenAPI</span>
@@ -6987,8 +6983,32 @@
       };
     }
 
+    // Load jsQR only when the user actually scans a QR/slip.
+    let jsQRLoadPromise = null;
+    function ensureJsQRLoaded() {
+      if (typeof window.jsQR === 'function') return Promise.resolve();
+      if (jsQRLoadPromise) return jsQRLoadPromise;
+      jsQRLoadPromise = new Promise((resolve, reject) => {
+        const existing = document.querySelector('script[data-jsqr-loader="1"]');
+        if (existing) {
+          existing.addEventListener('load', () => resolve(), { once: true });
+          existing.addEventListener('error', reject, { once: true });
+          return;
+        }
+        const script = document.createElement('script');
+        script.src = 'assets/jsqr.min.js';
+        script.async = true;
+        script.dataset.jsqrLoader = '1';
+        script.onload = () => resolve();
+        script.onerror = () => reject(new Error('jsQR failed to load'));
+        document.head.appendChild(script);
+      });
+      return jsQRLoadPromise;
+    }
+
     // Ultra Deep Multi-Pass Image Scanner with Canvas & jsQR (7 Passes)
     async function scanSlipImageQR(fileOrImg, mode = 'ultra_deep') {
+      try { await ensureJsQRLoaded(); } catch (e) { return { found: false, error: 'NO_JSQR' }; }
       return new Promise((resolve) => {
         const img = new Image();
         img.crossOrigin = 'anonymous';
@@ -8436,39 +8456,10 @@
     async function syncStoreDataFromServer(resource) {
       try {
         const res = await fetch(`${STORE_DATA_API}/${resource}?t=${Date.now()}`, { cache: 'no-store' });
-        const localKey = STORE_DATA_KEYS[resource];
-        let localData = null;
-        try { localData = JSON.parse(localStorage.getItem(localKey) || 'null'); } catch (_) {}
-
-        // First deployment: initialize the server from existing local/default data.
-        if (res.status === 404) {
-          const seed = Array.isArray(localData) && localData.length ? localData :
-            (resource === 'products' ? DEFAULT_PRODUCTS :
-             resource === 'categories' ? DEFAULT_CATEGORIES :
-             resource === 'coupons' ? DEFAULT_COUPONS : []);
-          if (Array.isArray(seed) && seed.length) {
-            localStorage.setItem(localKey, JSON.stringify(seed));
-            await publishStoreData(resource, seed);
-          }
-          return false;
-        }
+        if (res.status === 404) return false;
         if (!res.ok) throw new Error('HTTP ' + res.status);
         const data = await res.json();
-
-        // Do not let an empty/uninitialized database wipe a working storefront.
-        if (Array.isArray(data) && data.length === 0) {
-          const fallback = Array.isArray(localData) && localData.length ? localData :
-            (resource === 'products' ? DEFAULT_PRODUCTS :
-             resource === 'categories' ? DEFAULT_CATEGORIES :
-             resource === 'coupons' ? DEFAULT_COUPONS : []);
-          if (fallback.length) {
-            localStorage.setItem(localKey, JSON.stringify(fallback));
-            await publishStoreData(resource, fallback);
-          }
-          return true;
-        }
-
-        localStorage.setItem(localKey, JSON.stringify(data));
+        localStorage.setItem(STORE_DATA_KEYS[resource], JSON.stringify(data));
         return true;
       } catch (err) {
         console.warn('[DECK THE STORE] Remote store data unavailable:', resource, err);
@@ -8702,7 +8693,7 @@
           text-shadow: 0 0 22px rgba(${glowRgb2}, 0.75), 0 0 45px rgba(${glowRgb1}, 0.45) !important;
         }
 
-        /* 🧭 Header & Navigation (DECK THE STORE / Store Topbar) */
+        /* 🧭 Header & Navigation (DECK THE STORE / X2 Topbar) */
         .x2-brand-logo-img {
           filter: drop-shadow(0 0 10px rgba(${accentRgb}, 0.7)) !important;
         }
@@ -9500,7 +9491,7 @@
 
         // Image: use p.imageUrl if available, otherwise show a cool SVG placeholder
         const imgHtml = p.imageUrl
-          ? `<img src="${escapeHtml(p.imageUrl)}" alt="${escapeHtml(p.name)}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"/><div class="store-home-productImgFallback" style="display:none; position:absolute; inset:0; flex-direction:column; align-items:center; justify-content:center; gap:8px; background:linear-gradient(135deg,rgba(0,102,255,0.18),rgba(0,210,255,0.06));"><svg xmlns='http://www.w3.org/2000/svg' width='34' height='34' viewBox='0 0 24 24' fill='none' stroke='rgba(0,210,255,0.6)' stroke-width='1.5'><polygon points='13 2 3 14 12 14 11 22 21 10 12 10 13 2'/></svg></div>`
+          ? `<img src="${escapeHtml(p.imageUrl)}" alt="${escapeHtml(p.name)}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" decoding="async"/><div class="store-home-productImgFallback" style="display:none; position:absolute; inset:0; flex-direction:column; align-items:center; justify-content:center; gap:8px; background:linear-gradient(135deg,rgba(0,102,255,0.18),rgba(0,210,255,0.06));"><svg xmlns='http://www.w3.org/2000/svg' width='34' height='34' viewBox='0 0 24 24' fill='none' stroke='rgba(0,210,255,0.6)' stroke-width='1.5'><polygon points='13 2 3 14 12 14 11 22 21 10 12 10 13 2'/></svg></div>`
           : `<div style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; background:linear-gradient(135deg,rgba(0,102,255,0.18),rgba(0,210,255,0.06));"><svg xmlns='http://www.w3.org/2000/svg' width='38' height='38' viewBox='0 0 24 24' fill='none' stroke='rgba(0,210,255,0.6)' stroke-width='1.4'><polygon points='13 2 3 14 12 14 11 22 21 10 12 10 13 2'/></svg><span style='font-size:10px;color:rgba(255,255,255,0.35);letter-spacing:0.08em;'>DIGITAL PRODUCT</span></div>`;
 
         const discountedPrice = (parseFloat(p.price) * 1.25).toFixed(2);
@@ -9635,7 +9626,7 @@
               }
 
               const imgHtml = p.imageUrl
-                ? `<img src="${escapeHtml(p.imageUrl)}" alt="${escapeHtml(p.name)}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"/><div class="store-home-productImgFallback" style="display:none;position:absolute;inset:0;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,rgba(0,102,255,0.18),rgba(0,210,255,0.06));"><svg xmlns='http://www.w3.org/2000/svg' width='34' height='34' viewBox='0 0 24 24' fill='none' stroke='rgba(0,210,255,0.6)' stroke-width='1.5'><polygon points='13 2 3 14 12 14 11 22 21 10 12 10 13 2'/></svg></div>`
+                ? `<img src="${escapeHtml(p.imageUrl)}" alt="${escapeHtml(p.name)}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" decoding="async"/><div class="store-home-productImgFallback" style="display:none;position:absolute;inset:0;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,rgba(0,102,255,0.18),rgba(0,210,255,0.06));"><svg xmlns='http://www.w3.org/2000/svg' width='34' height='34' viewBox='0 0 24 24' fill='none' stroke='rgba(0,210,255,0.6)' stroke-width='1.5'><polygon points='13 2 3 14 12 14 11 22 21 10 12 10 13 2'/></svg></div>`
                 : `<div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:linear-gradient(135deg,rgba(0,102,255,0.18),rgba(0,210,255,0.06));"><svg xmlns='http://www.w3.org/2000/svg' width='38' height='38' viewBox='0 0 24 24' fill='none' stroke='rgba(0,210,255,0.6)' stroke-width='1.4'><polygon points='13 2 3 14 12 14 11 22 21 10 12 10 13 2'/></svg><span style='font-size:10px;color:rgba(255,255,255,0.35);letter-spacing:0.08em;'>DIGITAL PRODUCT</span></div>`;
 
               const discountedPrice = (parseFloat(p.price) * 1.25).toFixed(2);
@@ -10443,14 +10434,25 @@
           }
         }
 
-        // Initialize local user storage only when it does not exist.
-        // Never force-login a demo/customer account on page load.
         if (!localStorage.getItem(KEY_USERS)) {
           saveUsers(DEFAULT_USERS);
+        } else {
+          try {
+            const curUsers = JSON.parse(localStorage.getItem(KEY_USERS) || '[]');
+            if (!curUsers.some(u => u.username === 'Melinda2Margarita')) {
+              curUsers.unshift(DEFAULT_USERS[0]);
+              saveUsers(curUsers);
+            }
+          } catch(e) {}
         }
-        // A fresh visitor stays logged out until they explicitly sign in.
-        // Existing sessions are preserved through KEY_CURRENT_USER.
-
+        // หมายเหตุ: อย่า auto-login กลับ ถ้าผู้ใช้เคยกด "ออกจากระบบ" (ธง deck-the-store_logged_out)
+        let _wasLoggedOut = false;
+        try { _wasLoggedOut = localStorage.getItem('deck-the-store_logged_out') === '1'; } catch(e) {}
+        if (!localStorage.getItem(KEY_CURRENT_USER) && !_wasLoggedOut) {
+          const uList = getUsers();
+          const mel = uList.find(u => u.username === 'Melinda2Margarita') || uList[0];
+          if (mel) setCurrentUser(mel);
+        }
         try {
           const cats = JSON.parse(localStorage.getItem(KEY_CATEGORIES));
           if (!Array.isArray(cats) || cats.length === 0) throw new Error();
@@ -10486,43 +10488,13 @@
         }
       });
 
-      // Poll the server without re-rendering the whole storefront unless
-      // actual shared data changed. Rebuilding the DOM every 3 seconds was
-      // causing the page to disappear/flicker.
-      let storefrontSyncBusy = false;
-      let lastStorefrontSnapshot = null;
-
-      function getStorefrontSyncSnapshot() {
-        return [
-          localStorage.getItem(KEY_SETTINGS) || '',
-          localStorage.getItem(KEY_PRODUCTS) || '',
-          localStorage.getItem(KEY_CATEGORIES) || '',
-          localStorage.getItem(KEY_COUPONS) || '',
-          localStorage.getItem(KEY_ORDERS) || '',
-          localStorage.getItem(KEY_PAYMENTS) || ''
-        ].join('\n\u0000');
-      }
-
-      lastStorefrontSnapshot = getStorefrontSyncSnapshot();
-
-      setInterval(async () => {
-        if (storefrontSyncBusy) return;
-        storefrontSyncBusy = true;
-        try {
-          await syncRemoteSettings();
-          await syncAllStoreDataFromServer();
-
-          const nextSnapshot = getStorefrontSyncSnapshot();
-          if (nextSnapshot !== lastStorefrontSnapshot) {
-            lastStorefrontSnapshot = nextSnapshot;
-            try { loadStorefront(); } catch(e) {
-              console.warn('[DECK THE STORE] storefront refresh failed:', e);
-            }
-          }
-        } finally {
-          storefrontSyncBusy = false;
-        }
-      }, 5000);
+      // Poll every few seconds so an open storefront follows Admin changes without refresh.
+      setInterval(() => {
+        syncRemoteSettings();
+        syncAllStoreDataFromServer().then(() => {
+          try { loadStorefront(); } catch(e) {}
+        });
+      }, 3000);
 
       // Initialize DECK Cyber HUD Monitor (Live FPS & PING)
       initHudMonitor();

@@ -1494,7 +1494,7 @@
       <div style="display: flex; align-items: center; gap: 10px;">
         <div style="width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, #0066ff, #00d2ff); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px;">A</div>
         <div>
-          <div style="font-size: 13px; font-weight: 600; color: #fff;" id="sidebarAdminUser">DECK THE STORE</div>
+          <div style="font-size: 13px; font-weight: 600; color: #fff;" id="sidebarAdminUser">DECK THE STORESTORE</div>
           <div style="font-size: 10px; color: var(--admin-muted);">Super Administrator</div>
         </div>
       </div>
@@ -3924,7 +3924,7 @@
         lineLink: "",
         lineBtnText: "แอดไลน์ ↗"
       },
-      adminUser: "DECK THE STORE",
+      adminUser: "DECK THE STORESTORE",
       adminPass: "147",
       themeName: "blue",
       themePrimary: "#0066ff",
@@ -4440,7 +4440,7 @@
       const pass = (document.getElementById('loginPassword').value || '').trim();
       const cfg = getStoredSettings();
 
-      const validUser = (cfg && cfg.adminUser) ? cfg.adminUser : 'DECK THE STORE';
+      const validUser = (cfg && cfg.adminUser) ? cfg.adminUser : 'DECK THE STORESTORE';
       const validPass = (cfg && cfg.adminPass) ? cfg.adminPass : '147';
 
       // Strict Authentication: ONLY configured admin credentials accepted
@@ -6152,7 +6152,7 @@
       }
 
       const current = getStoredSettings();
-      current.adminUser = user || 'DECK THE STORE';
+      current.adminUser = user || 'DECK THE STORESTORE';
       current.adminPass = pass || '147';
       saveSettings(current);
 

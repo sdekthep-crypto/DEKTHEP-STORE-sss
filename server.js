@@ -1,4 +1,5 @@
 const express = require('express');
+const compression = require('compression');
 const path = require('path');
 const fs = require('fs');
 const { Pool } = require('pg');
@@ -8,6 +9,7 @@ const PORT = process.env.PORT || 3000;
 const ROOT = __dirname;
 const FALLBACK_FILE = path.join(ROOT, 'data', 'settings.json');
 
+app.use(compression({ threshold: 1024 }));
 app.use(express.json({ limit: '12mb' }));
 app.use(express.urlencoded({ extended: true, limit: '12mb' }));
 
@@ -160,7 +162,17 @@ app.put('/api/store-data/:key', async (req, res) => {
 });
 
 app.get('/health', (req, res) => res.json({ ok: true }));
-app.use(express.static(ROOT, { index: 'index.html', extensions: ['html'] }));
+app.use(express.static(ROOT, {
+  index: 'index.html',
+  extensions: ['html'],
+  setHeaders(res, filePath) {
+    if (/\.(?:css|js|woff2|png|jpg|jpeg|webp|svg|gif|ico)$/i.test(filePath)) {
+      res.setHeader('Cache-Control', 'public, max-age=604800, stale-while-revalidate=86400');
+    } else if (/\.html?$/i.test(filePath)) {
+      res.setHeader('Cache-Control', 'no-cache');
+    }
+  }
+}));
 
 app.listen(PORT, () => {
   console.log(`DECK THE STORE server listening on port ${PORT}`);
