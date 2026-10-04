@@ -8342,6 +8342,30 @@
     // ==========================================
     // 📦 STORE DATA SYNC & SETTINGS CONTROLLER
     // ==========================================
+    const SETTINGS_API_URL = '/api/settings';
+
+    async function syncRemoteSettings() {
+      try {
+        const res = await fetch(SETTINGS_API_URL + '?t=' + Date.now(), { cache: 'no-store' });
+        if (!res.ok) return false;
+        const remote = await res.json();
+        if (!remote || typeof remote !== 'object') return false;
+        localStorage.setItem(KEY_SETTINGS, JSON.stringify(remote));
+        if (typeof applyDynamicTheme === 'function') applyDynamicTheme(remote);
+        if (remote.logoUrl) updateFavicon(remote.logoUrl);
+        if (remote.storeName) updatePageTitle(remote.storeName);
+        if (typeof initStorefrontCursor === 'function') initStorefrontCursor(remote);
+        const navLogo = document.getElementById('navStoreLogo');
+        if (navLogo && remote.logoUrl) navLogo.src = remote.logoUrl;
+        const navName = document.getElementById('navStoreName');
+        if (navName && remote.storeName) navName.innerText = remote.storeName;
+        return true;
+      } catch (err) {
+        console.warn('[DEMOxSHOP] Remote settings unavailable; using local cache.', err);
+        return false;
+      }
+    }
+
     function getStoredSettings() {
       const data = localStorage.getItem(KEY_SETTINGS);
       if (!data) return DEFAULT_SETTINGS;
@@ -10324,12 +10348,18 @@
       const savedLang = localStorage.getItem(KEY_LANG) || 'th';
       try { setLanguage(savedLang); } catch(e) {}
 
-      try { loadStorefront(); } catch(e) {
-        console.error('loadStorefront error:', e);
-        // แสดง error ให้ user เห็นถ้า render ล้มเหลว
-        const grid = document.getElementById('storeProductGrid');
-        if (grid) grid.innerHTML = '<div style="text-align:center;padding:40px;color:#f87171;">เกิดข้อผิดพลาดในการโหลด กรุณารีเฟรชหน้าเว็บ</div>';
-      }
+      // Load the shared server settings before the first storefront render.
+      syncRemoteSettings().finally(() => {
+        try { loadStorefront(); } catch(e) {
+          console.error('loadStorefront error:', e);
+          // แสดง error ให้ user เห็นถ้า render ล้มเหลว
+          const grid = document.getElementById('storeProductGrid');
+          if (grid) grid.innerHTML = '<div style="text-align:center;padding:40px;color:#f87171;">เกิดข้อผิดพลาดในการโหลด กรุณารีเฟรชหน้าเว็บ</div>';
+        }
+      });
+
+      // Poll every few seconds so an open storefront follows Admin changes without refresh.
+      setInterval(() => { syncRemoteSettings(); }, 3000);
 
       // Initialize DECK Cyber HUD Monitor (Live FPS & PING)
       initHudMonitor();
