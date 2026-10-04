@@ -8265,6 +8265,7 @@
       coupon.usedCount = (coupon.usedCount || 0) + 1;
       coupon.usedUsers.push(user.username);
       localStorage.setItem(KEY_COUPONS, JSON.stringify(coupons));
+          publishStoreData('coupons', coupons);
 
       user.wallet = (parseFloat(user.wallet) || 0) + amount;
       setCurrentUser(user);
@@ -8343,6 +8344,47 @@
     // 📦 STORE DATA SYNC & SETTINGS CONTROLLER
     // ==========================================
     const SETTINGS_API_URL = '/api/settings';
+    const STORE_DATA_API = '/api/store-data';
+    const STORE_DATA_KEYS = {
+      products: KEY_PRODUCTS,
+      categories: KEY_CATEGORIES,
+      coupons: KEY_COUPONS,
+      orders: KEY_ORDERS,
+      payments: KEY_PAYMENTS
+    };
+
+    async function publishStoreData(resource, data) {
+      try {
+        const res = await fetch(`${STORE_DATA_API}/${resource}`, {
+          method: 'PUT', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        return true;
+      } catch (err) {
+        console.warn('[DEMOxSHOP] Store data sync failed:', resource, err);
+        return false;
+      }
+    }
+
+    async function syncStoreDataFromServer(resource) {
+      try {
+        const res = await fetch(`${STORE_DATA_API}/${resource}?t=${Date.now()}`, { cache: 'no-store' });
+        if (res.status === 404) return false;
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const data = await res.json();
+        localStorage.setItem(STORE_DATA_KEYS[resource], JSON.stringify(data));
+        return true;
+      } catch (err) {
+        console.warn('[DEMOxSHOP] Remote store data unavailable:', resource, err);
+        return false;
+      }
+    }
+
+    async function syncAllStoreDataFromServer() {
+      for (const resource of Object.keys(STORE_DATA_KEYS)) await syncStoreDataFromServer(resource);
+    }
+
 
     async function syncRemoteSettings() {
       try {
@@ -10000,6 +10042,7 @@
           }
           prod.stock = Math.max(0, (prod.stock || 0) - qty);
           localStorage.setItem(KEY_PRODUCTS, JSON.stringify(products));
+          publishStoreData('products', products);
         } else {
           for (let i = 0; i < qty; i++) {
             deliveredCodes.push(`KEY-${Math.floor(100000 + Math.random() * 900000)}-AUTO`);
@@ -10025,6 +10068,7 @@
         };
         orders.unshift(newOrder);
         localStorage.setItem(KEY_ORDERS, JSON.stringify(orders));
+          publishStoreData('orders', orders);
 
         // Close Product Modal & Show Delivered Key Modal
         closeModal('productModal');
@@ -10348,8 +10392,8 @@
       const savedLang = localStorage.getItem(KEY_LANG) || 'th';
       try { setLanguage(savedLang); } catch(e) {}
 
-      // Load the shared server settings before the first storefront render.
-      syncRemoteSettings().finally(() => {
+      // Load shared server state before the first storefront render.
+      Promise.all([syncRemoteSettings(), syncAllStoreDataFromServer()]).finally(() => {
         try { loadStorefront(); } catch(e) {
           console.error('loadStorefront error:', e);
           // แสดง error ให้ user เห็นถ้า render ล้มเหลว
@@ -10359,7 +10403,12 @@
       });
 
       // Poll every few seconds so an open storefront follows Admin changes without refresh.
-      setInterval(() => { syncRemoteSettings(); }, 3000);
+      setInterval(() => {
+        syncRemoteSettings();
+        syncAllStoreDataFromServer().then(() => {
+          try { loadStorefront(); } catch(e) {}
+        });
+      }, 3000);
 
       // Initialize DECK Cyber HUD Monitor (Live FPS & PING)
       initHudMonitor();

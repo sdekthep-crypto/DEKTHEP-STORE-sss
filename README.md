@@ -36,3 +36,19 @@
    - รองรับการใส่คีย์สินค้าแบบหลายบรรทัด และระบบตัดจ่ายคีย์อัตโนมัติเมื่อมีการสั่งซื้อ
 5. **ระบบค้นหาและตัวกรองสถานะ (Search & Filter):**
    - ค้นหาสินค้า และกรองคำสั่งซื้อตามสถานะ (สำเร็จ, รอตรวจสอบ, ยกเลิก)
+
+
+## Shared Store Data / Railway
+
+This version adds shared server storage for `products`, `categories`, `coupons`, `orders`, and `payments`, in addition to the existing shared settings API.
+
+### Railway deployment
+1. Deploy this project as the Railway web service.
+2. Add a Railway PostgreSQL database to the project.
+3. Make sure the web service receives the database connection string as `DATABASE_URL`.
+4. Redeploy. The server automatically creates the required tables.
+5. Open `admin.html` once. The admin page pulls existing shared data; if a resource is not initialized yet, it publishes the current local copy to the server.
+
+The storefront polls shared data every 3 seconds, so changes made in Admin can appear on other devices without a manual refresh.
+
+If PostgreSQL is not configured, the server falls back to JSON files under `data/`. That fallback is useful for local testing but is not recommended for production Railway deployments because local filesystem data should not be treated as durable storage.

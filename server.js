@@ -88,6 +88,77 @@ app.put('/api/settings', async (req, res) => {
   }
 });
 
+
+const STORE_DATA_KEYS = new Set(['products','categories','coupons','orders','payments']);
+const STORE_DATA_FILE = path.join(ROOT, 'data', 'store-data.json');
+
+async function readStoreData(key) {
+  if (!STORE_DATA_KEYS.has(key)) throw new Error('invalid_store_data_key');
+  if (pool) {
+    await ensureDb();
+    await pool.query(`CREATE TABLE IF NOT EXISTS demoxshop_store_data (
+      data_key TEXT PRIMARY KEY,
+      data JSONB NOT NULL,
+      updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+    )`);
+    const { rows } = await pool.query('SELECT data FROM demoxshop_store_data WHERE data_key = $1', [key]);
+    return rows[0] ? rows[0].data : null;
+  }
+  try {
+    const all = JSON.parse(await fs.promises.readFile(STORE_DATA_FILE, 'utf8'));
+    return all[key] ?? null;
+  } catch (_) { return null; }
+}
+
+async function writeStoreData(key, data) {
+  if (!STORE_DATA_KEYS.has(key)) throw new Error('invalid_store_data_key');
+  if (pool) {
+    await ensureDb();
+    await pool.query(`CREATE TABLE IF NOT EXISTS demoxshop_store_data (
+      data_key TEXT PRIMARY KEY,
+      data JSONB NOT NULL,
+      updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+    )`);
+    await pool.query(`INSERT INTO demoxshop_store_data (data_key, data, updated_at)
+      VALUES ($1, $2::jsonb, NOW())
+      ON CONFLICT (data_key) DO UPDATE SET data = EXCLUDED.data, updated_at = NOW()`,
+      [key, JSON.stringify(data)]);
+    return;
+  }
+  await fs.promises.mkdir(path.dirname(STORE_DATA_FILE), { recursive: true });
+  let all = {};
+  try { all = JSON.parse(await fs.promises.readFile(STORE_DATA_FILE, 'utf8')); } catch (_) {}
+  all[key] = data;
+  await fs.promises.writeFile(STORE_DATA_FILE, JSON.stringify(all, null, 2), 'utf8');
+}
+
+app.get('/api/store-data/:key', async (req, res) => {
+  try {
+    const key = req.params.key;
+    if (!STORE_DATA_KEYS.has(key)) return res.status(400).json({ error: 'invalid_store_data_key' });
+    const data = await readStoreData(key);
+    if (data === null || data === undefined) return res.status(404).json({ error: 'data_not_initialized' });
+    res.set('Cache-Control', 'no-store');
+    res.json(data);
+  } catch (err) {
+    console.error('GET /api/store-data', err);
+    res.status(500).json({ error: 'store_data_read_failed' });
+  }
+});
+
+app.put('/api/store-data/:key', async (req, res) => {
+  try {
+    const key = req.params.key;
+    if (!STORE_DATA_KEYS.has(key)) return res.status(400).json({ error: 'invalid_store_data_key' });
+    if (req.body === undefined) return res.status(400).json({ error: 'invalid_store_data' });
+    await writeStoreData(key, req.body);
+    res.json({ ok: true, key, updatedAt: new Date().toISOString() });
+  } catch (err) {
+    console.error('PUT /api/store-data', err);
+    res.status(500).json({ error: 'store_data_write_failed' });
+  }
+});
+
 app.get('/health', (req, res) => res.json({ ok: true }));
 app.use(express.static(ROOT, { index: 'index.html', extensions: ['html'] }));
 

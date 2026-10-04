@@ -4195,6 +4195,7 @@
 
     function saveProducts(products) {
       localStorage.setItem(KEY_PRODUCTS, JSON.stringify(products));
+      publishStoreData('products', products);
       renderProductsTable();
       updateDashboardCounts();
     }
@@ -4266,6 +4267,56 @@
     }
 
     const SETTINGS_API_URL = '/api/settings';
+    const STORE_DATA_API = '/api/store-data';
+    const STORE_DATA_KEYS = {
+      products: KEY_PRODUCTS,
+      categories: KEY_CATEGORIES,
+      coupons: KEY_COUPONS,
+      orders: KEY_ORDERS,
+      payments: KEY_PAYMENTS
+    };
+
+    async function publishStoreData(resource, data) {
+      try {
+        const res = await fetch(`${STORE_DATA_API}/${resource}`, {
+          method: 'PUT', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        return true;
+      } catch (err) {
+        console.warn('[DEMOxSHOP] Store data sync failed:', resource, err);
+        return false;
+      }
+    }
+
+    async function syncStoreDataFromServer(resource) {
+      try {
+        const res = await fetch(`${STORE_DATA_API}/${resource}?t=${Date.now()}`, { cache: 'no-store' });
+        if (res.status === 404) return false;
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const data = await res.json();
+        localStorage.setItem(STORE_DATA_KEYS[resource], JSON.stringify(data));
+        return true;
+      } catch (err) {
+        console.warn('[DEMOxSHOP] Could not load remote store data:', resource, err);
+        return false;
+      }
+    }
+
+    async function syncAllStoreDataFromServer() {
+      for (const resource of Object.keys(STORE_DATA_KEYS)) {
+        const loaded = await syncStoreDataFromServer(resource);
+        if (!loaded) {
+          const key = STORE_DATA_KEYS[resource];
+          const raw = localStorage.getItem(key);
+          if (raw) {
+            try { await publishStoreData(resource, JSON.parse(raw)); } catch (e) {}
+          }
+        }
+      }
+    }
+
 
     async function publishSettingsToServer(settings) {
       try {
@@ -4313,6 +4364,7 @@
 
     function saveOrders(orders) {
       localStorage.setItem(KEY_ORDERS, JSON.stringify(orders));
+      publishStoreData('orders', orders);
       renderOrdersTable();
     }
 
@@ -6512,6 +6564,7 @@
 
     function saveCategories(categories) {
       localStorage.setItem(KEY_CATEGORIES, JSON.stringify(categories));
+      publishStoreData('categories', categories);
       renderCategories();
       updateProductCategoryDropdown();
     }
@@ -6838,6 +6891,7 @@
 
     function saveStoredPayments(payments) {
       localStorage.setItem(KEY_PAYMENTS, JSON.stringify(payments));
+      publishStoreData('payments', payments);
       renderPaymentsTable();
       updatePaymentStats();
     }
@@ -7009,6 +7063,7 @@
     function clearAllPaymentTransactions() {
       if (!confirm('ยืนยันล้างข้อมูลประวัติการเติมเงินทั้งหมดหรือไม่?')) return;
       localStorage.setItem(KEY_PAYMENTS, JSON.stringify([]));
+      publishStoreData('payments', []);
       renderPaymentsTable();
       updatePaymentStats();
       showToast('🗑️ ล้างประวัติธุรกรรมเติมเงินทั้งหมดเรียบร้อยแล้ว');
@@ -7702,6 +7757,7 @@
       });
 
       localStorage.setItem(KEY_COUPONS, JSON.stringify(coupons));
+      publishStoreData('coupons', coupons);
       renderCouponsTable();
       updatePaymentStats();
 
@@ -7715,6 +7771,7 @@
       let coupons = raw ? JSON.parse(raw) : DEFAULT_COUPONS;
       coupons = coupons.filter(c => c.code !== code);
       localStorage.setItem(KEY_COUPONS, JSON.stringify(coupons));
+      publishStoreData('coupons', coupons);
       renderCouponsTable();
       updatePaymentStats();
       showToast(`🗑️ ลบคูปอง "${code}" เรียบร้อยแล้ว`);
@@ -7853,6 +7910,18 @@
       // publish the current local settings so the storefront has a central source of truth.
       syncSettingsFromServer().then((loaded) => {
         if (!loaded) publishSettingsToServer(getStoredSettings());
+      });
+      syncAllStoreDataFromServer().then(() => {
+        updateProductCategoryDropdown();
+        renderCategories();
+        renderProductsTable();
+        renderOrdersTable();
+        renderUsersTable();
+        renderPaymentsTable();
+        renderPaymentSettings();
+        renderCouponsTable();
+        updatePaymentStats();
+        updateDashboardCounts();
       });
       updateProductCategoryDropdown();
       renderCategories();
