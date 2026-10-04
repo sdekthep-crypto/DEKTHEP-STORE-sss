@@ -2837,7 +2837,7 @@
               <div class="user-dropdown" id="userDropdownMenu">
                 <div style="padding: 6px 10px; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 4px;">
                   <div style="font-size: 11px; color: #a1a1aa;">เข้าสู่ระบบด้วย</div>
-                  <strong style="color: #fff; font-size: 13px;" id="dropdownUserName">Melinda2Margarita (Member)</strong>
+                  <strong style="color: #fff; font-size: 13px;" id="dropdownUserName">ผู้ใช้</strong>
                 </div>
                 <button class="dropdown-item" onclick="closeDropdown(); openModal('topupModal');">
                   <span>💳 เติมเงินเข้าระบบ</span>
@@ -3139,7 +3139,7 @@
               <span>© 2026 DECK THE STORE · สงวนลิขสิทธิ์ทั้งหมด</span>
               <span style="display: flex; align-items: center; gap: 6px;">
                 <span style="width: 6px; height: 6px; border-radius: 50%; background: #00d2ff;"></span>
-                Created and designed by Twelve
+                DECK THE STORE
               </span>
             </div>
           </div>
@@ -8436,10 +8436,39 @@
     async function syncStoreDataFromServer(resource) {
       try {
         const res = await fetch(`${STORE_DATA_API}/${resource}?t=${Date.now()}`, { cache: 'no-store' });
-        if (res.status === 404) return false;
+        const localKey = STORE_DATA_KEYS[resource];
+        let localData = null;
+        try { localData = JSON.parse(localStorage.getItem(localKey) || 'null'); } catch (_) {}
+
+        // First deployment: initialize the server from existing local/default data.
+        if (res.status === 404) {
+          const seed = Array.isArray(localData) && localData.length ? localData :
+            (resource === 'products' ? DEFAULT_PRODUCTS :
+             resource === 'categories' ? DEFAULT_CATEGORIES :
+             resource === 'coupons' ? DEFAULT_COUPONS : []);
+          if (Array.isArray(seed) && seed.length) {
+            localStorage.setItem(localKey, JSON.stringify(seed));
+            await publishStoreData(resource, seed);
+          }
+          return false;
+        }
         if (!res.ok) throw new Error('HTTP ' + res.status);
         const data = await res.json();
-        localStorage.setItem(STORE_DATA_KEYS[resource], JSON.stringify(data));
+
+        // Do not let an empty/uninitialized database wipe a working storefront.
+        if (Array.isArray(data) && data.length === 0) {
+          const fallback = Array.isArray(localData) && localData.length ? localData :
+            (resource === 'products' ? DEFAULT_PRODUCTS :
+             resource === 'categories' ? DEFAULT_CATEGORIES :
+             resource === 'coupons' ? DEFAULT_COUPONS : []);
+          if (fallback.length) {
+            localStorage.setItem(localKey, JSON.stringify(fallback));
+            await publishStoreData(resource, fallback);
+          }
+          return true;
+        }
+
+        localStorage.setItem(localKey, JSON.stringify(data));
         return true;
       } catch (err) {
         console.warn('[DECK THE STORE] Remote store data unavailable:', resource, err);
@@ -8673,7 +8702,7 @@
           text-shadow: 0 0 22px rgba(${glowRgb2}, 0.75), 0 0 45px rgba(${glowRgb1}, 0.45) !important;
         }
 
-        /* 🧭 Header & Navigation (DECK THE STORE / X2 Topbar) */
+        /* 🧭 Header & Navigation (DECK THE STORE / Store Topbar) */
         .x2-brand-logo-img {
           filter: drop-shadow(0 0 10px rgba(${accentRgb}, 0.7)) !important;
         }
@@ -10414,25 +10443,14 @@
           }
         }
 
+        // Initialize local user storage only when it does not exist.
+        // Never force-login a demo/customer account on page load.
         if (!localStorage.getItem(KEY_USERS)) {
           saveUsers(DEFAULT_USERS);
-        } else {
-          try {
-            const curUsers = JSON.parse(localStorage.getItem(KEY_USERS) || '[]');
-            if (!curUsers.some(u => u.username === 'Melinda2Margarita')) {
-              curUsers.unshift(DEFAULT_USERS[0]);
-              saveUsers(curUsers);
-            }
-          } catch(e) {}
         }
-        // หมายเหตุ: อย่า auto-login กลับ ถ้าผู้ใช้เคยกด "ออกจากระบบ" (ธง deck-the-store_logged_out)
-        let _wasLoggedOut = false;
-        try { _wasLoggedOut = localStorage.getItem('deck-the-store_logged_out') === '1'; } catch(e) {}
-        if (!localStorage.getItem(KEY_CURRENT_USER) && !_wasLoggedOut) {
-          const uList = getUsers();
-          const mel = uList.find(u => u.username === 'Melinda2Margarita') || uList[0];
-          if (mel) setCurrentUser(mel);
-        }
+        // A fresh visitor stays logged out until they explicitly sign in.
+        // Existing sessions are preserved through KEY_CURRENT_USER.
+
         try {
           const cats = JSON.parse(localStorage.getItem(KEY_CATEGORIES));
           if (!Array.isArray(cats) || cats.length === 0) throw new Error();

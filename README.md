@@ -52,3 +52,10 @@ This version adds shared server storage for `products`, `categories`, `coupons`,
 The storefront polls shared data every 3 seconds, so changes made in Admin can appear on other devices without a manual refresh.
 
 If PostgreSQL is not configured, the server falls back to JSON files under `data/`. That fallback is useful for local testing but is not recommended for production Railway deployments because local filesystem data should not be treated as durable storage.
+
+
+## Bug fixes in this build
+- Prevents empty `/api/store-data` responses from wiping local/default products and categories.
+- Seeds the server store-data endpoint from existing local/default data when the endpoint is uninitialized.
+- Removes forced auto-login of the demo/customer account.
+- Removes the old visible designer credit.
