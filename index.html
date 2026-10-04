@@ -3323,13 +3323,7 @@
             </button>
           </div>
         </div>
-
-        <!-- Bonus Notice -->
-        <div style="background: rgba(239, 68, 68, 0.08); border: 1px dashed rgba(239, 68, 68, 0.3); border-radius: 8px; padding: 10px; margin-bottom: 16px; font-size: 11.5px; color: #fca5a5;">
-          🎁 สมาชิกใหม่รับเครดิตทดลองทันที <strong>฿ 100.00</strong> ในบัญชี!
-        </div>
-
-        <!-- Cloudflare Turnstile Box (Register) -->
+<!-- Cloudflare Turnstile Box (Register) -->
         <div class="turnstile-box" id="turnstileBoxRegister" onclick="handleTurnstileClick('register')">
           <div class="turnstile-left" id="turnstileLeftRegister">
             <div class="turnstile-checkbox" id="turnstileCheckRegister">
@@ -5698,7 +5692,7 @@
       e.preventDefault();
 
       // 🛡️ CYBER DEFENSE: RATE LIMITER & BRUTE-FORCE PROTECTION
-      const rateCheck = CyberDefense.checkRateLimit('login');
+      const rateCheck = CyberDefense.checkRateLimit('register');
       if (!rateCheck.allowed) {
         showToast(rateCheck.reason);
         return;
@@ -5770,48 +5764,78 @@
     function handleUserRegister(e) {
       e.preventDefault();
 
-      // 🛡️ CYBER DEFENSE: RATE LIMITER
-      const rateCheck = CyberDefense.checkRateLimit('login');
+      const rateCheck = CyberDefense.checkRateLimit('register');
       if (!rateCheck.allowed) {
         showToast(rateCheck.reason);
         return;
       }
 
-      if (!isTurnstileVerifiedRegister) {
-        const box = document.getElementById('turnstileBoxRegister');
-        if (box) {
-          box.classList.add('shake');
-          setTimeout(() => box.classList.remove('shake'), 450);
-        }
-        showToast('⚠️ กรุณากดยืนยันตัวตนในกล่อง Cloudflare Turnstile ก่อนสมัครสมาชิก');
+      const nameEl = document.getElementById('regName');
+      const emailEl = document.getElementById('regEmail');
+      const passEl = document.getElementById('regPass');
+      const confirmEl = document.getElementById('regPassConfirm');
+
+      const name = nameEl ? nameEl.value.trim() : '';
+      const email = emailEl ? emailEl.value.trim() : '';
+      const pass = passEl ? passEl.value : '';
+      const passConfirm = confirmEl ? confirmEl.value : '';
+
+      if (!name || name.length < 3) {
+        if (nameEl) nameEl.focus();
+        showToast('กรุณาตั้งชื่อผู้ใช้อย่างน้อย 3 ตัวอักษร');
         return;
       }
 
-      const name = document.getElementById('regName').value.trim();
-      const email = document.getElementById('regEmail').value.trim();
-      const pass = document.getElementById('regPass').value.trim();
-      const passConfirm = document.getElementById('regPassConfirm').value.trim();
+      if (!/^[a-zA-Z0-9_ก-๙.-]+$/.test(name)) {
+        if (nameEl) nameEl.focus();
+        showToast('ชื่อผู้ใช้ใช้ได้เฉพาะตัวอักษร ตัวเลข _ . และ -');
+        return;
+      }
+
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        if (emailEl) emailEl.focus();
+        showToast('กรุณากรอกอีเมลให้ถูกต้อง');
+        return;
+      }
 
       if (pass.length < 4) {
+        if (passEl) passEl.focus();
         showToast('รหัสผ่านต้องมีอย่างน้อย 4 ตัวอักษร');
         return;
       }
 
       if (pass !== passConfirm) {
-        const confirmInput = document.getElementById('regPassConfirm');
-        if (confirmInput) {
-          confirmInput.focus();
-          confirmInput.parentElement.classList.add('shake');
-          setTimeout(() => confirmInput.parentElement.classList.remove('shake'), 450);
+        if (confirmEl) {
+          confirmEl.focus();
+          confirmEl.parentElement.classList.add('shake');
+          setTimeout(() => confirmEl.parentElement.classList.remove('shake'), 450);
         }
         showToast('รหัสผ่านทั้งสองช่องไม่ตรงกัน');
         return;
       }
 
-      const users = getUsers();
+      let users = [];
+      try {
+        users = getUsers();
+        if (!Array.isArray(users)) users = [];
+      } catch (err) {
+        console.error('getUsers failed:', err);
+        showToast('ไม่สามารถอ่านข้อมูลบัญชีได้ กรุณาลองใหม่อีกครั้ง');
+        return;
+      }
 
-      if (users.find(u => u.username.toLowerCase() === name.toLowerCase())) {
+      const normalizedName = name.toLowerCase();
+      const normalizedEmail = email.toLowerCase();
+
+      if (users.some(u => String(u.username || '').toLowerCase() === normalizedName)) {
+        if (nameEl) nameEl.focus();
         showToast('ชื่อผู้ใช้นี้มีคนใช้แล้ว');
+        return;
+      }
+
+      if (users.some(u => String(u.email || '').toLowerCase() === normalizedEmail)) {
+        if (emailEl) emailEl.focus();
+        showToast('อีเมลนี้มีบัญชีอยู่แล้ว');
         return;
       }
 
@@ -5819,17 +5843,27 @@
         username: name,
         email: email,
         password: pass,
-        wallet: 100.00,
+        wallet: 0.00,
         role: "Member",
         joined: new Date().toISOString().split('T')[0]
       };
-      users.push(newUser);
-      saveUsers(users);
-      setCurrentUser(newUser);
 
-      closeModal('authModal');
-      resetTurnstile('register');
-      showToast(`สมัครสมาชิกสำเร็จ! รับโบนัสเริ่มต้น ฿ 100.00 เรียบร้อย`);
+      try {
+        users.push(newUser);
+        saveUsers(users);
+        setCurrentUser(newUser);
+
+        // Reset the form after a successful registration.
+        const form = document.getElementById('registerForm');
+        if (form) form.reset();
+
+        closeModal('authModal');
+        resetTurnstile('register');
+        showToast('สมัครสมาชิกสำเร็จ! สามารถใช้งานบัญชีได้แล้ว');
+      } catch (err) {
+        console.error('save registration failed:', err);
+        showToast('ไม่สามารถบันทึกบัญชีได้ กรุณาลองใหม่อีกครั้ง');
+      }
     }
 
     function handleUserLogout() {
