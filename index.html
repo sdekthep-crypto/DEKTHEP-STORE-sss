@@ -10486,13 +10486,43 @@
         }
       });
 
-      // Poll every few seconds so an open storefront follows Admin changes without refresh.
-      setInterval(() => {
-        syncRemoteSettings();
-        syncAllStoreDataFromServer().then(() => {
-          try { loadStorefront(); } catch(e) {}
-        });
-      }, 3000);
+      // Poll the server without re-rendering the whole storefront unless
+      // actual shared data changed. Rebuilding the DOM every 3 seconds was
+      // causing the page to disappear/flicker.
+      let storefrontSyncBusy = false;
+      let lastStorefrontSnapshot = null;
+
+      function getStorefrontSyncSnapshot() {
+        return [
+          localStorage.getItem(KEY_SETTINGS) || '',
+          localStorage.getItem(KEY_PRODUCTS) || '',
+          localStorage.getItem(KEY_CATEGORIES) || '',
+          localStorage.getItem(KEY_COUPONS) || '',
+          localStorage.getItem(KEY_ORDERS) || '',
+          localStorage.getItem(KEY_PAYMENTS) || ''
+        ].join('\n\u0000');
+      }
+
+      lastStorefrontSnapshot = getStorefrontSyncSnapshot();
+
+      setInterval(async () => {
+        if (storefrontSyncBusy) return;
+        storefrontSyncBusy = true;
+        try {
+          await syncRemoteSettings();
+          await syncAllStoreDataFromServer();
+
+          const nextSnapshot = getStorefrontSyncSnapshot();
+          if (nextSnapshot !== lastStorefrontSnapshot) {
+            lastStorefrontSnapshot = nextSnapshot;
+            try { loadStorefront(); } catch(e) {
+              console.warn('[DECK THE STORE] storefront refresh failed:', e);
+            }
+          }
+        } finally {
+          storefrontSyncBusy = false;
+        }
+      }, 5000);
 
       // Initialize DECK Cyber HUD Monitor (Live FPS & PING)
       initHudMonitor();
